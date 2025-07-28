@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { connectdb } from "@/lib/db";
+import { SellCar } from "@/model";
 
 // interface SellCarDetail {
 //   title: string;
@@ -60,18 +62,21 @@ import Link from "next/link";
 //   },
 // ];
 
-
-
 const AvailableCars: React.FC = async () => {
 
-  const response= await fetch(`${process.env.CLIENT_URL}/api/sellCarsDetail`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const {sellCarDetail}=await response.json();
-  console.log(sellCarDetail);
+  // const response= await fetch(`/api/sellCarsDetail`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
+  // const {sellCarDetail}=await response.json();
+  // console.log(sellCarDetail);
+
+    await connectdb();
+          const sellCarDetail = await SellCar.find({})
+              .sort({ createdAt: -1 })
+              .populate('user', 'phone city');
 
   return (
     <main className="min-h-screen bg-gray-100 text-gray-800">
@@ -149,7 +154,7 @@ const AvailableCars: React.FC = async () => {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {sellCarDetail.map((car:any) => (
+          {sellCarDetail?.map((car:any) => (
             <div
               key={car._id}
               className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-cyan-400 hover:-translate-y-1 transition"
