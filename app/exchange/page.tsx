@@ -291,7 +291,7 @@ const VehicleValuationForm: FC = () => {
 
     const closeModal = () => {
         setIsModalOpen(false);
-        // handleReset(); // Reset form when closing modal
+        handleReset(); // Reset form when closing modal
     };
     
     // Options for select dropdowns

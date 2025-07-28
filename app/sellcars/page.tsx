@@ -62,7 +62,9 @@ import { SellCar } from "@/model";
 //   },
 // ];
 
-const AvailableCars: React.FC = async () => {
+export const dynamic = "force-dynamic"; 
+
+const AvailableCars:React.FC= async () => {
 
   // const response= await fetch(`/api/sellCarsDetail`, {
   //   method: "GET",
