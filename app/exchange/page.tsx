@@ -264,7 +264,7 @@ const VehicleValuationForm: FC = () => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
     
-
+     console.log(process.env.NEXT_PUBLIC_CLIENT_URL)
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
