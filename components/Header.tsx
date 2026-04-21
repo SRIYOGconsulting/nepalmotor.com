@@ -21,50 +21,63 @@ const Header = () => {
   }, []);
   
   return (
-    <header className={`w-full bg-gradient-to-r from-gray-700 to-gray-900 sticky top-0 z-50 lg:bg-[#626568] backdrop-blur-md transition-opacity duration-300 ${
-        isScrolled ? 'opacity-85' : 'opacity-100'
-      }`}>
-      <div className={`max-w-screen-2xl mx-auto w-full py-4 flex items-center justify-between px-4 md:px-6 lg:px-16`}>
+    <header
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        isScrolled
+          ? 'border-white/10 bg-black/85 backdrop-blur-xl'
+          : 'border-transparent bg-black/55 backdrop-blur-md'
+      }`}
+    >
+      <div className="lux-shell flex w-full items-center justify-between py-4">
         {/* Hamburger Menu (Mobile) */}
         <button
-          className="md:hidden flex items-center mr-2 focus:outline-none"
+          className="mr-2 flex items-center rounded-md border border-white/15 p-2 text-white transition hover:border-[#f4c430] md:hidden"
           aria-label="Open menu"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <MenuIcon className="text-white w-6 h-6" />
+          <MenuIcon className="h-5 w-5" />
         </button>
 
         {/* Logo Section */}
-        <Link href="/" className="flex items-center">
-          <Image src={'/MainLogo.png'} alt="Nepal Motor Logo" width={40} height={40} />
-          <span className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold ml-2 sm:ml-3">
+        <Link href="/" className="group flex items-center">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary ring-1 ring-white/10 shadow-sm shadow-black/30">
+            <Image
+              src={'/MainLogo.png'}
+              alt="Nepal Motor Logo"
+              width={30}
+              height={30}
+              className="h-7 w-7 object-contain"
+              priority
+            />
+          </span>
+          <span className="ml-2 text-lg font-black uppercase tracking-wider text-white transition group-hover:text-[#f4c430] sm:ml-3 sm:text-xl md:text-2xl">
             Nepal Motor
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-3 sm:space-x-4 md:space-x-9">
-          <nav className="flex items-center space-x-2 sm:space-x-3 md:space-x-6">
+        <div className="hidden items-center space-x-7 md:flex">
+          <nav className="flex items-center space-x-5">
             <Link
               href="/"
-              className={`text-sm md:text-base font-semibold transition-colors ${
-                pathname === '/' ? 'text-[#008080]' : 'text-white hover:text-[#008080]'
+              className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
+                pathname === '/' ? 'text-[#f4c430]' : 'text-white hover:text-[#f4c430]'
               }`}
             >
               Home
             </Link>
               <Link
               href="/sellcars"
-              className={`text-sm md:text-base font-semibold transition-colors ${
-                pathname === '/sellcars' ? 'text-[#008080]' : 'text-white hover:text-[#008080]'
+              className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
+                pathname === '/sellcars' ? 'text-[#f4c430]' : 'text-white hover:text-[#f4c430]'
               }`}
             >
               Sell Old Cars
             </Link>
             <Link
               href="/buy"
-              className={`text-sm md:text-base font-semibold transition-colors ${
-                pathname === '/buy' ? 'text-[#008080]' : 'text-white hover:text-[#008080]'
+              className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
+                pathname === '/buy' ? 'text-[#f4c430]' : 'text-white hover:text-[#f4c430]'
               }`}
             >
               Buy Old Cars
@@ -80,8 +93,8 @@ const Header = () => {
             </Link> */}
             <Link
               href="/about"
-              className={`text-sm md:text-base font-semibold transition-colors ${
-                pathname === '/about' ? 'text-[#008080]' : 'text-white hover:text-[#008080]'
+              className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
+                pathname === '/about' ? 'text-[#f4c430]' : 'text-white hover:text-[#f4c430]'
               }`}
             >
               About Us
@@ -89,7 +102,7 @@ const Header = () => {
           </nav>
           <Link
             href="/exchange"
-            className="bg-gradient-to-r from-[#004D40] via-[#008080] to-[#00BCD4]  text-white px-3 sm:px-4 lg:ml-8 py-2 rounded-md text-sm md:text-base font-semibold hover:bg-[#93a17a] transition-colors whitespace-nowrap"
+            className="lux-button whitespace-nowrap px-4 py-2 text-sm font-bold uppercase tracking-wider"
           >
             Exchange to EV
           </Link>

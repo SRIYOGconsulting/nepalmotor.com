@@ -143,9 +143,9 @@ const TestimonialsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6]">
+    <div className="min-h-screen bg-[#080808]">
       {/* Header - Deep Teal */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F3F4F6] via-[#E5E7EB] to-[#F9FAFB] py-16 px-4 sm:px-8 lg:px-16">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0d0d0d] via-[#121212] to-[#090909] py-16 px-4 sm:px-8 lg:px-16 border-b border-white/10">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#008080] rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#004D40] rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
@@ -178,7 +178,7 @@ const TestimonialsPage: React.FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-gray-600">testimonials</span>
+            <span className="text-gray-400">testimonials</span>
           </nav>
 
           {/* Main Title */}
@@ -189,7 +189,7 @@ const TestimonialsPage: React.FC = () => {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
               Discover what our valued customers have to say about their
               experience
             </p>
@@ -198,14 +198,14 @@ const TestimonialsPage: React.FC = () => {
       </section>
 
       {/* Main Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#080808]">
         <div className="max-w-7xl mx-auto px-5">
           {/* Section Title */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#008080] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#f4c430] mb-6">
               What Our Customers Say
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Real feedback from real people who have experienced our
               exceptional service and products
             </p>
@@ -216,13 +216,13 @@ const TestimonialsPage: React.FC = () => {
             {testimonials.map((testimonial: Testimonial) => (
               <div
                 key={testimonial.id}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group"
+                className="bg-[#111] border border-white/10 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group"
               >
                 {/* Top accent border */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00F3FF] to-[#008080]"></div>
 
                 {/* Quote icon */}
-                <div className="text-5xl text-[#00F3FF] opacity-70 mb-5 font-serif">
+                <div className="text-5xl text-[#f4c430] opacity-70 mb-5 font-serif">
                   "
                 </div>
 
@@ -230,20 +230,20 @@ const TestimonialsPage: React.FC = () => {
                 <StarRating rating={testimonial.rating} />
 
                 {/* Testimonial Text */}
-                <p className="text-gray-700 text-lg leading-relaxed mb-6 italic">
+                <p className="text-gray-300 text-lg leading-relaxed mb-6 italic">
                   {testimonial.text}
                 </p>
 
                 {/* Author Info */}
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#00F3FF] to-[#008080] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#f4c430] to-[#b89014] rounded-full flex items-center justify-center text-white font-bold text-lg">
                     <img
                       src={testimonial.image}
                       className="w-full h-full rounded-full"
                     />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#008080] text-lg">
+                    <h4 className="font-semibold text-white text-lg">
                       {testimonial.author}
                     </h4>
                   </div>
@@ -255,7 +255,7 @@ const TestimonialsPage: React.FC = () => {
       </section>
 
       {/* CTA Section - Gradient from Dark Slate Green to Deep Teal */}
-      <section className="bg-gradient-to-br from-[#004D40] to-[#008080] text-white py-20">
+      <section className="bg-gradient-to-br from-[#111] to-[#0a0a0a] text-white py-20 border-t border-white/10">
         <div className="max-w-4xl mx-auto px-5 text-center">
           <h3 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Join Our Success Stories?
@@ -264,7 +264,7 @@ const TestimonialsPage: React.FC = () => {
             Experience the same exceptional service that our customers rave
             about
           </p>
-          <button className="bg-[#00F3FF] text-[#004D40] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#33F5FF] transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl">
+          <button className="bg-[#f4c430] text-[#111] px-10 py-4 rounded-2xl font-bold text-lg hover:bg-[#ffdf70] transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl">
             Get Started Today
           </button>
         </div>

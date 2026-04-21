@@ -43,18 +43,18 @@ const StatsSection = () => {
   });
 
   return (
-    <div className="bg-gradient-to-b from-[#111] to-[#060B19] w-full py-5 sm:py-10">
+    <div className="w-full py-8 sm:py-12 bg-[#0b0b0b] border-y border-white/10">
       <div className="max-w-screen-2xl mx-auto px-2 sm:px-4 md:px-6">
         <div
           ref={ref}
-          className="grid grid-cols-2 gap-y-10 sm:grid-cols-4"
+          className="grid grid-cols-2 gap-4 sm:grid-cols-4"
         >
           {stats.map((item) => (
             <div
               key={item.label}
-              className="flex flex-col items-center text-center"
+              className="lux-card flex min-h-36 flex-col items-center justify-center p-5 text-center"
             >
-              <p className={`text-5xl md:text-6xl font-extrabold ${item.color}`}>
+              <p className={`text-4xl md:text-5xl font-black ${item.color === 'text-gradient' ? 'text-gradient' : 'text-[#f4c430]'}`}>
                
                 {inView ? (
                   <CountUp start={0} end={item.value} duration={2.5} />
@@ -63,7 +63,7 @@ const StatsSection = () => {
                 )}
                 {item.suffix}
               </p>
-              <p className="mt-2 text-sm font-medium tracking-widest uppercase text-gray-400">
+              <p className="mt-2 text-xs font-semibold tracking-[0.25em] uppercase text-gray-400">
                 {item.label}
               </p>
             </div>

@@ -70,8 +70,8 @@ const IconPlaceholder = ({ character }: { character: string }) => (
 
 export default function AboutPage() {
   return (
-    <main className={`bg-white text-gray-800 mx-auto w-full`}>
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F3F4F6] via-[#E5E7EB] to-[#F9FAFB] py-16 px-4 sm:px-8 lg:px-16">
+    <main className={`bg-[#080808] text-gray-100 mx-auto w-full`}>
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] via-[#131313] to-[#0b0b0b] py-16 px-4 sm:px-8 lg:px-16 border-b border-white/10">
         {/* <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#008080] rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#004D40] rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-gray-600">About</span>
+            <span className="text-gray-400">About</span>
           </nav>
 
           {/* Main Title */}
@@ -115,7 +115,7 @@ export default function AboutPage() {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
               Discover the story behind Nepal's most trusted automotive
               marketplace and the passionate team driving innovation in the
               industry.
@@ -124,7 +124,7 @@ export default function AboutPage() {
 
           {/* Feature highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00BCD4] rounded-xl flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -140,16 +140,16 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[#004D40] mb-2">
+              <h3 className="text-lg font-semibold text-[#f4c430] mb-2">
                 Est. 2018
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-300 text-sm">
                 Leading the digital transformation of Nepal's automotive
                 industry
               </p>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00BCD4] rounded-xl flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -165,15 +165,15 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[#004D40] mb-2">
+              <h3 className="text-lg font-semibold text-[#f4c430] mb-2">
                 100k+ Users
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-300 text-sm">
                 Trusted by thousands of customers across all 77 districts
               </p>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00BCD4] rounded-xl flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -189,10 +189,10 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[#004D40] mb-2">
+              <h3 className="text-lg font-semibold text-[#f4c430] mb-2">
                 500+ Dealers
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-300 text-sm">
                 Verified network of trusted automotive professionals
               </p>
             </div>
@@ -202,11 +202,11 @@ export default function AboutPage() {
 
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: "#008080" }}
+        style={{ backgroundColor: "#0b0b0b" }}
       >
         <div
           className="absolute inset-0 transform -skew-y-1 origin-top-left"
-          style={{ backgroundColor: "#004D40" }}
+          style={{ backgroundColor: "#121212" }}
         ></div>
         <div className="relative z-10 px-4 py-24 sm:py-32">
           <div className="container mx-auto max-w-6xl">
@@ -242,7 +242,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="w-full h-96 overflow-hidden shadow-2xl transform rotate-3 rounded-3xl hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="https://hips.hearstapps.com/hmg-prod/images/2022-mercedes-benz-s500-4matic-123-1642184026.jpg?crop=0.458xw:0.387xh;0.316xw,0.418xh&resize=1200:*"
+                    src="/hero-car-image1.jpg"
                     alt="Nepal Motor Office"
                     fill
                     className="object-cover rounded-3xl"
@@ -254,7 +254,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16" style={{ backgroundColor: "#F3F4F6" }}>
+      <section className="py-16" style={{ backgroundColor: "#080808" }}>
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {achievements.map((stat, index) => (
@@ -265,7 +265,7 @@ export default function AboutPage() {
                 >
                   {stat.number}
                 </div>
-                <div className="text-gray-600 text-lg">{stat.label}</div>
+                <div className="text-gray-300 text-lg">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -275,20 +275,20 @@ export default function AboutPage() {
       {/* 2. Mission & Story Section */}
       <section
         className="py-16 sm:py-24"
-        style={{ backgroundColor: "#F3F4F6" }}
+        style={{ backgroundColor: "#0d0d0d" }}
         id="mission"
       >
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Our Mission & Story
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-gray-300">
             Founded in 2018 in the heart of Kathmandu, Nepal Motor was born from
             a simple idea: to make buying and selling vehicles in Nepal simple,
             transparent, and trustworthy. We saw a fragmented market where good
             information was scarce and navigating the process was a challenge.
           </p>
-          <p className="mt-4 text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-lg leading-8 text-gray-300">
             Today, we are Nepal's leading digital automotive marketplace,
             connecting thousands of buyers with a trusted network of sellers
             from the Himalayan highlands to the Terai plains. Our mission is to
@@ -299,13 +299,13 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Team Section (Our People) */}
-      <section className="bg-white py-16 sm:py-24" id="team">
+      <section className="bg-[#090909] py-16 sm:py-24" id="team">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Meet Our People
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-300">
               The dedicated team committed to revolutionizing Nepal's auto
               industry.
             </p>
@@ -315,8 +315,8 @@ export default function AboutPage() {
             {teamMembers.map((person) => (
               <div
                 key={person.name}
-                className="flex flex-col items-center rounded-lg p-6 text-center shadow-md transition-transform hover:scale-105"
-                style={{ backgroundColor: "#F3F4F6" }}
+                className="flex flex-col items-center rounded-lg p-6 text-center shadow-md transition-transform hover:scale-105 border border-white/10"
+                style={{ backgroundColor: "#111" }}
               >
                 <Image
                   className="h-24 w-24 rounded-full"
@@ -325,7 +325,7 @@ export default function AboutPage() {
                   width={96}
                   height={96}
                 />
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                <h3 className="mt-4 text-lg font-semibold text-white">
                   {person.name}
                 </h3>
                 <p className="text-lg font-medium" style={{ color: "#008080" }}>
@@ -340,14 +340,14 @@ export default function AboutPage() {
       {/* 4. Ecosystem Section */}
       <section
         className="py-16 sm:py-24"
-        style={{ backgroundColor: "#F3F4F6" }}
+        style={{ backgroundColor: "#0d0d0d" }}
       >
         <div className="container mx-auto max-w-5xl px-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Our Ecosystem
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-300">
               A complete solution for your vehicle journey.
             </p>
           </div>
@@ -356,10 +356,10 @@ export default function AboutPage() {
               <div key={service.name} className="flex items-start space-x-4">
                 <IconPlaceholder character={service.icon} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
+                  <h3 className="text-lg font-semibold text-white">
                     {service.name}
                   </h3>
-                  <p className="mt-1 text-base text-gray-600">
+                  <p className="mt-1 text-base text-gray-300">
                     {service.description}
                   </p>
                 </div>
@@ -370,7 +370,7 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Call to Action (CTA) Section */}
-      <section style={{ backgroundColor: "#004D40" }}>
+      <section style={{ backgroundColor: "#080808" }}>
         <div className="container mx-auto px-4 py-16 text-center sm:py-20">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Join Our Journey

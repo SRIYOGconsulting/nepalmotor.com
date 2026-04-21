@@ -31,16 +31,16 @@ const TypeCarCarousel = ({cars}:carCarouselProps) => {
       {/* Custom Navigation Buttons */}
   <div
          ref={prevRef}
-         className="absolute z-10 -left-10 top-1/3  w-12 h-12 flex  items-center justify-center rounded-full bg-white shadow-lg border border-gray-300 text-black hover:bg-secondary hover:shadow-xl cursor-pointer transition transform hover:scale-110"
+         className="absolute z-10 -left-10 top-1/3  w-12 h-12 flex  items-center justify-center rounded-full bg-[#121212] shadow-lg border border-white/20 text-white hover:border-[#f4c430] hover:shadow-xl cursor-pointer transition transform hover:scale-110"
        >
-         <ArrowLeft className="w-5 h-5 text-black" />
+         <ArrowLeft className="w-5 h-5 text-white" />
        </div>
  
        <div
          ref={nextRef}
-         className="absolute z-10 -right-10 top-1/3  w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-300 text-black hover:bg-secondary hover:shadow-xl cursor-pointer transition transform hover:scale-110"
+         className="absolute z-10 -right-10 top-1/3  w-12 h-12 flex items-center justify-center rounded-full bg-[#121212] shadow-lg border border-white/20 text-white hover:border-[#f4c430] hover:shadow-xl cursor-pointer transition transform hover:scale-110"
        >
-         <ArrowRight className="w-5 h-5 text-black" />
+         <ArrowRight className="w-5 h-5 text-white" />
        </div>
 
 

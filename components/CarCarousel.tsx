@@ -30,16 +30,16 @@ const CarCarousel = ({ cars }: carCarouselProps) => {
     <div className="relative  py-8">
       <div
         ref={prevRef}
-        className="absolute z-10 -left-10 top-1/3  w-12 h-12 flex  items-center justify-center rounded-full bg-white shadow-lg border border-gray-300 text-black hover:bg-secondary hover:shadow-xl cursor-pointer transition transform hover:scale-110"
+        className="absolute z-10 -left-10 top-1/3  w-12 h-12 flex  items-center justify-center rounded-full bg-[#121212] shadow-lg border border-white/20 text-white hover:border-[#f4c430] hover:shadow-xl cursor-pointer transition transform hover:scale-110"
       >
-        <ArrowLeft className="w-5 h-5 text-black" />
+        <ArrowLeft className="w-5 h-5 text-white" />
       </div>
 
       <div
         ref={nextRef}
-        className="absolute z-10 -right-10 top-1/3  w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-300 text-black hover:bg-secondary hover:shadow-xl cursor-pointer transition transform hover:scale-110"
+        className="absolute z-10 -right-10 top-1/3  w-12 h-12 flex items-center justify-center rounded-full bg-[#121212] shadow-lg border border-white/20 text-white hover:border-[#f4c430] hover:shadow-xl cursor-pointer transition transform hover:scale-110"
       >
-        <ArrowRight className="w-5 h-5 text-black" />
+        <ArrowRight className="w-5 h-5 text-white" />
       </div>
       {/* design on hover */}
       {/* <div
@@ -107,15 +107,15 @@ const CarCarousel = ({ cars }: carCarouselProps) => {
         >
           {cars.map((car, index) => (
             <SwiperSlide key={index} className="py-2">
-              <div key={index} className="rounded-md shadow-sm p-4 ">
+              <div key={index} className="rounded-xl border border-white/10 bg-[#111] shadow-sm p-4 transition hover:border-[#f4c430]/50">
                 <img
                   src={car.image}
                   alt={car.name}
                   className="w-full h-40 object-cover rounded-md"
                 />
-                <h3 className="mt-2 font-semibold ">{car.name}</h3>
-                <p className="text-gray-600 ">{car.price}</p>
-                <button className="mt-3 border  cursor-pointer border-red-500 text-red-500 px-4 md:px-10 py-1 rounded-md hover:bg-red-500 hover:text-white transition">
+                <h3 className="mt-2 font-semibold text-white">{car.name}</h3>
+                <p className="text-gray-400 ">{car.price}</p>
+                <button className="mt-3 border cursor-pointer border-[#f4c430] text-[#f4c430] px-4 md:px-10 py-1 rounded-md hover:bg-[#f4c430] hover:text-black transition">
                   View May Offers
                 </button>
               </div>

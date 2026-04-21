@@ -27,8 +27,8 @@ const nepalCarNews = [
 
 const LatestNews = () => {
   return (
-    <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 pb-10">
-      <h2 className="text-2xl text-center md:text-3xl font-bold mb-10 text-black">
+    <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 pb-14">
+      <h2 className="text-3xl text-center md:text-4xl font-black uppercase mb-10 text-white">
         Latest Updates
       </h2>
      
@@ -37,7 +37,7 @@ const LatestNews = () => {
         {/* Left big news item */}
         <Link href={nepalCarNews[0].slug} className="md:row-span-2 md:col-span-1">
           {/* Image Container */}
-          <div className="relative h-64 md:h-[30rem] w-full rounded-lg overflow-hidden bg-gray-200">
+          <div className="relative h-64 md:h-[30rem] w-full rounded-lg overflow-hidden bg-gray-200 border border-white/10">
             <Image
               src={nepalCarNews[0].image}
               alt={nepalCarNews[0].title}
@@ -50,7 +50,7 @@ const LatestNews = () => {
           {/* Text content BELOW the image */}
           <div className="mt-4">
             {/* Type badge has been removed */}
-            <h3 className="text-base font-bold text-gray-900">
+            <h3 className="text-base font-bold text-white hover:text-[#f4c430] transition">
               {nepalCarNews[0].title}
             </h3>
           </div>
@@ -63,7 +63,7 @@ const LatestNews = () => {
             {nepalCarNews.slice(1, 3).map((item, i) => (
               <Link href={item.slug} key={i}>
                 {/* Image Container - Height increased and consistent */}
-                <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200">
+                <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200 border border-white/10">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -75,7 +75,7 @@ const LatestNews = () => {
                 {/* Text content BELOW the image */}
                 <div className="mt-3">
                   {/* Type badge has been removed */}
-                  <h3 className="text-base font-bold text-gray-900">
+                  <h3 className="text-base font-bold text-white hover:text-[#f4c430] transition">
                     {item.title}
                   </h3>
                 </div>
@@ -85,7 +85,7 @@ const LatestNews = () => {
           {/* Bottom single item */}
           <Link href={nepalCarNews[3].slug} >
             {/* Image Container - Height increased and consistent */}
-            <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200">
+            <div className="relative h-48 w-full rounded-lg overflow-hidden bg-gray-200 border border-white/10">
               <Image
                 src={nepalCarNews[3].image}
                 alt={nepalCarNews[3].title}
@@ -97,7 +97,7 @@ const LatestNews = () => {
             {/* Text content BELOW the image */}
             <div className="mt-3">
               {/* Type badge has been removed */}
-              <h3 className="text-base font-bold text-gray-900">
+              <h3 className="text-base font-bold text-white hover:text-[#f4c430] transition">
                 {nepalCarNews[3].title}
               </h3>
             </div>

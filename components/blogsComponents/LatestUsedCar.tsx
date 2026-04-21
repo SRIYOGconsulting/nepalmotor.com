@@ -42,11 +42,11 @@ const LatestUsedCar = () => {
             <div className="sticky top-24 space-y-8">
               {/* Latest Used Cars Section */}
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Latest Used Cars</h2>
-                <p className="mt-1 text-sm text-gray-500">Here are the featured listings for you.</p>
+                <h2 className="text-2xl font-bold text-white">Latest Used Cars</h2>
+                <p className="mt-1 text-sm text-gray-400">Here are the featured listings for you.</p>
                 <div className="mt-6 space-y-4">
                   {latestCars.map((car) => (
-                    <div key={car.name} className="flex bg-white p-3 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div key={car.name} className="flex bg-[#111] border border-white/10 p-3 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
                       <div className="flex-shrink-0">
                         <Image 
                           src={car.imageUrl} 
@@ -57,9 +57,9 @@ const LatestUsedCar = () => {
                         />
                       </div>
                       <div className="ml-4 flex flex-col justify-center">
-                        <h3 className="text-base font-semibold text-gray-800">{car.name}</h3>
-                        <p className="text-sm text-gray-500">{car.location}</p>
-                        <p className="mt-1 text-lg font-bold text-indigo-600">{car.price}</p>
+                        <h3 className="text-base font-semibold text-white">{car.name}</h3>
+                        <p className="text-sm text-gray-400">{car.location}</p>
+                        <p className="mt-1 text-lg font-bold text-[#f4c430]">{car.price}</p>
                       </div>
                     </div>
                   ))}

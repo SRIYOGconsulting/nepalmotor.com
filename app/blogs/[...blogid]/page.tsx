@@ -16,7 +16,6 @@ export async function generateStaticParams() {
 
 const BlogArticlePage = async ({params}:{params:Promise<{blogid:string}>}) => {
   const { blogid } = await params;
-  console.log(blogid)
   // Find the article that matches the ID from the URL
   const article = articles.find((a) => a.slug === blogid[0]) !;
 

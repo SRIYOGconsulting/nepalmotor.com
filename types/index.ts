@@ -36,7 +36,7 @@ export type typeCarDetail={
   model: string;
   variant: string;
   mileage: number;
-  transmission: string;
+  transmission: "Automatic" | "Manual";
   price: number;
 }
 

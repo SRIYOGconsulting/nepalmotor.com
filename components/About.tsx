@@ -7,28 +7,28 @@ interface AboutUsProps {}
 
 const AboutUs: React.FC<AboutUsProps> = () => {
   return (
-    <section className="bg-white w-full ">
+    <section className="bg-[#080808] w-full border-y border-white/10">
       <div className="max-w-screen-2xl w-full mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           
           {/* Left Column: Text Content & View More Button */}
          <div className="lg:w-1/2 w-full lg:pr-8 self-start">
-  <h1 className="text-3xl sm:text-5xl text-gradient font-bold uppercase tracking-wider  mb-3">
+  <h1 className="text-3xl sm:text-5xl text-gradient font-black uppercase tracking-wider  mb-3">
     About Us
   </h1>
-  <p className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 leading-tight">
+  <p className="text-xl sm:text-2xl font-bold text-white mb-6 leading-tight">
     PROVIDING RELIABLE CAR EXCHANGE SERVICES
   </p>
-  <p className="text-gray-600 leading-relaxed mb-4">
+  <p className="text-neutral-300 leading-relaxed mb-4">
     At Nepal Motors, we offer a trusted platform for individuals to exchange their cars in a hassle-free and transparent way. Whether you’re looking to upgrade to a newer model or simply switch vehicles, we make the entire process smooth and efficient.
   </p>
-  <p className="text-gray-600 leading-relaxed mb-10">
+  <p className="text-neutral-300 leading-relaxed mb-10">
     Our dedicated team ensures that every car exchange meets the highest standards of quality and reliability. We provide personalized support, clear communication, and competitive offers to make your car exchange experience seamless and rewarding.
   </p>
 
   {/* View More Button - Replaces the icons and signature */}
   <Link href={'/about'}
-    className="group inline-flex items-center gap-3 bg-button text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+    className="lux-button group inline-flex items-center gap-3 font-bold py-4 px-8 rounded-lg shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-100/20"
     aria-label="View more about our car rentals"
   >
     <span>View More</span>
@@ -45,7 +45,7 @@ const AboutUs: React.FC<AboutUsProps> = () => {
                 alt="Happy customer driving a rental car"
                 width={800}
                 height={800}
-                className="rounded-lg object-cover w-full h-full shadow-2xl"
+                className="rounded-lg object-cover w-full h-full shadow-2xl border border-white/10"
               />
               {/* Play Button Overlay */}
               <button

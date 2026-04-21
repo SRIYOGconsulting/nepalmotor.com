@@ -27,7 +27,7 @@ const cars: Car[] = [
 
 export default function CarShowcase(): JSX.Element {
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#070707] text-white">
       {/* Hero Section */}
       <HeroSection />
       {/* stats section */}

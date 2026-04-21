@@ -40,12 +40,12 @@ const TestDrivePage = () => {
   return (
     <main className="relative -mt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-12">
+        <div className="bg-[#111] rounded-2xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-12 border border-white/10">
 
           {/* Left Column: Form */}
           <div className="p-6 sm:p-10 lg:col-span-7">
-            <h2 className="text-3xl font-bold text-gray-900">Schedule a Test Drive</h2>
-            <p className="mt-2 text-sm text-gray-500">Fill out the form below and we'll get in touch with you shortly.</p>
+            <h2 className="text-3xl font-black text-white uppercase">Schedule a Test Drive</h2>
+            <p className="mt-2 text-sm text-gray-400">Fill out the form below and we'll get in touch with you shortly.</p>
             
             <form action="#" method="POST" className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
               
@@ -106,28 +106,28 @@ const TestDrivePage = () => {
           </div>
 
           {/* Right Column: Contact Info & Map */}
-          <div className="p-6 sm:p-10 lg:col-span-5 bg-indigo-50 lg:rounded-r-2xl">
-            <h2 className="text-3xl font-bold text-gray-900">Why Test Drive With Us?</h2>
-            <p className="mt-4 text-base text-gray-600">
+            <div className="p-6 sm:p-10 lg:col-span-5 bg-[#0d0d0d] lg:rounded-r-2xl">
+            <h2 className="text-3xl font-bold text-white">Why Test Drive With Us?</h2>
+            <p className="mt-4 text-base text-gray-300">
                 Experience the future of urban mobility firsthand. Our team is ready to guide you through the features and answer all your questions.
             </p>
             <dl className="mt-10 space-y-8">
               {/* Info Points */}
               <div className="flex items-start">
                   <dt><Phone className="h-6 w-6 text-indigo-600"/></dt>
-                  <dd className="ml-3 text-base text-gray-600"><strong className="block font-semibold text-gray-900">Expert Guidance</strong>Our specialists will be on hand to assist you.</dd>
+                  <dd className="ml-3 text-base text-gray-300"><strong className="block font-semibold text-white">Expert Guidance</strong>Our specialists will be on hand to assist you.</dd>
               </div>
               <div className="flex items-start">
                   <dt><Mail className="h-6 w-6 text-indigo-600"/></dt>
-                  <dd className="ml-3 text-base text-gray-600"><strong className="block font-semibold text-gray-900">Easy Scheduling</strong>Book your preferred slot online with ease.</dd>
+                  <dd className="ml-3 text-base text-gray-300"><strong className="block font-semibold text-white">Easy Scheduling</strong>Book your preferred slot online with ease.</dd>
               </div>
               <div className="flex items-start">
                   <dt><MapPin className="h-6 w-6 text-indigo-600"/></dt>
-                  <dd className="ml-3 text-base text-gray-600"><strong className="block font-semibold text-gray-900">Convenient Locations</strong>Find a test drive center near you.</dd>
+                  <dd className="ml-3 text-base text-gray-300"><strong className="block font-semibold text-white">Convenient Locations</strong>Find a test drive center near you.</dd>
               </div>
             </dl>
             <div className="mt-10">
-                <img src="https://images.unsplash.com/photo-1722661653975-81098e921544?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG5lcGFsJTIwY2Fyc3xlbnwwfHwwfHx8MA%3D%3D" alt="car" className="rounded-lg shadow-md object-cover w-full h-64" />
+                <img src="https://images.unsplash.com/photo-1722661653975-81098e921544?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG5lcGFsJTIwY2Fyc3xlbnwwfHwwfHx8MA%3D%3D" alt="car" className="rounded-lg shadow-md object-cover w-full h-64 border border-white/10" />
             </div>
           </div>
 

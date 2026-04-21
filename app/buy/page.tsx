@@ -53,7 +53,7 @@ const Page:React.FC = () => {
   
   
   return (
-    <div className='bg-white min-h-screen  max-w-screen-2xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10 py-10'>
+    <div className='bg-[#080808] text-white min-h-screen  max-w-screen-2xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10 py-10'>
         {/* product detail section */}
       <div className='w-full'>
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
@@ -70,7 +70,7 @@ const Page:React.FC = () => {
               <img
                 src={images[mainIndex].src}
                 alt={images[mainIndex].alt}
-                className="w-full h-auto aspect-square rounded-lg shadow-md object-cover"
+                className="w-full h-auto aspect-square rounded-lg shadow-md object-cover border border-white/10"
               />
               {/* <span className="absolute top-3 left-3 bg-green-200 text-green-800 text-xs font-medium px-2 py-1 rounded">
                 200+ watching
@@ -95,8 +95,8 @@ const Page:React.FC = () => {
                   onClick={() => handleThumbnailClick(idx)}
                   className={`w-16 h-16 rounded-lg border-2 cursor-pointer object-cover transition-all duration-200 ${
                     mainIndex === idx
-                      ? 'border-black scale-105'
-                      : 'border-gray-200 hover:border-gray-500'
+                      ? 'border-[#f4c430] scale-105'
+                      : 'border-white/20 hover:border-white/50'
                   }`}
                 />
               ))}
@@ -108,7 +108,7 @@ const Page:React.FC = () => {
             <div className=" rounded-xl p-6 ">
               <div className="space-y-6">
                 {/* Title */}
-                <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-white">
                   Toyota Prado TX-L (2023 Model)
                 </h1>
 
@@ -140,10 +140,10 @@ const Page:React.FC = () => {
                 {/* Action Buttons */}
                 <div className="space-y-4">
                   <div className="flex flex-col md:flex-row gap-3">
-                    <button className="flex-1  cursor-pointer bg-[#93A17A] text-white font-bold py-3 px-5 rounded-lg text-base hover:bg-emerald-700 transition-colors">
+                    <button className="flex-1  cursor-pointer bg-[#f4c430] text-black font-bold py-3 px-5 rounded-lg text-base hover:bg-[#ffdf70] transition-colors">
                       Buy Now
                     </button>
-                    <button className="flex-1 cursor-pointer bg-white text-[#93A17A] font-bold py-3 px-5 rounded-lg text-base border-2 border-[#93A17A] hover:bg-emerald-50 transition-colors flex items-center justify-center gap-x-2">
+                    <button className="flex-1 cursor-pointer bg-transparent text-[#f4c430] font-bold py-3 px-5 rounded-lg text-base border-2 border-[#f4c430] hover:bg-[#f4c430]/10 transition-colors flex items-center justify-center gap-x-2">
                       Book Test Drive <CarFront className="w-5 h-5" />
                     </button>
                   </div>

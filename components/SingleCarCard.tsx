@@ -43,7 +43,7 @@ const HeartIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="h-6 w-6 text-gray-400 transition-colors group-hover:text-red-500"
+    className="h-6 w-6 text-gray-500 transition-colors group-hover:text-[#f4c430]"
   >
     <path
       strokeLinecap="round"
@@ -65,7 +65,7 @@ const SingleCarCard = ({car}: CarCardProps) => {
   price,}=car
     
   return (
-    <div className="group flex w-full max-w-sm flex-col overflow-hidden rounded-xl bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+    <div className="group flex w-full max-w-sm flex-col overflow-hidden rounded-xl border border-white/10 bg-[#111] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#f4c430]/60 hover:shadow-xl hover:shadow-black/40">
       
       {/* Car Image Section */}
       <div className="relative mb-4 h-48 w-full">
@@ -83,24 +83,24 @@ const SingleCarCard = ({car}: CarCardProps) => {
           {/* Title and Favorite Icon */}
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-sm font-bold line-clamp-1 uppercase tracking-wider text-gray-800">
+              <h3 className="text-sm font-bold line-clamp-1 uppercase tracking-wider text-white">
                 {year} {make} {model}
               </h3>
-              <p className="text-xs uppercase text-gray-500">{variant}</p>
+              <p className="text-xs uppercase text-gray-400">{variant}</p>
             </div>
-            <button aria-label="Add to favorites">
+            <button aria-label="Add to favorites" className='cursor-pointer'>
               <HeartIcon />
             </button>
           </div>
 
           {/* Specs */}
-          <p className="mt-3 text-sm text-gray-600">
+          <p className="mt-3 text-sm text-gray-400">
             {mileage.toLocaleString('en-US')} km · {transmission}
           </p>
         </div>
 
         {/* Price */}
-        <p className="mt-4 text-2xl font-bold text-black">
+        <p className="mt-4 text-2xl font-black text-[#f4c430]">
           Rs. {price.toLocaleString('en-US')}
         </p>
       </div>

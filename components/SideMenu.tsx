@@ -54,11 +54,11 @@
 
                 {/* Menu Panel */}
                 <div 
-                    className={`fixed top-0 left-0 h-full w-72 sm:w-80 bg-pink-200 text-white p-5 shadow-xl transform transition-transform duration-500 ease-in-out ${
+                    className={`fixed top-0 left-0 h-full w-72 sm:w-80 text-white p-5 shadow-xl transform transition-transform duration-500 ease-in-out ${
                         menuOpen ? 'translate-x-0' : '-translate-x-full'
                     }`}
                     style={{
-                        backgroundColor: '#0F2A3F',
+                        background: 'linear-gradient(180deg, #111 0%, #080808 100%)',
                         overflowY: 'auto',
                         scrollbarWidth: 'none', // Firefox
                         msOverflowStyle: 'none', // IE 10+
@@ -87,17 +87,17 @@
                             {categories.map((cat, idx) => (
                                 <li key={cat.name}>
                                     <Link href={cat.link} onClick={()=>setMenuOpen(false)}
-                                        className="flex items-center justify-between py-3 px-3 rounded-md hover:bg-sky-500 transition-colors duration-150 ease-in-out group cursor-pointer"
+                                        className="group flex cursor-pointer items-center justify-between rounded-md border border-white/10 py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-white/5"
                                     >
                                         <span
-                                            className="text-base font-semibold group-hover:font-bold"
+                                            className="text-base font-semibold uppercase tracking-wider text-neutral-200 group-hover:text-[#f4c430]"
                                         >
                                             {cat.name}
                                         </span>
                                     
                                             <ChevronRight
                                                 size={22}
-                                                className="opacity-80 group-hover:opacity-100"
+                                                className="opacity-80 group-hover:opacity-100 group-hover:text-[#f4c430]"
                                             />
                                     </Link>
                                     
@@ -106,7 +106,7 @@
                         </ul>
                         <Link
             href="/exchange"
-            className="bg-[#a3b18a] text-center text-white px-3 sm:px-4 lg:ml-8 py-2 rounded-md text-sm md:text-base font-semibold hover:bg-[#93a17a] transition-colors whitespace-nowrap"
+            className="lux-button whitespace-nowrap rounded-md px-3 py-2 text-center text-sm font-bold uppercase tracking-wide md:text-base"
             onClick={()=> setMenuOpen(false)}
             >
             Exchange to EV

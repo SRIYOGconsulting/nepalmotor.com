@@ -263,12 +263,8 @@ const VehicleValuationForm: FC = () => {
     const handleSelectChange = (field: keyof FormDataState) => (value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
-    
-     console.log(process.env.NEXT_PUBLIC_CLIENT_URL)
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
-        console.log('Submitting Form Data:', formData);
          await exchangeEvSubmit(formData);
 
         // await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
@@ -307,11 +303,8 @@ const VehicleValuationForm: FC = () => {
     const carColorOptions: OptionType[] = [ "White", "Black", "Silver", "Grey", "Red", "Blue", "Maroon", "Brown", "Green", "Yellow", "Orange", "Gold", "Beige", "Sky Blue", "Pearl White", "Metallic Silver", "Gunmetal Grey", "Navy Blue"
     ].map(color => ({ value: color.toLowerCase(), label: color }));
 
-    console.log(singleCarExchangeData)
-    console.log(isSubmitSuccess)
-
     return (
-        <main style={{ backgroundColor: '#E8EDEE' }} className="py-16 w-full">
+        <main style={{ backgroundColor: '#080808' }} className="py-16 w-full text-white">
             <div className="w-full mx-auto">
                 <div className="text-center mb-12">
                     {/* Breadcrumbs Navigation */}
@@ -327,15 +320,15 @@ const VehicleValuationForm: FC = () => {
                     <h1 className="text-5xl md:text-6xl font-black mb-4 leading-tight text-gray-800">
                         Exchange To <span className="bg-gradient-to-r from-[#004D40] via-[#008080] to-[#00BCD4] bg-clip-text text-transparent">EV</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-light">
+                    <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-light">
                         Your one-stop destination for electric vehicle exchange
                     </p>
                 </div>
                 
                 {/* Form Container */}
-                <div className="relative shadow-2xl overflow-hidden p-2 sm:p-4 md:p-8 lg:p-16 bg-cover bg-center" style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1751800932672-2c3743e77062?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzNnx8fGVufDB8fHx8fA%3D%3D)"}}>
+                <div className="relative shadow-2xl overflow-hidden p-2 sm:p-4 md:p-8 lg:p-16 bg-cover bg-center" style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1751800932672-2c3743e77062?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzNnx8fGVufDB8fHx8fA%3D%3D')"}}>
                     <div className="absolute inset-0 bg-black/60"/>
-                    <form className="relative z-10 w-full p-8 bg-gray-900/40 backdrop-blur-xl border border-white/10 rounded-2xl">
+                    <form className="relative z-10 w-full p-8 bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                             <h2 className="text-xl font-semibold text-white md:col-span-2">1. Owner Details</h2>
                             <InputField id="fullName" name="fullName" label="Full Name" value={formData.fullName} onChange={handleChange} placeholder="Prajwol Shrestha" required />
@@ -378,7 +371,7 @@ const VehicleValuationForm: FC = () => {
                             </div>
 
                             <div className="flex items-center mt-6 md:col-span-2">
-                                <button onClick={handleSubmit} disabled={isSubmitLoading} className="cursor-pointer text-white bg-teal-600 font-medium py-2.5 px-8 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-teal-500 hover:bg-teal-700 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                                <button onClick={handleSubmit} disabled={isSubmitLoading} className="cursor-pointer text-black bg-[#f4c430] font-medium py-2.5 px-8 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-teal-500 hover:bg-[#ffdf70] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
                                     {isSubmitLoading ? 'Submitting...' : 'Submit'}
                                 </button>
                                 <button type="button" onClick={handleReset} className="cursor-pointer text-gray-200 font-medium ml-4 border-2 border-white/20 py-2.5 px-8 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-400 hover:bg-white/10">

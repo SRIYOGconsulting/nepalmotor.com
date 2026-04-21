@@ -22,7 +22,7 @@ const ContactUs = () => {
 
   return (
     <div
-      style={{ backgroundColor: "#F3F4F6" }}
+      style={{ backgroundColor: "#080808" }}
       className="w-full mx-auto min-h-screen"
     >
       {/* Hero Section */}
@@ -66,7 +66,7 @@ const ContactUs = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span style={{ color: "#004D40" }}>Contact</span>
+            <span className="text-neutral-400">Contact</span>
           </nav>
 
           {/* Main Title */}
@@ -82,7 +82,7 @@ const ContactUs = () => {
                 Contact Us
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
               We're here to help and answer any question you might have. We look
               forward to hearing from you.
             </p>
@@ -97,16 +97,15 @@ const ContactUs = () => {
       {/* Contact Form Section */}
       <main className="px-4 sm:px-8 lg:px-16 pb-20 mt-5">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-12 border border-gray-100">
+          <div className="bg-[#111] rounded-3xl shadow-2xl overflow-hidden lg:grid lg:grid-cols-12 border border-white/10">
             {/* Left Column: Form */}
             <div className="p-8 sm:p-12 lg:col-span-7">
               <h2
-                className="text-3xl font-bold mb-2"
-                style={{ color: "#004D40" }}
+                className="text-3xl font-bold mb-2 text-white"
               >
                 Send us a message
               </h2>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-300 mb-8">
                 Fill out the form below and we'll get back to you soon.
               </p>
 
@@ -127,7 +126,7 @@ const ContactUs = () => {
                     autoComplete="name"
                     required
                     placeholder="Enter your full name"
-                    className="py-4 px-4 block w-full text-gray-900 border border-gray-300 rounded-xl transition-all duration-200 focus:ring-2 focus:ring-opacity-50 focus:border-transparent"
+                    className="py-4 px-4 block w-full text-white bg-[#171717] border border-white/15 rounded-xl transition-all duration-200 focus:ring-2 focus:ring-opacity-50 focus:border-transparent"
                   />
                 </div>
 
@@ -140,10 +139,10 @@ const ContactUs = () => {
                   >
                     Mobile *
                   </label>
-                  <div className="flex rounded-xl overflow-hidden border border-gray-300">
+                  <div className="flex rounded-xl overflow-hidden border border-white/15">
                     <span
                       className="inline-flex items-center px-4 text-sm font-medium text-white"
-                      style={{ backgroundColor: "#008080" }}
+                      style={{ backgroundColor: "#f4c430", color: "#111" }}
                     >
                       +977
                     </span>
@@ -153,7 +152,7 @@ const ContactUs = () => {
                       id="mobile"
                       required
                       placeholder="Enter mobile number"
-                      className="flex-1 py-4 px-4 block w-full text-gray-900 border-0 focus:ring-2 focus:ring-opacity-50"
+                      className="flex-1 py-4 px-4 block w-full text-white bg-[#171717] border-0 focus:ring-2 focus:ring-opacity-50"
                     />
                   </div>
                 </div>
@@ -173,7 +172,7 @@ const ContactUs = () => {
                     type="email"
                     autoComplete="email"
                     placeholder="Enter email address"
-                    className="py-4 px-4 block w-full text-gray-900 border border-gray-300 rounded-xl transition-all duration-200 focus:ring-2 focus:ring-opacity-50 focus:border-transparent"
+                    className="py-4 px-4 block w-full text-white bg-[#171717] border border-white/15 rounded-xl transition-all duration-200 focus:ring-2 focus:ring-opacity-50 focus:border-transparent"
                   />
                 </div>
 
@@ -191,7 +190,7 @@ const ContactUs = () => {
                     name="message"
                     rows={5}
                     placeholder="Tell us how we can help you..."
-                    className="py-4 px-4 block w-full border border-gray-300 rounded-xl transition-all duration-200 focus:ring-2 focus:ring-opacity-50 focus:border-transparent resize-none"
+                    className="py-4 px-4 block w-full text-white bg-[#171717] border border-white/15 rounded-xl transition-all duration-200 focus:ring-2 focus:ring-opacity-50 focus:border-transparent resize-none"
                   ></textarea>
                 </div>
 
@@ -210,7 +209,7 @@ const ContactUs = () => {
                     />
                   </div>
                   <div className="ml-3">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-300">
                       I agree to the{" "}
                       <a
                         href="#"
@@ -227,10 +226,10 @@ const ContactUs = () => {
                 <div className="sm:col-span-2">
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center px-8 py-4 border border-transparent rounded-xl text-lg font-bold text-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-opacity-50"
+                    className="w-full inline-flex items-center justify-center px-8 py-4 border border-transparent rounded-xl text-lg font-bold text-black transition-all duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-opacity-50"
                     style={{
-                      backgroundColor: "#00F3FF",
-                      boxShadow: "0 10px 25px rgba(0, 243, 255, 0.3)",
+                      backgroundColor: "#f4c430",
+                      boxShadow: "0 10px 25px rgba(244, 196, 48, 0.35)",
                     }}
                   >
                     SEND MESSAGE
@@ -242,22 +241,21 @@ const ContactUs = () => {
             {/* Right Column: Contact Info & Map */}
             <div
               className="p-8 sm:p-12 lg:col-span-5 lg:rounded-r-3xl"
-              style={{ backgroundColor: "#F3F4F6" }}
+              style={{ backgroundColor: "#0d0d0d" }}
             >
               <h2
-                className="text-3xl font-bold mb-2"
-                style={{ color: "#004D40" }}
+                className="text-3xl font-bold mb-2 text-white"
               >
                 Contact Information
               </h2>
-              <p className="text-gray-700 mb-10 leading-relaxed">
+              <p className="text-gray-300 mb-10 leading-relaxed">
                 Find us at our office, give us a call, or send us an email. We
                 are always happy to help.
               </p>
 
               <dl className="space-y-8">
                 {/* Phone Number */}
-                <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
+                <div className="flex items-start bg-[#111] p-4 rounded-xl shadow-sm border border-white/10">
                   <dt className="flex-shrink-0 mt-1">
                     <div
                       className="p-3 rounded-lg"
@@ -273,14 +271,14 @@ const ContactUs = () => {
                     >
                       Phone Number
                     </strong>
-                    <span className="text-gray-600">
+                    <span className="text-gray-300">
                       +977-9872354607 / +977-9854673462
                     </span>
                   </dd>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
+                <div className="flex items-start bg-[#111] p-4 rounded-xl shadow-sm border border-white/10">
                   <dt className="flex-shrink-0 mt-1">
                     <div
                       className="p-3 rounded-lg"
@@ -296,14 +294,14 @@ const ContactUs = () => {
                     >
                       E-mail
                     </strong>
-                    <span className="text-gray-600">
+                    <span className="text-gray-300">
                       support@nepalmotor.com
                     </span>
                   </dd>
                 </div>
 
                 {/* Location */}
-                <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
+                <div className="flex items-start bg-[#111] p-4 rounded-xl shadow-sm border border-white/10">
                   <dt className="flex-shrink-0 mt-1">
                     <div
                       className="p-3 rounded-lg"
@@ -319,7 +317,7 @@ const ContactUs = () => {
                     >
                       Location
                     </strong>
-                    <span className="text-gray-600">
+                    <span className="text-gray-300">
                       KamalPokhari, Kathmandu 44600
                     </span>
                   </dd>
@@ -350,12 +348,11 @@ const ContactUs = () => {
         <div className="container mx-auto">
           <div className="mx-auto max-w-4xl text-center mb-16">
             <h2
-              className="text-4xl md:text-5xl font-bold mb-6"
-              style={{ color: "#008080" }}
+              className="text-4xl md:text-5xl font-bold mb-6 text-[#f4c430]"
             >
               Quick Contact
             </h2>
-            <p className="text-xl leading-relaxed" style={{ color: "#004D40" }}>
+            <p className="text-xl leading-relaxed text-gray-300">
               Quick contact the relevant people.
             </p>
             <div
@@ -368,7 +365,7 @@ const ContactUs = () => {
             {teamMembers.map((person, index) => (
               <div
                 key={person.name}
-                className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
+                className="group relative bg-[#111] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 overflow-hidden"
               >
                 {/* Decorative background gradient */}
                 <div
@@ -396,23 +393,19 @@ const ContactUs = () => {
                     ></div>
                   </div>
 
-                  <h3
-                    className="text-xl font-bold mb-2 transition-colors"
-                    style={{ color: "#004D40" }}
-                  >
+                  <h3 className="text-xl font-bold mb-2 transition-colors text-white">
                     {person.name}
                   </h3>
 
                   <p
-                    className="text-lg font-semibold mb-8 transition-colors"
-                    style={{ color: "#008080" }}
+                    className="text-lg font-semibold mb-8 transition-colors text-[#f4c430]"
                   >
                     {person.role}
                   </p>
 
                   <button
                     className="relative text-white p-4 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group/button hover:bg-opacity-90"
-                    style={{ backgroundColor: "#008080" }}
+                    style={{ backgroundColor: "#f4c430", color: "#111" }}
                   >
                     <div className="flex items-center justify-center">
                       <svg

@@ -81,8 +81,8 @@ const AvailableCars:React.FC= async () => {
               .populate('user', 'phone city');
 
   return (
-    <main className="min-h-screen bg-gray-100 text-gray-800">
-      <section className="relative overflow-hidden py-20 px-4 sm:px-8 lg:px-16">
+    <main className="min-h-screen bg-[#080808] text-gray-100">
+      <section className="relative overflow-hidden py-20 px-4 sm:px-8 lg:px-16 border-b border-white/10">
         <div className="absolute inset-0 opacity-5">
           <div
             className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
@@ -122,7 +122,7 @@ const AvailableCars:React.FC= async () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span style={{ color: "#004D40" }}>Cars-For-Sell</span>
+            <span className="text-gray-400">Cars-For-Sell</span>
           </nav>
 
           {/* Main Title */}
@@ -138,7 +138,7 @@ const AvailableCars:React.FC= async () => {
                 Cars For Sale
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
               We're here to help and answer any question you might have. We look
               forward to hearing from you.
             </p>
@@ -151,7 +151,7 @@ const AvailableCars:React.FC= async () => {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-semibold text-teal-700 border-l-4 border-cyan-400 pl-4 mb-8">
+        <h2 className="text-3xl font-semibold text-[#f4c430] border-l-4 border-[#f4c430] pl-4 mb-8">
           Available Cars for Sale
         </h2>
 
@@ -159,16 +159,16 @@ const AvailableCars:React.FC= async () => {
           {sellCarDetail?.map((car:any) => (
             <div
               key={car._id}
-              className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-cyan-400 hover:-translate-y-1 transition"
+              className="bg-[#111] rounded-xl shadow-md overflow-hidden border border-white/10 hover:-translate-y-1 transition"
             >
               <div className="bg-gradient-to-br from-teal-600 to-cyan-400 text-white flex items-center justify-center text-5xl">
                 <img src={car?.icon || '/carTabsImage/Sedan/honda_city.png'} alt={car?.vehicleModel} className="w-full h-auto" />
               </div>
               <div className="p-5">
-                <h3 className="text-xl font-bold text-teal-700 mb-2">
+                <h3 className="text-xl font-bold text-white mb-2">
                   {car?.vehicleModel} ({car?.makeYear})
                 </h3>
-                <div className="grid grid-cols-2 gap-2 text-sm text-gray-600 mb-3">
+                <div className="grid grid-cols-2 gap-2 text-sm text-gray-300 mb-3">
                   <span>
                     <strong>Type:</strong> {car?.vehicleType}
                   </span>
@@ -188,12 +188,12 @@ const AvailableCars:React.FC= async () => {
                     <strong>City:</strong> {car?.user?.city}
                   </span>
                 </div>
-                <div className="text-cyan-500 text-lg font-semibold mb-4">
+                <div className="text-[#f4c430] text-lg font-semibold mb-4">
                   {car?.expectedValuation}
                 </div>
                 <Link
                   href={`/cardescription`}
-                  className="block w-full bg-teal-600 hover:bg-teal-800 text-white font-semibold py-2 rounded-full transition text-center"
+                  className="block w-full bg-[#f4c430] hover:bg-[#ffdf70] text-black font-semibold py-2 rounded-full transition text-center"
                 >
                   View Details
                 </Link>

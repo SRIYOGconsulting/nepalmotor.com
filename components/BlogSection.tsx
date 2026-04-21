@@ -82,14 +82,14 @@ const blogPosts: BlogPost[] = [
 
 const BlogSection = () => {
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-[#080808] py-20 sm:py-24">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center">
-          <h2 className="mt-2 text-3xl font-bold uppercase tracking-tight text-slate-800 sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
             Our Recently Post
           </h2>
-          <p className="font-semibold text-[#93A17A] uppercase tracking-wider">
+          <p className="font-semibold text-[#f4c430] uppercase tracking-[0.2em]">
             Blog & News
           </p>
         </div>
@@ -99,7 +99,7 @@ const BlogSection = () => {
           {blogPosts.map((post) => (
             <div
               key={post.id}
-              className={`${post.cardBgColor} rounded-xl shadow-lg overflow-hidden flex flex-col`}
+              className="rounded-xl border border-white/10 bg-[#121212] shadow-lg overflow-hidden flex flex-col transition hover:border-[#f4c430]/50"
             >
               <div className="relative">
                 <Image
@@ -116,14 +116,14 @@ const BlogSection = () => {
                 </span>
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-lg font-bold uppercase text-slate-800">
+                <h3 className="text-lg font-bold uppercase text-white">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-gray-600 text-sm leading-relaxed flex-grow">
+                <p className="mt-2 text-neutral-300 text-sm leading-relaxed flex-grow">
                   {post.excerpt}
                 </p>
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <div className="flex justify-between items-center text-xs text-gray-500">
+                <div className="mt-6 pt-4 border-t border-white/10">
+                  <div className="flex justify-between items-center text-xs text-neutral-400">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2">
                         <Image
@@ -142,7 +142,7 @@ const BlogSection = () => {
                     </div>
                     <a
                       href="#"
-                      className={`font-semibold transition-colors ${post.readMoreColor}`}
+                      className="font-semibold text-[#f4c430] transition-colors hover:text-[#ffdf70]"
                     >
                       Read More —
                     </a>

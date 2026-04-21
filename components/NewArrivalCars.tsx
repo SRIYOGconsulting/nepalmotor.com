@@ -14,10 +14,10 @@ type Vehicles=Vehicle[]
 
 const vehicles:Vehicles = [
 	{
-		label: 'Proton eMas 7',
-		img: '/compareVehicleImage/Hyundai-Kona-Electric.png',
-		href: '/compare/suvs',
-		price: '56.99 lakhs Onwards',
+		label: 'Tata Curvv Ev',
+		img: '/compareVehicleImage/tata-curvv-ev.png',
+		href: '/compare/sedans',
+		price: '38 lakhs Onwards',
 	},
 	{
 		label: 'Maxus eTerron 9',
@@ -26,19 +26,20 @@ const vehicles:Vehicles = [
 		price: '70 lakhs Onwards',
 	},
 	{
-		label: 'Tata corv Ev',
+		label: 'Proton eMas 7',
 		img: '/compareVehicleImage/proton-eMas-7.png',
-		href: '/compare/sedans',
-		price: '38 lakhs Onwards',
+		href: '/compare/suvs',
+		price: '56.99 lakhs Onwards',
 	},
 	// {
 	// 	label: 'Coupes',
-	// 	img: '/compareVehicleImage/Maxus-eTerron-9.png',
+	// 	img: '/compareVehicleImage/coupes.png',
 	// 	href: '/compare/coupes',
+	// 	price:'48 lakhs Onwards',
 	// },
 	{
 		label: 'Hyundai Kona',
-		img: '/compareVehicleImage/Tata-Curvv-EV.png',
+		img: '/compareVehicleImage/Hyundai-Kona-Electric.png',
 		href: '/compare/hatchbacks',
 		price:'48 lakhs Onwards'
 	},
@@ -51,8 +52,8 @@ const vehicles:Vehicles = [
 
 const NewArrivalCars = () => {
 	return (
-		<section className="w-full pb-10  bg-gray-50">
-			<h2 className="text-xl md:text-2xl text-center font-bold mb-6 pt-5">
+		<section className="w-full pb-12 bg-[#090909]">
+			<h2 className="text-3xl md:text-4xl text-center font-black uppercase mb-6 pt-8">
 				New Arrivals
 			</h2>
 			{/* <div className="flex flex-wrap gap-6 justify-center ">
@@ -79,13 +80,13 @@ const NewArrivalCars = () => {
 					</Link>
 				))}
 			</div> */}
-			<div className='w-full max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-8'>
+			<div className='w-full max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-8 '>
 			<div className="flex flex-wrap gap-8 justify-center p-4">
 	{vehicles.map((v) => (
 		<Link
 			key={v.label}
 			href={v.href}
-			className="block w-48 bg-white rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+			className="block w-48 rounded-lg border border-primary/10 bg-[#131313] hover:border-[#f4c430]/60 hover:shadow-xl transition-all duration-300"
 		>
 			<div className="w-full  flex items-center justify-center">
 				<Image
@@ -93,14 +94,14 @@ const NewArrivalCars = () => {
 					alt={v.label}
 					width={300}
 					height={200}
-					className="object-contain h-full w-full"
+					className="object-contain h-full w-full "
 				/>
 			</div>
 			<div className="px-4 pb-2">
-				<h3 className="text-lg font-semibold tracking-tight text-gray-900">
+				<h3 className="text-lg font-semibold tracking-tight text-white">
 					{v.label}
 				</h3>
-				<p className="mt-1 font-normal text-sm text-gray-600">
+				<p className="mt-1 font-normal text-sm text-gray-400">
 					{v.price}
 				</p>
 			</div>

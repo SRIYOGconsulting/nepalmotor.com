@@ -4,16 +4,17 @@ import TestDrivePage from '@/components/TestDriveForm';
 
 const TestDrive = () => {
   return (
-    <div className="bg-gray-50  max-w-screen-2xl mx-auto">
+    <div className="bg-[#080808]  max-w-screen-2xl mx-auto">
       {/* Hero Section with Background Image */}
       <div 
         className="relative bg-cover  bg-center h-72 md:h-96" 
         style={{ backgroundImage: "url('/bookTestDrive.jpg')" }}
       >
         {/* <div className="absolute inset-0 bg-black bg-opacity-90"></div> */}
+        <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">Book A Test Drive</h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase">Book A Test Drive</h1>
+          <p className="mt-4 text-lg md:text-xl max-w-3xl text-neutral-200">
             Experience the thrill of driving your dream vehicle. Schedule a test drive with us today and feel the difference.
           </p>
         </div>

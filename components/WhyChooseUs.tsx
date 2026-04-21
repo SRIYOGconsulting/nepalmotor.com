@@ -40,32 +40,32 @@ const features = [
   icon: Car,
   title: 'Cross Country Drive',
   description: 'Enjoy seamless travel across Nepal with reliable vehicles suited for hills, highways, and city roads — perfect for both short and long trips.',
-  color: 'text-slate-900',
-  iconBg: 'bg-slate-100',
+  color: 'text-white',
+  iconBg: 'bg-white/10',
   align: 'left' as const,
 },
 {
   icon: ShieldCheck,
   title: 'No Hidden Charges',
   description: 'We believe in full transparency. What you see is what you pay — no extra charges, no last-minute surprises.',
-  color: 'text-orange-500',
-  iconBg: 'bg-orange-100',
+  color: 'text-[#f4c430]',
+  iconBg: 'bg-[#f4c430]/20',
   align: 'left' as const,
 },
 {
   icon: Clock,
   title: 'Reserve Anytime',
   description: 'Book your vehicle anytime, from anywhere in Nepal. Our online system is always open, 24/7 — even during holidays and festivals.',
-  color: 'text-slate-900',
-  iconBg: 'bg-slate-100',
+  color: 'text-white',
+  iconBg: 'bg-white/10',
   align: 'right' as const,
 },
 {
   icon: Users,
   title: '24/7 Support',
   description: 'Get round-the-clock customer support from our friendly local team. Whether youre in Kathmandu or a remote area, we’re here to help.',
-  color: 'text-slate-900',
-  iconBg: 'bg-slate-100',
+  color: 'text-white',
+  iconBg: 'bg-white/10',
   align: 'right' as const,
 }
 
@@ -76,10 +76,10 @@ const WhyChooseUs = () => {
   const rightFeatures = features.filter((f) => f.align === 'right');
 
   return (
-    <section className="bg-white py-16 lg:py-20">
+    <section className="bg-[#090909] py-16 lg:py-20">
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
-          <p className="font-bold text-3xl sm:text-4xl text-[#1E2939] tracking-normal">
+          <p className="font-black text-3xl sm:text-4xl text-white tracking-normal uppercase">
             WHY CHOOSE US
           </p>
           <h2 className="mt-2  font-semibold tracking-tight text-gradient captialize ">
@@ -103,7 +103,7 @@ const WhyChooseUs = () => {
                   <h3 className={`text-lg font-bold ${feature.color}`}>
                     {feature.title}
                   </h3>
-                  <p className="mt-1 text-base text-slate-600">
+                  <p className="mt-1 text-base text-neutral-400">
                     {feature.description}
                   </p>
                 </div>
@@ -118,7 +118,7 @@ const WhyChooseUs = () => {
               <div 
                 className="
                   absolute inset-0 z-0  
-                  bg-slate-100/70 rounded-full
+                  bg-white/5 rounded-full
                   aspect-square transform scale-110
                 "
               />
@@ -146,7 +146,7 @@ const WhyChooseUs = () => {
                   <h3 className={`text-lg font-bold ${feature.color}`}>
                     {feature.title}
                   </h3>
-                  <p className="mt-1 text-base text-slate-600">
+                  <p className="mt-1 text-base text-neutral-400">
                     {feature.description}
                   </p>
                 </div>

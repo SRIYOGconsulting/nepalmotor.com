@@ -26,11 +26,10 @@ const testimonialsData = [
     quote:
       "Renting a Royal Enfield for my trip to Mustang was the best decision. The bike was in perfect condition, and the team provided excellent support. Unforgettable views and a reliable ride!",
     rating: 5.0,
-    // Using a placeholder image service. Replace with your actual image paths.
     imageUrl: "https://i.pravatar.cc/150?u=alexrai",
-    bgColor: "bg-white",
+    bgColor: "bg-[#121212]",
     shadow: "shadow-xl",
-    roleColor: "text-orange-500",
+    roleColor: "text-[#f4c430]",
   },
   {
     id: 2,
@@ -39,19 +38,18 @@ const testimonialsData = [
     quote:
       "We bought our first family SUV from them. The process was smooth, transparent, and they helped us find the perfect vehicle for Kathmandu's roads. Highly recommended for their professional service.",
     rating: 5.0,
-    // Using a placeholder image service. Replace with your actual image paths.
     imageUrl: "https://i.pravatar.cc/150?u=girl",
-    bgColor: "bg-slate-100",
+    bgColor: "bg-[#171717]",
     shadow: "shadow-lg",
-    roleColor: "text-slate-500",
+    roleColor: "text-neutral-400",
   },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="bg-white w-full pt-10 pb-10 sm:pb-20">
+    <section className="bg-[#080808] w-full pt-10 pb-10 sm:pb-20">
       <div className="max-w-screen-2xl w-full mx-auto px-6 lg:px-8">
-        <h1 className="text-center pb-10 text-4xl font-bold tracking-tight text-slate-800 sm:text-5xl  ">
+        <h1 className="text-center pb-10 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
           Testimonials
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -60,7 +58,7 @@ const Testimonials = () => {
             <h2 className="mt-2 text-1xl font-bold tracking-tight text-gradient sm:text-2xl">
               Reviewed by Our Clients
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg leading-8 text-neutral-300">
               Discover why our customers trust us for their automotive needs in
               Nepal. From rugged mountain adventures to daily city commutes, we
               deliver reliability and quality service.
@@ -68,7 +66,7 @@ const Testimonials = () => {
             <div className="mt-10">
               <Link
                 href="/testimonials"
-                className="inline-block rounded-md bg-button px-8 py-4 text-base font-semibold group text-white shadow-sm hover:bg-gray-700 transition-all duration-500 transform hover:-translate-y-1 ease-out "
+                className="lux-button inline-block rounded-md px-8 py-4 text-base font-semibold group shadow-sm transition-all duration-500 transform hover:-translate-y-1 ease-out "
               >
                 Discover More{" "}
                 <MoveRightIcon className="inline-block ml-2 group-hover:translate-x-1 transition-all duration-400" />
@@ -81,7 +79,7 @@ const Testimonials = () => {
             {testimonialsData.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className={`${testimonial.bgColor} ${testimonial.shadow} rounded-xl p-8`}
+                className={`${testimonial.bgColor} ${testimonial.shadow} rounded-xl border border-white/10 p-8`}
               >
                 <div className="flex items-start gap-4">
                   <Image
@@ -92,7 +90,7 @@ const Testimonials = () => {
                     height={56}
                   />
                   <div>
-                    <p className="text-lg font-bold text-slate-800">
+                    <p className="text-lg font-bold text-white">
                       {testimonial.name}
                     </p>
                     <p
@@ -102,7 +100,7 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-                <blockquote className="mt-6 text-gray-700 italic">
+                <blockquote className="mt-6 text-neutral-300 italic">
                   <p>"{testimonial.quote}"</p>
                 </blockquote>
                 <div className="mt-6 flex items-center gap-2">
@@ -111,7 +109,7 @@ const Testimonials = () => {
                       <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-sm font-semibold text-slate-600">
+                  <p className="text-sm font-semibold text-neutral-300">
                     {testimonial.rating.toFixed(1)} / 5.0
                   </p>
                 </div>

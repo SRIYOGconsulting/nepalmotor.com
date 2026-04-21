@@ -72,100 +72,95 @@ const CarDetailsPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800">
+    <main className="min-h-screen bg-[#080808] text-white">
       {/* Header with background */}
-      <section className="relative overflow-hidden py-8 px-4 sm:px-8 lg:px-16 bg-white">
-        <div className="absolute inset-0 opacity-5">
+      <section className="relative overflow-hidden border-b border-white/10 py-8 px-4 sm:px-8 lg:px-16 bg-[#080808]">
+        <div className="absolute inset-0 opacity-40">
           <div
-            className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"
-            style={{ backgroundColor: "#008080" }}
+            className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2 bg-[#f4c430]/10"
           ></div>
           <div
-            className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"
-            style={{ backgroundColor: "#004D40" }}
+            className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2 bg-white/5"
           ></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-8 flex space-x-2 text-sm font-medium">
+          <nav className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
             <a
               href="/"
-              className="transition-colors duration-200 flex items-center hover:opacity-80"
-              style={{ color: "#008080" }}
+              className="flex items-center transition-colors duration-200 hover:text-white"
             >
               Home
             </a>
-            <span className="text-gray-400">/</span>
+            <span className="text-white/20">/</span>
             <a
               href="/cars"
-              className="transition-colors duration-200 hover:opacity-80"
-              style={{ color: "#008080" }}
+              className="transition-colors duration-200 hover:text-white"
             >
               Cars For Sale
             </a>
-            <span className="text-gray-400">/</span>
-            <span style={{ color: "#004D40" }}>{carData.title}</span>
+            <span className="text-white/20">/</span>
+            <span className="text-neutral-300">{carData.title}</span>
           </nav>
 
           {/* Car Title and Actions */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+          <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
               <h1
-                className="text-3xl md:text-4xl font-bold mb-2"
-                style={{ color: "#004D40" }}
+                className="mb-2 text-3xl font-black tracking-tight text-white md:text-4xl"
               >
                 {carData.title}
               </h1>
-              <div className="flex items-center space-x-4 text-gray-600">
-                <span className="flex items-center">
-                  <MapPin className="w-4 h-4 mr-1" />
+              <div className="flex items-center space-x-4 text-neutral-300">
+                <span className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-[#f4c430]" />
                   {carData.city}
                 </span>
-                <span className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-1" />
+                <span className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-[#f4c430]" />
                   {carData.year}
                 </span>
               </div>
             </div>
-            <div className="flex items-center space-x-3 mt-4 md:mt-0">
-              <button className="p-3 rounded-full border-2 bg-white text-gray-600 border-gray-300 hover:border-teal-500 transition-all">
-                <Share2 className="w-5 h-5" />
+            <div className="mt-4 flex items-center space-x-3 md:mt-0">
+              <button className="inline-flex items-center justify-center rounded-full border border-white/15 bg-black/55 p-3 text-white/80 backdrop-blur-md transition hover:border-[#f4c430]/70 hover:text-white">
+                <Share2 className="h-5 w-5 text-[#f4c430]" />
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="mx-auto max-w-7xl px-4 py-10">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Left Column - Images and Details */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="space-y-8 lg:col-span-2">
             {/* Image Gallery */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="flex items-center justify-center aspect-video">
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0B0B0B] shadow-2xl shadow-black/40">
+              <div className="flex aspect-video items-center justify-center bg-black/40">
                 <img
                   src={carData.images[currentImageIndex]}
                   alt={carData.title}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
-              <div className="p-4">
+              <div className="border-t border-white/10 p-4">
                 <div className="flex space-x-2 overflow-x-auto">
                   {carData.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      className={`flex-shrink-0 h-16 w-20 overflow-hidden rounded-xl border transition ${
                         currentImageIndex === index
-                          ? "border-teal-500"
-                          : "border-gray-200 hover:border-gray-300"
+                          ? "border-[#f4c430]/70"
+                          : "border-white/15 hover:border-white/30"
                       }`}
                     >
                       <img
                         src={image}
                         alt={`${carData.title} view ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                     </button>
                   ))}
@@ -174,126 +169,128 @@ const CarDetailsPage: React.FC = () => {
             </div>
 
             {/* Car Specifications */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="rounded-3xl border border-white/10 bg-[#0B0B0B] p-6 shadow-2xl shadow-black/40">
               <h2
-                className="text-2xl font-bold mb-6"
-                style={{ color: "#004D40" }}
+                className="mb-6 text-2xl font-black uppercase tracking-widest text-white"
               >
                 Car Specifications
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="flex items-center space-x-3">
                   <div
-                    className="p-3 rounded-full"
-                    style={{ backgroundColor: "#E0F2F1" }}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-[#f4c430]"
                   >
-                    <Car className="w-5 h-5" style={{ color: "#008080" }} />
+                    <Car className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Type</p>
-                    <p className="font-semibold">{carData.type}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Type
+                    </p>
+                    <p className="font-semibold text-white">{carData.type}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div
-                    className="p-3 rounded-full"
-                    style={{ backgroundColor: "#E0F2F1" }}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-[#f4c430]"
                   >
-                    <Palette className="w-5 h-5" style={{ color: "#008080" }} />
+                    <Palette className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Color</p>
-                    <p className="font-semibold">{carData.color}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Color
+                    </p>
+                    <p className="font-semibold text-white">{carData.color}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div
-                    className="p-3 rounded-full"
-                    style={{ backgroundColor: "#E0F2F1" }}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-[#f4c430]"
                   >
-                    <Gauge className="w-5 h-5" style={{ color: "#008080" }} />
+                    <Gauge className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Mileage</p>
-                    <p className="font-semibold">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Mileage
+                    </p>
+                    <p className="font-semibold text-white">
                       {carData.km.toLocaleString()} km
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div
-                    className="p-3 rounded-full"
-                    style={{ backgroundColor: "#E0F2F1" }}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-[#f4c430]"
                   >
-                    <Fuel className="w-5 h-5" style={{ color: "#008080" }} />
+                    <Fuel className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Fuel Type</p>
-                    <p className="font-semibold">{carData.fuel}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Fuel Type
+                    </p>
+                    <p className="font-semibold text-white">{carData.fuel}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div
-                    className="p-3 rounded-full"
-                    style={{ backgroundColor: "#E0F2F1" }}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-[#f4c430]"
                   >
-                    <Settings
-                      className="w-5 h-5"
-                      style={{ color: "#008080" }}
-                    />
+                    <Settings className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Transmission</p>
-                    <p className="font-semibold">{carData.transmission}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Transmission
+                    </p>
+                    <p className="font-semibold text-white">
+                      {carData.transmission}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div
-                    className="p-3 rounded-full"
-                    style={{ backgroundColor: "#E0F2F1" }}
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-[#f4c430]"
                   >
-                    <Calendar
-                      className="w-5 h-5"
-                      style={{ color: "#008080" }}
-                    />
+                    <Calendar className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Engine</p>
-                    <p className="font-semibold">{carData.engine}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                      Engine
+                    </p>
+                    <p className="font-semibold text-white">
+                      {carData.engine}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="rounded-3xl border border-white/10 bg-[#0B0B0B] p-6 shadow-2xl shadow-black/40">
               <h2
-                className="text-2xl font-bold mb-4"
-                style={{ color: "#004D40" }}
+                className="mb-4 text-2xl font-black uppercase tracking-widest text-white"
               >
                 Description
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="leading-relaxed text-neutral-300">
                 {carData.description}
               </p>
             </div>
 
             {/* Features */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="rounded-3xl border border-white/10 bg-[#0B0B0B] p-6 shadow-2xl shadow-black/40">
               <h2
-                className="text-2xl font-bold mb-4"
-                style={{ color: "#004D40" }}
+                className="mb-4 text-2xl font-black uppercase tracking-widest text-white"
               >
                 Features
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
                 {carData.features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <div
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: "#00F3FF" }}
+                      className="h-2 w-2 rounded-full bg-[#f4c430]"
                     ></div>
-                    <span className="text-gray-700">{feature}</span>
+                    <span className="text-sm font-semibold text-neutral-200">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -303,34 +300,31 @@ const CarDetailsPage: React.FC = () => {
           {/* Right Column - Price and Contact */}
           <div className="space-y-6">
             {/* Price Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-4">
-              <div className="text-center mb-6">
-                <p
-                  className="text-3xl font-bold mb-2"
-                  style={{ color: "#008080" }}
-                >
+            <div className="sticky top-4 rounded-3xl border border-white/10 bg-[#0B0B0B] p-6 shadow-2xl shadow-black/40">
+              <div className="mb-6 text-center">
+                <p className="text-3xl font-black tracking-tight text-[#f4c430]">
                   {carData.price}
                 </p>
                 <div
-                  className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium"
-                  style={{ backgroundColor: "#E0F2F1", color: "#004D40" }}
+                  className="mt-3 inline-flex items-center rounded-full border border-[#f4c430]/25 bg-[#f4c430]/10 px-3 py-1 text-sm font-black uppercase tracking-[0.2em] text-[#f4c430]"
                 >
-                  {carData.condition} Condition
+                  {carData.condition}
                 </div>
               </div>
 
               {/* Seller Info */}
-              <div className="border-t border-gray-100 pt-6 mb-6">
+              <div className="mb-6 border-t border-white/10 pt-6">
                 <h3
-                  className="text-lg font-semibold mb-3"
-                  style={{ color: "#004D40" }}
+                  className="mb-3 text-lg font-semibold text-white"
                 >
                   Seller Information
                 </h3>
                 <div className="space-y-2">
-                  <p className="font-medium">{carData.sellerName}</p>
-                  <p className="text-gray-600 flex items-center">
-                    <MapPin className="w-4 h-4 mr-1" />
+                  <p className="font-medium text-white">
+                    {carData.sellerName}
+                  </p>
+                  <p className="flex items-center text-neutral-300">
+                    <MapPin className="mr-1 h-4 w-4 text-[#f4c430]" />
                     {carData.city}
                   </p>
                 </div>
@@ -339,27 +333,25 @@ const CarDetailsPage: React.FC = () => {
               {/* Contact Buttons */}
               <div className="space-y-3">
                 <button
-                  className="w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-full font-semibold transition-all text-white"
-                  style={{ backgroundColor: "#008080" }}
+                  className="flex w-full items-center justify-center space-x-2 rounded-xl bg-gradient-to-r from-[#b89014] via-[#f4c430] to-[#ffdf70] py-3 px-4 text-sm font-black uppercase tracking-[0.2em] text-black transition hover:brightness-110 active:scale-[0.99]"
                 >
-                  <Phone className="w-5 h-5" />
+                  <Phone className="h-5 w-5" />
                   <span>Call Seller</span>
                 </button>
                 <button
-                  className="w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-full font-semibold transition-all border-2"
-                  style={{ borderColor: "#008080", color: "#008080" }}
+                  className="flex w-full items-center justify-center space-x-2 rounded-xl border border-white/15 bg-black/40 py-3 px-4 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:border-[#f4c430]/60 hover:text-[#f4c430] active:scale-[0.99]"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <MessageCircle className="h-5 w-5" />
                   <span>WhatsApp</span>
                 </button>
               </div>
 
               {/* Additional Info */}
-              <div className="mt-6 pt-6 border-t border-gray-100">
-                <div className="text-xs text-gray-500 space-y-1">
-                  <p>• All documents verified</p>
-                  <p>• Test drive available</p>
-                  <p>• Negotiable price</p>
+              <div className="mt-6 border-t border-white/10 pt-6">
+                <div className="space-y-1 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+                  <p>All documents verified</p>
+                  <p>Test drive available</p>
+                  <p>Negotiable price</p>
                 </div>
               </div>
             </div>

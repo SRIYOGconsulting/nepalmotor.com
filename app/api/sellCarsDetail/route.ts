@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
     try {
         const result=await getAllSellCarDetails();
-        console.log(result, "result in sellcars detail route");
          if (!result.success) {
             return NextResponse.json(
                 { error: result.message || "Failed to fetch categories" },

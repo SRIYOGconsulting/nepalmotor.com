@@ -83,7 +83,7 @@ export const metadata: Metadata = {
 
 const PrivacyPolicyPage = () => {
   return (
-    <main className="bg-white font-sans w-full">
+    <main className="bg-[#080808] text-white font-sans w-full">
            <div className="text-center">
                     <nav className="my-8 flex space-x-2 text-sm font-medium w-full items-center justify-center">
                         <Link href="/" className="text-teal-600 hover:text-teal-800 transition-colors duration-200 flex items-center">
@@ -91,12 +91,12 @@ const PrivacyPolicyPage = () => {
                             Home
                         </Link>
                         <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" /></svg>
-                        <span className="text-gray-600">Privacy Policy</span>
+                        <span className="text-gray-400">Privacy Policy</span>
                     </nav>
-                    <h1 className="text-5xl text-gradient md:text-6xl font-black mb-4 leading-tight text-gray-800">
+                    <h1 className="text-5xl text-gradient md:text-6xl font-black mb-4 leading-tight">
                         Privacy Policy
                     </h1>
-                    <p className="text-md md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+                    <p className="text-md md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
                          Your privacy is important to us. It is Nepal Motor's policy to respect
               your privacy regarding any information we may collect from you across
               our website,{' '} <Link
@@ -117,17 +117,17 @@ const PrivacyPolicyPage = () => {
           <div className="order-2 lg:order-1">
             <div className="mt-12 space-y-10">
               <section>
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-2xl font-bold text-white">
                   Information We Collect
                 </h2>
-                <p className="mt-4 text-gray-600">
+                <p className="mt-4 text-gray-300">
                   We only collect information about you if we have a reason to do so
                   – for example, to provide our Services, to communicate with you,
                   or to make our Services better.
                 </p>
-                <ul className="mt-5 space-y-4 text-gray-600">
+                <ul className="mt-5 space-y-4 text-gray-300">
                   <ListItem>
-                    <strong className="font-semibold text-gray-700">
+                    <strong className="font-semibold text-gray-100">
                       Personal Information:
                     </strong>{' '}
                     We collect personal information that you provide to us when you
@@ -135,7 +135,7 @@ const PrivacyPolicyPage = () => {
                     other contact information you provide.
                   </ListItem>
                   <ListItem>
-                    <strong className="font-semibold text-gray-700">
+                    <strong className="font-semibold text-gray-100">
                       Usage Data:
                     </strong>{' '}
                     We collect information about your interactions with our
@@ -146,13 +146,13 @@ const PrivacyPolicyPage = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-2xl font-bold text-white">
                   How We Use Information
                 </h2>
-                <p className="mt-4 text-gray-600">
+                <p className="mt-4 text-gray-300">
                   We use the information we collect in various ways, including to:
                 </p>
-                <ul className="mt-5 list-inside list-disc space-y-3 text-gray-600">
+                <ul className="mt-5 list-inside list-disc space-y-3 text-gray-300">
                   <li>Provide, operate, and maintain our website.</li>
                   <li>Improve, personalize, and expand our website.</li>
                   <li>Understand and analyze how you use our website.</li>

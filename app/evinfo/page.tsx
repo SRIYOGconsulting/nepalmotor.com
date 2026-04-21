@@ -139,7 +139,7 @@ const ElectricVehicleGuide: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-[#080808] text-white">
       {/* Header */}
       <section className="relative overflow-hidden pt-20  px-4 sm:px-8 lg:px-16">
         <div className="relative z-10 max-w-6xl mx-auto">
@@ -170,7 +170,7 @@ const ElectricVehicleGuide: React.FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span style={{ color: "#004D40" }}>EV Info</span>
+            <span className="text-gray-400">EV Info</span>
           </nav>
 
           {/* Main Title */}
@@ -186,7 +186,7 @@ const ElectricVehicleGuide: React.FC = () => {
                 EV Info Hub
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
               We're here to help and answer any question you might have. We look
               forward to hearing from you.
             </p>
@@ -197,7 +197,7 @@ const ElectricVehicleGuide: React.FC = () => {
       {/* Benefits Section */}
       <section id="benefits" className=" my-8">
         <div className="max-w-6xl mx-auto px-8">
-          <h2 className="text-center text-4xl font-bold text-teal-800 mb-12 relative">
+          <h2 className="text-center text-4xl font-bold text-[#f4c430] mb-12 relative">
             Why Choose Electric?
             <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-teal-600 mx-auto mt-4 rounded"></div>
           </h2>
@@ -205,7 +205,7 @@ const ElectricVehicleGuide: React.FC = () => {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="animate-on-scroll bg-white p-8 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-2 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/20 border-2 border-transparent"
+                className="animate-on-scroll bg-[#111] p-8 rounded-2xl shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-2 hover:border-[#f4c430] hover:shadow-2xl border-2 border-transparent"
               >
                 <div className="w-15 h-15 bg-gradient-to-br from-cyan-400 to-teal-600 rounded-full flex items-center justify-center mb-6">
                   <benefit.icon className="w-7 h-7 text-teal-800" />
@@ -213,7 +213,7 @@ const ElectricVehicleGuide: React.FC = () => {
                 <h3 className="text-teal-800 mb-4 text-xl font-semibold">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   {benefit.description}
                 </p>
               </div>
@@ -225,7 +225,7 @@ const ElectricVehicleGuide: React.FC = () => {
       {/* Costs Section */}
       <section id="costs" className="py-16">
         <div className="max-w-6xl mx-auto px-8">
-          <h2 className="text-center text-4xl font-bold text-teal-800 mb-12 relative">
+          <h2 className="text-center text-4xl font-bold text-[#f4c430] mb-12 relative">
             Cost Breakdown
             <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-teal-600 mx-auto mt-4 rounded"></div>
           </h2>
@@ -233,7 +233,7 @@ const ElectricVehicleGuide: React.FC = () => {
             {costs.map((cost, index) => (
               <div
                 key={index}
-                className="animate-on-scroll bg-white rounded-2xl p-8 text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-2 hover:border-cyan-400 border-2 border-transparent relative overflow-hidden"
+                className="animate-on-scroll bg-[#111] rounded-2xl p-8 text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-2 hover:border-[#f4c430] border-2 border-transparent relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-teal-600"></div>
                 <div className="text-teal-600 font-semibold mb-4">
@@ -242,7 +242,7 @@ const ElectricVehicleGuide: React.FC = () => {
                 <div className="text-4xl font-bold text-teal-800 my-4">
                   {cost.amount}
                 </div>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   {cost.description}
                 </p>
               </div>
@@ -254,7 +254,7 @@ const ElectricVehicleGuide: React.FC = () => {
       {/* FAQs Section */}
       <section id="faqs" className="py-16">
         <div className="max-w-4xl mx-auto px-8">
-          <h2 className="text-center text-4xl font-bold text-teal-800 mb-12 relative">
+          <h2 className="text-center text-4xl font-bold text-[#f4c430] mb-12 relative">
             Frequently Asked Questions
             <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 to-teal-600 mx-auto mt-4 rounded"></div>
           </h2>
@@ -262,14 +262,14 @@ const ElectricVehicleGuide: React.FC = () => {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="animate-on-scroll bg-white rounded-xl overflow-hidden shadow-lg"
+                className="animate-on-scroll bg-[#111] rounded-xl overflow-hidden shadow-lg border border-white/10"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
                   className={`w-full px-6 py-6 text-left flex justify-between items-center transition-colors duration-300 ${
                     openFAQ === index
-                      ? "bg-cyan-400 text-teal-800"
-                      : "bg-teal-600 text-white hover:bg-teal-700"
+                      ? "bg-[#f4c430] text-[#111]"
+                      : "bg-[#181818] text-white hover:bg-[#202020]"
                   }`}
                 >
                   <span className="font-medium">{faq.question}</span>
@@ -286,7 +286,7 @@ const ElectricVehicleGuide: React.FC = () => {
                     openFAQ === index ? "max-h-96 py-6 px-6" : "max-h-0"
                   }`}
                 >
-                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
                 </div>
               </div>
             ))}

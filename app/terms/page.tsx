@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const TermsOfUsePage = () => {
   return (
-    <main className="bg-white font-sans">
+    <main className="bg-[#080808] text-white font-sans">
       <div className="container mx-auto max-w-7xl px-6 py-5 md:py-10">
         <div className="mb-12 text-center">
           <nav className="mb-4 flex justify-center space-x-2 text-sm font-medium">
@@ -23,12 +23,12 @@ const TermsOfUsePage = () => {
             <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
             </svg>
-            <span className="text-gray-500">Terms of Use</span>
+            <span className="text-gray-400">Terms of Use</span>
           </nav>
-          <h1 className="text-4xl font-black text-gray-900 md:text-5xl">
+          <h1 className="text-4xl font-black text-white md:text-5xl">
             Terms of Use
           </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-gray-600">
+          <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-gray-300">
             Welcome to Nepal Motor. By accessing or using our website and services, you agree to comply with and be bound by the following Terms of Use.
           </p>
         </div>
@@ -38,7 +38,7 @@ const TermsOfUsePage = () => {
           <div className="order-2 lg:order-1">
             <div className="space-y-10">
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">1. Acceptance of Terms</h2>
+                <h2 className="text-2xl font-bold text-[#f4c430]">1. Acceptance of Terms</h2>
                 <ul className="mt-4 space-y-3">
                   <TermListItem>By using Nepal Motor, you confirm that you are at least 18 years old or have parental consent.</TermListItem>
                   <TermListItem>You agree to abide by all applicable laws and regulations.</TermListItem>
@@ -46,7 +46,7 @@ const TermsOfUsePage = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">2. Services Provided</h2>
+                <h2 className="text-2xl font-bold text-[#f4c430]">2. Services Provided</h2>
                 <ul className="mt-4 space-y-3">
                   <TermListItem>We offer car browsing, test drive booking, vehicle exchange, and access to automotive news and blogs.</TermListItem>
                   <TermListItem>All vehicle information is for informational purposes and may change without notice.</TermListItem>
@@ -55,7 +55,7 @@ const TermsOfUsePage = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">3. User Responsibilities</h2>
+                <h2 className="text-2xl font-bold text-[#f4c430]">3. User Responsibilities</h2>
                 <ul className="mt-4 space-y-3">
                   <TermListItem>Provide accurate information when using our services.</TermListItem>
                   <TermListItem>Do not misuse, copy, or distribute content from Nepal Motor without permission.</TermListItem>
@@ -64,7 +64,7 @@ const TermsOfUsePage = () => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">4. Intellectual Property</h2>
+                <h2 className="text-2xl font-bold text-[#f4c430]">4. Intellectual Property</h2>
                 <ul className="mt-4 space-y-3">
                     <TermListItem>All content, logos, and code are the property of Nepal Motor or its licensors.</TermListItem>
                     <TermListItem>You may not reproduce or distribute any part of the website without written consent.</TermListItem>
@@ -72,7 +72,7 @@ const TermsOfUsePage = () => {
               </section>
               
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">5. Limitation of Liability</h2>
+                <h2 className="text-2xl font-bold text-[#f4c430]">5. Limitation of Liability</h2>
                 <ul className="mt-4 space-y-3">
                   <TermListItem>Nepal Motor is not liable for any damages resulting from your use of the website.</TermListItem>
                   <TermListItem>All transactions and bookings are subject to verification.</TermListItem>
@@ -80,13 +80,13 @@ const TermsOfUsePage = () => {
               </section>
               
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">6. Changes to Terms</h2>
-                <p className="mt-4 text-gray-600">We may update these Terms of Use at any time. Changes will be posted on this page.</p>
+                <h2 className="text-2xl font-bold text-[#f4c430]">6. Changes to Terms</h2>
+                <p className="mt-4 text-gray-300">We may update these Terms of Use at any time. Changes will be posted on this page.</p>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-teal-700">7. Contact & Support</h2>
-                <p className="mt-4 text-gray-600">
+                <h2 className="text-2xl font-bold text-[#f4c430]">7. Contact & Support</h2>
+                <p className="mt-4 text-gray-300">
                   For questions, contact us at{' '}
                   <a href="mailto:terms@nepalmotor.com" className="font-medium text-teal-600 underline hover:text-teal-800">
                     terms@nepalmotor.com
@@ -116,7 +116,7 @@ const TermsOfUsePage = () => {
 
 // Helper component for styled list items, unique to this page
 const TermListItem: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <li className="flex items-start text-gray-600">
+  <li className="flex items-start text-gray-300">
     <svg 
       className="mr-3 mt-1 h-5 w-5 flex-shrink-0 text-teal-500" 
       fill="none" 

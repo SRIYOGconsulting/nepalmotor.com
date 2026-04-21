@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { getCarModelsByMake, getCarYearsByMakeModel, CAR_MODEL_MAKES } from '../model/carModelData';
 
 
 const ChevronDownIcon: React.FC = () => (
@@ -8,7 +9,7 @@ const ChevronDownIcon: React.FC = () => (
     viewBox="0 0 24 24"
     strokeWidth={2.5}
     stroke="currentColor"
-    className="h-5 w-5 text-gray-400"
+    className="h-5 w-5 text-neutral-500"
   >
     <path
       strokeLinecap="round"
@@ -56,11 +57,17 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
   return (
     <div className="relative h-full" ref={selectRef}>
-      <label className="block text-xs font-medium text-gray-500">{label}</label>
+      <label className="block text-xs font-semibold uppercase tracking-[0.2em] leading-none text-neutral-400">
+        {label}
+      </label>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="relative mt-1 w-full cursor-pointer border-0 bg-transparent p-0 text-left text-base font-medium text-gray-900 focus:outline-none"
+        className={`relative mt-2 w-full cursor-pointer rounded-xl border px-4 py-3 text-left text-base font-medium text-white transition focus:outline-none focus:ring-2 focus:ring-[#f4c430]/25 min-h-[48px] ${
+          isOpen
+            ? "border-[#f4c430]/60 bg-[#0f0f0f]"
+            : "border-white/12 bg-[#0f0f0f] hover:border-white/25"
+        }`}
       >
         <span className="block truncate">{value}</span>
         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
@@ -69,12 +76,12 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white p-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
+        <div className="absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-xl border border-white/10 bg-[#131313] p-1 text-base shadow-2xl shadow-black/40 ring-1 ring-white/5 focus:outline-none">
           {options.map((option) => (
             <div
               key={option}
               onClick={() => handleOptionClick(option)}
-              className="cursor-pointer select-none  rounded-lg py-2 px-3 text-gray-900 hover:bg-gray-100"
+              className="cursor-pointer select-none w-full rounded-lg py-2 px-3 text-neutral-100 hover:bg-white/10"
             >
               <span
                 className={`block truncate ${
@@ -91,63 +98,140 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   );
 };
 
-const CarResearchForm: React.FC = () => {
-  const makes: string[] = ['Sabaru', 'Toyota', 'Honda', 'Ford', 'BMW'];
-  const modelsByMake: { [key: string]: string[] } = {
-    Sabaru: ['Forester Hybrid', 'Crosstrek', 'Outback', 'Impreza'],
-    Toyota: ['RAV4 Hybrid', 'Camry', 'Corolla', 'Highlander'],
-    Honda: ['CR-V Hybrid', 'Civic', 'Accord', 'Pilot'],
-    Ford: ['Escape Hybrid', 'Mustang', 'F-150', 'Explorer'],
-    BMW: ['X5', '3 Series', '5 Series', 'X3'],
-  };
-  const years: string[] = ['All years', '2024', '2023', '2022', '2021', '2020'];
+type CarResearchFormProps = {
+  selectedMake?: string;
+  selectedModel?: string;
+  selectedYear?: string;
+  onMakeChange?: (make: string) => void;
+  onModelChange?: (model: string) => void;
+  onYearChange?: (year: string) => void;
+};
 
-  const [selectedMake, setSelectedMake] = useState<string>('Sabaru');
-  const [selectedModel, setSelectedModel] =
-    useState<string>('Forester Hybrid');
-  const [selectedYear, setSelectedYear] = useState<string>('All years');
+const CarResearchForm: React.FC<CarResearchFormProps> = ({
+  selectedMake: controlledMake,
+  selectedModel: controlledModel,
+  selectedYear: controlledYear,
+  onMakeChange,
+  onModelChange,
+  onYearChange,
+}) => {
+  const [internalMake, setInternalMake] = useState<string>('All');
+  const [internalModel, setInternalModel] = useState<string>('All');
+  const [internalYear, setInternalYear] = useState<string>('All years');
+
+  const makes = useMemo(() => ['All', ...CAR_MODEL_MAKES], []);
+  const selectedMake = controlledMake ?? internalMake;
+  const models = useMemo(
+    () =>
+      !selectedMake || selectedMake === 'All'
+        ? ['All']
+        : ['All', ...getCarModelsByMake(selectedMake)],
+    [selectedMake]
+  );
+  const selectedModel = controlledModel ?? internalModel;
+  const years = useMemo(
+    () =>
+      !selectedMake ||
+      selectedMake === 'All' ||
+      !selectedModel ||
+      selectedModel === 'All'
+        ? ['All years']
+        : getCarYearsByMakeModel(selectedMake, selectedModel),
+    [selectedMake, selectedModel]
+  );
+  const selectedYear = controlledYear ?? internalYear;
+
+  const resetToDefaults = () => {
+    const defaultMake = 'All';
+    const defaultModel = 'All';
+    const defaultYear = "All years";
+
+    onMakeChange?.(defaultMake);
+    onModelChange?.(defaultModel);
+    onYearChange?.(defaultYear);
+
+    if (controlledMake === undefined) setInternalMake(defaultMake);
+    if (controlledModel === undefined) setInternalModel(defaultModel);
+    if (controlledYear === undefined) setInternalYear(defaultYear);
+  };
+
+  useEffect(() => {
+    if (!selectedMake && makes.length > 0) {
+      const nextMake = makes[0];
+      onMakeChange?.(nextMake);
+      if (controlledMake === undefined) setInternalMake(nextMake);
+    }
+  }, [selectedMake, makes, onMakeChange, controlledMake]);
+
+  useEffect(() => {
+    if (!selectedMake) return;
+    if (selectedModel && models.includes(selectedModel)) return;
+    const nextModel = models[0] ?? '';
+    onModelChange?.(nextModel);
+    if (controlledModel === undefined) setInternalModel(nextModel);
+  }, [selectedMake, selectedModel, models, onModelChange, controlledModel]);
+
+  useEffect(() => {
+    if (selectedYear === 'All years') return;
+    if (years.includes(selectedYear)) return;
+    onYearChange?.('All years');
+    if (controlledYear === undefined) setInternalYear('All years');
+  }, [selectedYear, years, onYearChange, controlledYear]);
 
   return (
-    <div
-      className="flex w-full flex-col  rounded-lg border border-gray-300 bg-white
-                 md:flex-row"
-    >
-      <div className="flex-1 p-4">
+    <div className="mx-auto w-full max-w-6xl overflow-visible rounded-3xl border border-white/10 bg-[#0B0B0B] p-4 shadow-2xl shadow-black/40">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:items-end">
         <CustomSelect
           label="Make"
           options={makes}
           value={selectedMake}
           onChange={(make) => {
-            setSelectedMake(make);
-            setSelectedModel(modelsByMake[make][0]);
+            const nextModel = 'All';
+            onMakeChange?.(make);
+            onModelChange?.(nextModel);
+            onYearChange?.('All years');
+            if (controlledMake === undefined) setInternalMake(make);
+            if (controlledModel === undefined) setInternalModel(nextModel);
+            if (controlledYear === undefined) setInternalYear('All years');
           }}
         />
-      </div>
 
-      <div className="relative flex-1 border-t border-gray-300 p-4 md:border-l md:border-t-0">
         <CustomSelect
           label="Model"
-          options={modelsByMake[selectedMake]}
+          options={models}
           value={selectedModel}
-          onChange={setSelectedModel}
+          onChange={(model) => {
+            onModelChange?.(model);
+            onYearChange?.('All years');
+            if (controlledModel === undefined) setInternalModel(model);
+            if (controlledYear === undefined) setInternalYear('All years');
+          }}
         />
-      </div>
 
-      <div className="relative flex-1 border-t border-gray-300 p-4 md:border-l md:border-t-0">
         <CustomSelect
           label="Year"
           options={years}
           value={selectedYear}
-          onChange={setSelectedYear}
+          onChange={(year) => {
+            onYearChange?.(year);
+            if (controlledYear === undefined) setInternalYear(year);
+          }}
         />
+
+        <div className="flex items-center gap-3 md:justify-end">
+          <button
+            type="button"
+            onClick={resetToDefaults}
+            className="h-[48px] w-full rounded-xl border border-white/15 bg-white/5 px-4 text-xs font-black uppercase tracking-[0.2em] text-neutral-200 transition hover:border-white/25 hover:bg-white/10 active:scale-[0.99]"
+          >
+            Reset
+          </button>
+        </div>
       </div>
 
-      <button
-        type="submit"
-        className="cursor-pointer bg-gradient-to-r from-[#004D40] via-[#008080] to-[#00BCD4] p-4 text-center font-bold text-black transition-colors hover:bg-opacity-90 md:px-10"
-      >
-        Search
-      </button>
+      <p className="mt-3 text-xs text-neutral-500">
+        Filters apply instantly to show only matching cars.
+      </p>
     </div>
   );
 };
