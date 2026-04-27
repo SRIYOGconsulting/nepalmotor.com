@@ -97,7 +97,7 @@ const PrivacyPolicyPage = () => {
                         Privacy Policy
                     </h1>
                     <p className="text-md md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
-                         Your privacy is important to us. It is Nepal Motor's policy to respect
+                         Your privacy is important to us. It is Nepal Motor&apos;s policy to respect
               your privacy regarding any information we may collect from you across
               our website,{' '} <Link
                 href="https://nepalmotor.com"

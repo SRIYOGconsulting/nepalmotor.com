@@ -6,7 +6,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
-import { ZoomIn, ChevronUp, CarFront, ArrowRightLeft, Phone } from "lucide-react";
+import { ZoomIn, CarFront, ArrowRightLeft, Phone } from "lucide-react";
 import CarSpecificationsLayout from "@/components/CarSpecifcationsDetails/CarSpecificationsLayout";
 
 

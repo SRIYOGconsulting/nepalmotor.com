@@ -1,7 +1,7 @@
-import {  getAllSellCarDetails } from '@/actions/sellCar.action';
-import { NextRequest, NextResponse } from 'next/server';
+import { getAllSellCarDetails } from '@/actions/sellCar.action';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
         const result=await getAllSellCarDetails();
          if (!result.success) {

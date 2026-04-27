@@ -1,8 +1,10 @@
-import { ChevronUp } from "lucide-react";
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ScrollToTop from "./ScrollToTop";
+import { usePathname } from "next/navigation";
 
 type SocialMediaProps = {
   label: string;
@@ -19,6 +21,8 @@ const socialMediaIcons: SocialMediaProps[] = [
 ];
 
 const Footer: React.FC = () => {
+  const pathname = usePathname();
+  if (pathname.startsWith('/admin')) return null;
   return (
     <footer className="w-full border-t border-white/10 bg-[#050505] text-neutral-200">
     <div className="w-full relative max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12">

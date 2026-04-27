@@ -11,6 +11,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname(); 
+  const hide = pathname.startsWith('/admin');
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -20,6 +21,8 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
+  if (hide) return null;
+
   return (
     <header
       className={`sticky top-0 z-50 border-b transition-all duration-300 ${

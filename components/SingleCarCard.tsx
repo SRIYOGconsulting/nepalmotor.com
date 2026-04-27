@@ -18,13 +18,13 @@ type CarCardProps={
 
 
 type CarCardDetails = {
-  imageUrl: string;
+  primaryImageUrl: string | null;
   year: number;
   make: string;
   model: string;
-  variant: string;
-  mileage: number;
-  transmission: string;
+  variant: string | null;
+  mileage: number | null;
+  transmission: string | null;
   price: number;
 };
 //  imageUrl: '/cars/silver-suv.png', // Replace with your image path in the /public folder
@@ -55,7 +55,7 @@ const HeartIcon = () => (
 
 const SingleCarCard = ({car}: CarCardProps) => {
 
-  const {imageUrl,
+  const {primaryImageUrl,
   year,
   make,
   model,
@@ -70,10 +70,10 @@ const SingleCarCard = ({car}: CarCardProps) => {
       {/* Car Image Section */}
       <div className="relative mb-4 h-48 w-full">
         <Image
-          src={imageUrl}
+          src={primaryImageUrl || "/MainLogo.png"}
           alt={`${year} ${make} ${model}`}
-          layout="fill"
-          objectFit="contain" 
+          fill
+          className="object-contain"
         />
       </div>
 
@@ -86,7 +86,7 @@ const SingleCarCard = ({car}: CarCardProps) => {
               <h3 className="text-sm font-bold line-clamp-1 uppercase tracking-wider text-white">
                 {year} {make} {model}
               </h3>
-              <p className="text-xs uppercase text-gray-400">{variant}</p>
+              <p className="text-xs uppercase text-gray-400">{variant || ''}</p>
             </div>
             <button aria-label="Add to favorites" className='cursor-pointer'>
               <HeartIcon />
@@ -95,7 +95,7 @@ const SingleCarCard = ({car}: CarCardProps) => {
 
           {/* Specs */}
           <p className="mt-3 text-sm text-gray-400">
-            {mileage.toLocaleString('en-US')} km · {transmission}
+            {typeof mileage === 'number' ? `${mileage.toLocaleString('en-US')} km` : '— km'} · {transmission || '—'}
           </p>
         </div>
 

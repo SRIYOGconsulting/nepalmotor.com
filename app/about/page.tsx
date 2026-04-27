@@ -116,7 +116,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
-              Discover the story behind Nepal's most trusted automotive
+              Discover the story behind Nepal&apos;s most trusted automotive
               marketplace and the passionate team driving innovation in the
               industry.
             </p>
@@ -144,7 +144,7 @@ export default function AboutPage() {
                 Est. 2018
               </h3>
               <p className="text-gray-300 text-sm">
-                Leading the digital transformation of Nepal's automotive
+                Leading the digital transformation of Nepal&apos;s automotive
                 industry
               </p>
             </div>
@@ -213,7 +213,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                  Nepal's Auto
+                  Nepal&apos;s Auto
                   <span className="block" style={{ color: "#00F3FF" }}>
                     Revolution
                   </span>
@@ -289,7 +289,7 @@ export default function AboutPage() {
             information was scarce and navigating the process was a challenge.
           </p>
           <p className="mt-4 text-lg leading-8 text-gray-300">
-            Today, we are Nepal's leading digital automotive marketplace,
+            Today, we are Nepal&apos;s leading digital automotive marketplace,
             connecting thousands of buyers with a trusted network of sellers
             from the Himalayan highlands to the Terai plains. Our mission is to
             empower every Nepali with the data, tools, and connections they need
@@ -306,7 +306,7 @@ export default function AboutPage() {
               Meet Our People
             </h2>
             <p className="mt-4 text-lg text-gray-300">
-              The dedicated team committed to revolutionizing Nepal's auto
+              The dedicated team committed to revolutionizing Nepal&apos;s auto
               industry.
             </p>
           </div>

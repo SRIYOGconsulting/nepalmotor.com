@@ -1,5 +1,6 @@
 import React from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const ContactUs = () => {
   const teamMembers = [
@@ -41,7 +42,7 @@ const ContactUs = () => {
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* Breadcrumb */}
           <nav className="mb-12 flex space-x-2 text-sm font-medium w-full items-center justify-center">
-            <a
+            <Link
               href="/"
               className="transition-colors duration-200 flex items-center hover:opacity-80"
               style={{ color: "#008080" }}
@@ -54,7 +55,7 @@ const ContactUs = () => {
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
               </svg>
               Home
-            </a>
+            </Link>
             <svg
               className="w-4 h-4 text-gray-400"
               fill="currentColor"
@@ -83,7 +84,7 @@ const ContactUs = () => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
-              We're here to help and answer any question you might have. We look
+              We&apos;re here to help and answer any question you might have. We look
               forward to hearing from you.
             </p>
             <div
@@ -106,7 +107,7 @@ const ContactUs = () => {
                 Send us a message
               </h2>
               <p className="text-gray-300 mb-8">
-                Fill out the form below and we'll get back to you soon.
+                Fill out the form below and we&apos;ll get back to you soon.
               </p>
 
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
@@ -362,7 +363,7 @@ const ContactUs = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {teamMembers.map((person, index) => (
+            {teamMembers.map((person) => (
               <div
                 key={person.name}
                 className="group relative bg-[#111] rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 overflow-hidden"

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { FaPlay, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 
-interface AboutUsProps {}
+type AboutUsProps = Record<string, never>;
 
 const AboutUs: React.FC<AboutUsProps> = () => {
   return (

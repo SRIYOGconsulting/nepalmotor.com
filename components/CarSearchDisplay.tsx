@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, ArrowLeft, Heart } from "lucide-react";
-import type { CarType, InventoryCar } from "../model/carInventory";
-import { CAR_MODEL_INVENTORY } from "../model/carModelData";
-import { getCarTypeImageUrl } from "../model/carTypeData";
 
 type CarSearchFilters = {
-  type?: CarType;
+  carType?: string;
   make?: string;
   model?: string;
   year?: string;
 };
 
-const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year }) => {
-  const carKey = (car: InventoryCar) =>
-    `${car.make}|${car.model}|${car.year}|${car.variant}`;
-  const getDisplayImageUrl = (car: InventoryCar) =>
-    getCarTypeImageUrl(car.make, car.model, car.imageUrl);
+type CarListingCard = {
+  _id: string;
+  title: string;
+  make: string;
+  model: string;
+  year: number;
+  price: number;
+  mileage: number | null;
+  transmission: string | null;
+  variant: string | null;
+  carType: string | null;
+  primaryImageUrl: string | null;
+};
 
-  const filteredCars = CAR_MODEL_INVENTORY.filter((car) => {
-    const typeOk = !type || car.type === type;
-    const makeOk = !make || make === "All" || car.make === make;
-    const modelOk = !model || model === "All" || car.model === model;
-    const yearOk =
-      !year || year === "All years" || String(car.year) === String(year);
-    return typeOk && makeOk && modelOk && yearOk;
-  });
+const CarSearchDisplay: React.FC<CarSearchFilters> = ({ carType, make, model, year }) => {
+  const [cars, setCars] = useState<CarListingCard[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [animDir, setAnimDir] = useState<"next" | "prev" | null>(null);
@@ -35,13 +35,44 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
   useEffect(() => {
     setActiveIndex(0);
     setAnimDir(null);
-  }, [type, make, model, year]);
+  }, [carType, make, model, year]);
 
   useEffect(() => {
-    const len = filteredCars.length;
+    const len = cars.length;
     if (!len) return;
     setActiveIndex((prev) => (prev >= len ? 0 : prev));
-  }, [filteredCars.length]);
+  }, [cars.length]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    (async () => {
+      setIsLoading(true);
+      try {
+        const params = new URLSearchParams();
+        if (make) params.set("make", make);
+        if (model) params.set("model", model);
+        if (year) params.set("year", year);
+        if (carType) params.set("carType", carType);
+        params.set("limit", "20");
+
+        const res = await fetch(`/api/public/car-listings?${params.toString()}`, {
+          signal: controller.signal,
+        });
+        const json = (await res.json()) as { success?: boolean; listings?: CarListingCard[] };
+        if (!json?.success) {
+          setCars([]);
+          return;
+        }
+        setCars(Array.isArray(json.listings) ? json.listings : []);
+      } catch {
+        setCars([]);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+
+    return () => controller.abort();
+  }, [carType, make, model, year]);
 
   useEffect(() => {
     if (isHovered || animDir) return;
@@ -55,7 +86,7 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
     if (!animDir) return;
     const id = window.setTimeout(() => {
       setActiveIndex((prev) => {
-        const len = filteredCars.length;
+        const len = cars.length;
         if (!len) return prev;
         if (animDir === "next") return (prev + 1) % len;
         return (prev - 1 + len) % len;
@@ -63,7 +94,7 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
       setAnimDir(null);
     }, 440);
     return () => window.clearTimeout(id);
-  }, [animDir, filteredCars.length]);
+  }, [animDir, cars.length]);
 
   const toggleLike = (key: string) => {
     setLikedKeys((prev) => {
@@ -74,7 +105,19 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
     });
   };
 
-  if (!filteredCars.length) {
+  if (isLoading) {
+    return (
+      <section id="car-search-display" className="w-full">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0B0B0B] px-5 py-10 text-center text-white md:px-8">
+          <p className="text-sm font-black uppercase tracking-widest text-neutral-300">
+            Loading cars
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  if (!isLoading && !cars.length) {
     return (
       <section id="car-search-display" className="w-full">
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0B0B0B] px-5 py-10 text-center text-white md:px-8">
@@ -82,16 +125,16 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
             No cars found
           </p>
           <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-400">
-            Try changing type, make, model, or year.
+            Try changing make, model, year, or type.
           </p>
         </div>
       </section>
     );
   }
 
-  const len = filteredCars.length;
+  const len = cars.length;
   const safeActiveIndex = ((activeIndex % len) + len) % len;
-  const activeCar = filteredCars[safeActiveIndex] ?? filteredCars[0];
+  const activeCar = cars[safeActiveIndex] ?? cars[0];
 
   return (
     <section id="car-search-display" className="w-full">
@@ -108,7 +151,7 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
             <div className="flex items-baseline gap-3">
               <p className="text-sm font-black uppercase tracking-widest">Results</p>
               <p className="text-xs uppercase tracking-[0.25em] text-neutral-400">
-                {filteredCars.length} car{filteredCars.length === 1 ? "" : "s"}
+                {cars.length} car{cars.length === 1 ? "" : "s"}
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
@@ -117,9 +160,9 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
                   {make}
                 </span>
               )}
-              {type && (
+              {carType && (
                 <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-neutral-200">
-                  {type.replace("_", " ")}
+                  {carType.replace("_", " ")}
                 </span>
               )}
               {model && model !== "All" && (
@@ -227,11 +270,11 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
 
               const renderSlot = (slot: Slot) => {
                 const item = mapping[slot];
-                const car = filteredCars[item.index];
+                const car = cars[item.index];
                 if (!car) return null;
                 const p = pos[item.role];
                 const isCenter = item.index === centerIndex && item.role === "center";
-                const key = carKey(car);
+                const key = car._id;
 
                 return (
                   <div
@@ -271,7 +314,7 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ type, make, model, year 
                         </button>
                       )}
                       <Image
-                        src={getDisplayImageUrl(car)}
+                        src={car.primaryImageUrl || "/MainLogo.png"}
                         alt={`${car.year} ${car.make} ${car.model}`}
                         fill
                         quality={100}

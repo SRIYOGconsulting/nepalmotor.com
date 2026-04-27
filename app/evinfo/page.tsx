@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Link from "next/link";
 import { Leaf, PiggyBank, Zap, Home, Gift, Cpu } from "lucide-react";
 
 interface Benefit {
@@ -145,7 +146,7 @@ const ElectricVehicleGuide: React.FC = () => {
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* Breadcrumb */}
           <nav className="mb-12 flex space-x-2 text-sm font-medium w-full items-center justify-center">
-            <a
+            <Link
               href="/"
               className="transition-colors duration-200 flex items-center hover:opacity-80"
               style={{ color: "#008080" }}
@@ -158,7 +159,7 @@ const ElectricVehicleGuide: React.FC = () => {
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
               </svg>
               Home
-            </a>
+            </Link>
             <svg
               className="w-4 h-4 text-gray-400"
               fill="currentColor"
@@ -187,7 +188,7 @@ const ElectricVehicleGuide: React.FC = () => {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
-              We're here to help and answer any question you might have. We look
+              We&apos;re here to help and answer any question you might have. We look
               forward to hearing from you.
             </p>
           </div>

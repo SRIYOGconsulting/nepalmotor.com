@@ -223,7 +223,7 @@ const TestimonialsPage: React.FC = () => {
 
                 {/* Quote icon */}
                 <div className="text-5xl text-[#f4c430] opacity-70 mb-5 font-serif">
-                  "
+                  &quot;
                 </div>
 
                 {/* Star Rating */}

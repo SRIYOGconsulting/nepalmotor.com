@@ -8,14 +8,29 @@ import { Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import SingleCarCard from "./SingleCarCard";
-import { typeCarDetail } from "@/types";
 
-
-
+type CarListingCard = {
+  _id: string;
+  title: string;
+  make: string;
+  model: string;
+  year: number;
+  price: number;
+  mileage: number | null;
+  transmission: string | null;
+  variant: string | null;
+  carType: string | null;
+  primaryImageUrl: string | null;
+};
 
 type carCarouselProps={
-    cars:typeCarDetail[];
+    cars:CarListingCard[];
 }
+
+type SwiperNavApi = {
+  params: { navigation: { prevEl: unknown; nextEl: unknown } };
+  navigation: { init: () => void; update: () => void };
+};
 
 const TypeCarCarousel = ({cars}:carCarouselProps) => {
     const prevRef = useRef(null);
@@ -59,12 +74,12 @@ const TypeCarCarousel = ({cars}:carCarouselProps) => {
             disableOnInteraction: false,   // Keep autoplay even after user interaction
             pauseOnMouseEnter: true,       // Optional: pause on hover for better UX
           }}
-          onInit={(swiper:any) => {
-            // Link navigation manually on init
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init();
-            swiper.navigation.update();
+          onInit={(swiper: unknown) => {
+            const s = swiper as SwiperNavApi;
+            s.params.navigation.prevEl = prevRef.current;
+            s.params.navigation.nextEl = nextRef.current;
+            s.navigation.init();
+            s.navigation.update();
           }}
         //   speed={10000}
           breakpoints={{

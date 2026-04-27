@@ -19,7 +19,7 @@ const SearchSection = () => {
             <button onClick={()=>setTab("type")} className={`rounded-md px-4 py-1.5 cursor-pointer text-xs uppercase tracking-widest transition ${tab==="type"?"bg-[#f4c430] text-black":"text-neutral-300 hover:text-white"}`}>By Type</button>
         </div>
         <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-neutral-400">
-        Learn more about the car you're interested in before you buy.
+        Learn more about the car you&apos;re interested in before you buy.
       </p>
         {/* search input */}
         {tab==="model" && (

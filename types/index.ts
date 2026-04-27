@@ -19,26 +19,6 @@ export enum CarTabs{
     muv="MUV",
     luxury="Luxury"
 }
-export type CarDetails={
-    name:string,
-    price:string,
-    image:string
-}
-
-export type CarData={
-    [key in CarTabs]: CarDetails[]
-}
-
-export type typeCarDetail={
-     imageUrl: string;
-  year: number;
-  make: string;
-  model: string;
-  variant: string;
-  mileage: number;
-  transmission: "Automatic" | "Manual";
-  price: number;
-}
 
 export type ExchangeEVDataDetail={
  fullName: string;
@@ -64,3 +44,31 @@ export type ExchangeEVDataDetail={
   finance: string;
   additionalInfo?: string;
 }
+
+export type ExchangeEVSubmitForm = {
+  fullName: string;
+  email: string;
+  phone: string;
+  city: string;
+  vehicleModel: string;
+  vehicleBrand: string;
+  vehicleType: string;
+  makeYear: string;
+  vehicleColor: string;
+  kmDriven: string;
+  expectedValuation: string;
+  features: string;
+  fuelType: string;
+  condition: string;
+  accidents: string;
+  accidentInfo?: string;
+  transmission: string;
+  newVehicleBrand: string;
+  newVehicleModel: string;
+  newVehiclePriceRange: string;
+  downpayment: string;
+  finance: string;
+  additionalInfo?: string;
+  vehicleDocument?: File | null;
+  vehiclePhoto?: File | null;
+};

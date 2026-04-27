@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Share2,
   Phone,
@@ -87,19 +88,19 @@ const CarDetailsPage: React.FC = () => {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Breadcrumb */}
           <nav className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
-            <a
+            <Link
               href="/"
               className="flex items-center transition-colors duration-200 hover:text-white"
             >
               Home
-            </a>
+            </Link>
             <span className="text-white/20">/</span>
-            <a
+            <Link
               href="/cars"
               className="transition-colors duration-200 hover:text-white"
             >
               Cars For Sale
-            </a>
+            </Link>
             <span className="text-white/20">/</span>
             <span className="text-neutral-300">{carData.title}</span>
           </nav>

@@ -10,6 +10,10 @@ const sellCarSchema = new mongoose.Schema({
         type: String,
         required: true,
    },
+  vehicleBrand:{
+       type: String,
+       required: false,
+  },
     vehicleType: {
             type: String,
             required: true,
@@ -53,6 +57,42 @@ const sellCarSchema = new mongoose.Schema({
      transmission:{
         type: String,
         required: true,
+     },
+     additionalInfo:{
+        type: String,
+        required: false,
+     },
+     vehicleDocumentFileId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+     },
+     vehicleDocumentFileName: {
+        type: String,
+        required: false,
+     },
+     vehicleDocumentContentType: {
+        type: String,
+        required: false,
+     },
+     vehicleDocumentSize: {
+        type: Number,
+        required: false,
+     },
+     vehiclePhotoFileId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+     },
+     vehiclePhotoFileName: {
+        type: String,
+        required: false,
+     },
+     vehiclePhotoContentType: {
+        type: String,
+        required: false,
+     },
+     vehiclePhotoSize: {
+        type: Number,
+        required: false,
      }
 }, { timestamps: true });
 

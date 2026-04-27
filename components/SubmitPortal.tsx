@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 
 interface ModalProps {
   isOpen: boolean;
@@ -37,12 +37,12 @@ const SubmitPortal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   }
 
   // Animation variants for the backdrop and the modal itself
-  const backdropVariants: { [key: string]: any } = {
+  const backdropVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
 
-  const modalVariants: { [key: string]: {[key:string]: any} } = {
+  const modalVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9, y: 20 },
     visible: { opacity: 1, scale: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 30 } },
     exit: { opacity: 0, scale: 0.9, y: 20, transition: { duration: 0.2 } },

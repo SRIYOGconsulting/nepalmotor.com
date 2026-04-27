@@ -15,6 +15,21 @@ export async function getAllNewEVVehicleDetails() {
     }
 }
 
+export async function getAdminExchangeRequests() {
+    try {
+        await connectdb();
+        const requests = await ExchangeEV.find({})
+            .sort({ createdAt: -1 })
+            .populate('user')
+            .populate('sellCar')
+            .lean();
+        return { success: true, requests };
+    } catch (error) {
+        console.error(`Error getting exchange requests:`, error);
+        return { success: false, message: `Failed to fetch exchange requests` };
+    }
+}
+
 export async function registerEvExchangeDetails(data:ExchangeEVDataDetail){
     try{
         await connectdb();

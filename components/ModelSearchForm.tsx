@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { getCarModelsByMake, getCarYearsByMakeModel, CAR_MODEL_MAKES } from '../model/carModelData';
 
 
 const ChevronDownIcon: React.FC = () => (
@@ -119,25 +118,17 @@ const CarResearchForm: React.FC<CarResearchFormProps> = ({
   const [internalModel, setInternalModel] = useState<string>('All');
   const [internalYear, setInternalYear] = useState<string>('All years');
 
-  const makes = useMemo(() => ['All', ...CAR_MODEL_MAKES], []);
+  const [makesFromDb, setMakesFromDb] = useState<string[]>([]);
+  const [modelsFromDb, setModelsFromDb] = useState<string[]>([]);
+  const [yearsFromDb, setYearsFromDb] = useState<number[]>([]);
+
+  const makes = useMemo(() => ['All', ...makesFromDb], [makesFromDb]);
   const selectedMake = controlledMake ?? internalMake;
-  const models = useMemo(
-    () =>
-      !selectedMake || selectedMake === 'All'
-        ? ['All']
-        : ['All', ...getCarModelsByMake(selectedMake)],
-    [selectedMake]
-  );
+  const models = useMemo(() => (selectedMake && selectedMake !== 'All' ? ['All', ...modelsFromDb] : ['All']), [selectedMake, modelsFromDb]);
   const selectedModel = controlledModel ?? internalModel;
   const years = useMemo(
-    () =>
-      !selectedMake ||
-      selectedMake === 'All' ||
-      !selectedModel ||
-      selectedModel === 'All'
-        ? ['All years']
-        : getCarYearsByMakeModel(selectedMake, selectedModel),
-    [selectedMake, selectedModel]
+    () => (selectedMake && selectedMake !== 'All' && selectedModel && selectedModel !== 'All' ? ['All years', ...yearsFromDb.map(String)] : ['All years']),
+    [selectedMake, selectedModel, yearsFromDb]
   );
   const selectedYear = controlledYear ?? internalYear;
 
@@ -162,6 +153,64 @@ const CarResearchForm: React.FC<CarResearchFormProps> = ({
       if (controlledMake === undefined) setInternalMake(nextMake);
     }
   }, [selectedMake, makes, onMakeChange, controlledMake]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    (async () => {
+      try {
+        const res = await fetch('/api/public/car-filters', { signal: controller.signal });
+        const json = (await res.json()) as { success?: boolean; makes?: string[] };
+        if (!json?.success) return;
+        const next = Array.isArray(json.makes) ? json.makes : [];
+        setMakesFromDb(next);
+      } catch {}
+    })();
+
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedMake || selectedMake === 'All') {
+      setModelsFromDb([]);
+      setYearsFromDb([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    (async () => {
+      try {
+        const url = `/api/public/car-filters?make=${encodeURIComponent(selectedMake)}`;
+        const res = await fetch(url, { signal: controller.signal });
+        const json = (await res.json()) as { success?: boolean; models?: string[] };
+        if (!json?.success) return;
+        const next = Array.isArray(json.models) ? json.models : [];
+        setModelsFromDb(next);
+      } catch {}
+    })();
+
+    return () => controller.abort();
+  }, [selectedMake]);
+
+  useEffect(() => {
+    if (!selectedMake || selectedMake === 'All' || !selectedModel || selectedModel === 'All') {
+      setYearsFromDb([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    (async () => {
+      try {
+        const url = `/api/public/car-filters?make=${encodeURIComponent(selectedMake)}&model=${encodeURIComponent(selectedModel)}`;
+        const res = await fetch(url, { signal: controller.signal });
+        const json = (await res.json()) as { success?: boolean; years?: number[] };
+        if (!json?.success) return;
+        const next = Array.isArray(json.years) ? json.years : [];
+        setYearsFromDb(next);
+      } catch {}
+    })();
+
+    return () => controller.abort();
+  }, [selectedMake, selectedModel]);
 
   useEffect(() => {
     if (!selectedMake) return;

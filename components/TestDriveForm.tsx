@@ -45,7 +45,7 @@ const TestDrivePage = () => {
           {/* Left Column: Form */}
           <div className="p-6 sm:p-10 lg:col-span-7">
             <h2 className="text-3xl font-black text-white uppercase">Schedule a Test Drive</h2>
-            <p className="mt-2 text-sm text-gray-400">Fill out the form below and we'll get in touch with you shortly.</p>
+            <p className="mt-2 text-sm text-gray-400">Fill out the form below and we&apos;ll get in touch with you shortly.</p>
             
             <form action="#" method="POST" className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
               
@@ -72,7 +72,7 @@ const TestDrivePage = () => {
                     <PhoneField id="phone" label="Phone number" placeholder="98XXXXXXXX" required/>
                     <InputField id="email" label="Email address" type="email" required />
                     <InputField id="licence" label="Licence number" placeholder="Enter your licence number" />
-                    <SelectField id="salary" label="Owner's monthly salary" options={salaryRanges} placeholder="Select a range" />
+                    <SelectField id="salary" label="Owner&apos;s monthly salary" options={salaryRanges} placeholder="Select a range" />
                     <RadioGroup label="Do you own an existing car?" name="existing-car" options={carOptions} className="sm:col-span-2" />
                 </div>
               </FormSection>

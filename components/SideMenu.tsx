@@ -84,7 +84,7 @@
 
                     <nav className='flex flex-col gap-5 '>
                         <ul className="space-y-2.5 hide-scrollbar">
-                            {categories.map((cat, idx) => (
+                            {categories.map((cat) => (
                                 <li key={cat.name}>
                                     <Link href={cat.link} onClick={()=>setMenuOpen(false)}
                                         className="group flex cursor-pointer items-center justify-between rounded-md border border-white/10 py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-white/5"
