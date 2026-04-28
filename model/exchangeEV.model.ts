@@ -34,6 +34,16 @@ const ExchangeFormSchema = new mongoose.Schema({
      additionalInfo:{
         type: String,
         required: false,
+     },
+     status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected'],
+        default: 'pending',
+        required: true,
+     },
+     rejectionReason: {
+        type: String,
+        required: false,
      }
 }, { timestamps: true });
 

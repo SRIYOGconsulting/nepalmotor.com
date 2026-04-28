@@ -4,7 +4,7 @@ const sellCarSchema = new mongoose.Schema({
     user:{
          type:mongoose.Schema.Types.ObjectId,
          ref:"User",
-         required:true,
+         required:false,
       },
    vehicleModel:{
         type: String,
@@ -92,6 +92,30 @@ const sellCarSchema = new mongoose.Schema({
      },
      vehiclePhotoSize: {
         type: Number,
+        required: false,
+     },
+     vehiclePhotos: [
+        {
+          fileId: { type: mongoose.Schema.Types.ObjectId, required: true },
+          filename: { type: String, required: false },
+          contentType: { type: String, required: false },
+          size: { type: Number, required: false },
+        },
+     ],
+     status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected', 'sold'],
+        default: 'pending',
+        required: true,
+     },
+     source: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+        required: true,
+     },
+     rejectionReason: {
+        type: String,
         required: false,
      }
 }, { timestamps: true });

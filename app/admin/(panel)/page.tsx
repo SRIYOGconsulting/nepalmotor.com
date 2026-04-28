@@ -8,6 +8,11 @@ export default function AdminDashboardPage() {
       href: '/admin/exchange-ev',
     },
     {
+      title: 'Old Cars',
+      desc: 'Create and manage old cars shown on /sellcars.',
+      href: '/admin/sellcars',
+    },
+    {
       title: 'Car Listings',
       desc: 'Create and manage cars for sale shown on /cars.',
       href: '/admin/car-listings',
@@ -42,4 +47,3 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
-

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { getAdminEvNewArrivals } from '@/actions/evNewArrivals.action';
 import EvNewArrivalsTable from '@/components/admin/EvNewArrivalsTable';
 
+export const dynamic = 'force-dynamic';
+
 type Item = {
   _id: string;
   label?: string;

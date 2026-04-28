@@ -148,6 +148,16 @@ export async function POST(req: NextRequest) {
       vehiclePhotoFileName: vehiclePhoto.name || undefined,
       vehiclePhotoContentType: vehiclePhoto.type || undefined,
       vehiclePhotoSize: vehiclePhoto.size || undefined,
+      vehiclePhotos: [
+        {
+          fileId: photoUpload.fileId,
+          filename: vehiclePhoto.name || undefined,
+          contentType: vehiclePhoto.type || undefined,
+          size: vehiclePhoto.size || undefined,
+        },
+      ],
+      status: 'pending',
+      source: 'user',
     });
     await sellCar.save();
 
@@ -160,6 +170,7 @@ export async function POST(req: NextRequest) {
       newVehicleModel,
       newVehiclePriceRange,
       additionalInfo: additionalInfo || undefined,
+      status: 'pending',
     });
     await exchangeEv.save();
 

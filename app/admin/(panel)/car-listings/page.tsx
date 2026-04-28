@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { getAdminCarListings } from '@/actions/carListing.action';
 import CarListingsTable from '@/components/admin/CarListingsTable';
 
+export const dynamic = 'force-dynamic';
+
 type Listing = {
   _id: string;
   title?: string;

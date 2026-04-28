@@ -69,6 +69,8 @@ export async function registerEvExchangeDetails(data:ExchangeEVDataDetail){
             accidentInfo,
             additionalInfo,
             transmission,
+            status: 'pending',
+            source: 'user',
             // downpayment,
             // finance,
         })
@@ -81,7 +83,8 @@ export async function registerEvExchangeDetails(data:ExchangeEVDataDetail){
             finance,
             newVehicleBrand,
             newVehicleModel,
-            newVehiclePriceRange
+            newVehiclePriceRange,
+            status: 'pending',
         })
         await newExchangeEV.save();
         return { success: true, data:newExchangeEV};

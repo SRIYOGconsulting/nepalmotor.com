@@ -3,6 +3,7 @@
     import Link  from 'next/link';
     import { ChevronRight, X } from 'lucide-react';
     import { createPortal } from 'react-dom';
+    import { usePathname } from 'next/navigation';
 
 
 
@@ -15,9 +16,8 @@
 
     const categories: Categories = [
     {name:'Home',link:'/'},
-    {name:'Buy',link:'/buy'},
-    {name:'SellOldCars',link:'/sellcars'},
-    {name:'Rent',link:'/rent'},
+    {name:'Buy Old Cars',link:'/sellcars'},
+    {name:'Sell Old Cars',link:'/sell-old-cars'},
     ];
 
     interface SideMenuProps{
@@ -29,6 +29,7 @@
     const SideMenu = ({ menuOpen, setMenuOpen }:SideMenuProps) => {
       const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     portalRef.current = document.getElementById('portal');
@@ -87,17 +88,23 @@
                             {categories.map((cat) => (
                                 <li key={cat.name}>
                                     <Link href={cat.link} onClick={()=>setMenuOpen(false)}
-                                        className="group flex cursor-pointer items-center justify-between rounded-md border border-white/10 py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-white/5"
+                                        className={`group flex cursor-pointer items-center justify-between rounded-md border py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-white/5 ${
+                                            pathname === cat.link ? 'border-[#f4c430]/60 bg-white/5' : 'border-white/10'
+                                        }`}
                                     >
                                         <span
-                                            className="text-base font-semibold uppercase tracking-wider text-neutral-200 group-hover:text-[#f4c430]"
+                                            className={`text-base font-semibold uppercase tracking-wider group-hover:text-[#f4c430] ${
+                                                pathname === cat.link ? 'text-[#f4c430]' : 'text-neutral-200'
+                                            }`}
                                         >
                                             {cat.name}
                                         </span>
                                     
                                             <ChevronRight
                                                 size={22}
-                                                className="opacity-80 group-hover:opacity-100 group-hover:text-[#f4c430]"
+                                                className={`opacity-80 group-hover:opacity-100 group-hover:text-[#f4c430] ${
+                                                    pathname === cat.link ? 'text-[#f4c430]' : ''
+                                                }`}
                                             />
                                     </Link>
                                     

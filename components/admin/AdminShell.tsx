@@ -9,6 +9,7 @@ type NavItem = { label: string; href: string };
 const navItems: NavItem[] = [
   { label: 'Dashboard', href: '/admin' },
   { label: 'Exchange EV Requests', href: '/admin/exchange-ev' },
+  { label: 'Old Cars', href: '/admin/sellcars' },
   { label: 'Car Listings', href: '/admin/car-listings' },
   { label: 'EV New Arrivals', href: '/admin/ev-new-arrivals' },
 ];
@@ -81,4 +82,3 @@ export default function AdminShell(props: { children: React.ReactNode }) {
     </div>
   );
 }
-
