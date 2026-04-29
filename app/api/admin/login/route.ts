@@ -9,7 +9,7 @@ function constantTimeEqual(a: string, b: string) {
 }
 
 export async function POST(req: NextRequest) {
-  const adminPass = process.env.ADMIN_PASS ?? '';
+  const adminPass = process.env.ADMIN_PASS ?? process.env.ADMIN_AUTH_SECRET ?? '';
   const secret = process.env.ADMIN_AUTH_SECRET ?? adminPass;
 
   if (!adminPass || !secret) {

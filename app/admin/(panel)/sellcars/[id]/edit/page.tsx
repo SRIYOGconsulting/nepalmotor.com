@@ -20,7 +20,12 @@ type Car = {
   status?: string;
   rejectionReason?: string;
   vehiclePhotoFileId?: string;
+  vehiclePhotoFileName?: string;
+  vehiclePhotoContentType?: string;
   vehicleDocumentFileId?: string;
+  vehicleDocumentFileName?: string;
+  vehicleDocumentContentType?: string;
+  vehiclePhotos?: Array<{ fileId?: string; filename?: string; contentType?: string; size?: number }>;
 };
 
 export default async function AdminEditSellCarPage({ params }: { params: Promise<{ id: string }> }) {
@@ -48,4 +53,3 @@ export default async function AdminEditSellCarPage({ params }: { params: Promise
     </div>
   );
 }
-

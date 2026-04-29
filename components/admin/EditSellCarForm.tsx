@@ -22,7 +22,12 @@ type Car = {
   status?: string;
   rejectionReason?: string;
   vehiclePhotoFileId?: string;
+  vehiclePhotoFileName?: string;
+  vehiclePhotoContentType?: string;
   vehicleDocumentFileId?: string;
+  vehicleDocumentFileName?: string;
+  vehicleDocumentContentType?: string;
+  vehiclePhotos?: Array<{ fileId?: string; filename?: string; contentType?: string; size?: number }>;
 };
 
 export default function EditSellCarForm(props: { car: Car }) {
@@ -55,11 +60,83 @@ export default function EditSellCarForm(props: { car: Car }) {
     }
   }
 
-  const photoUrl = props.car.vehiclePhotoFileId ? `/api/sellcar-files/${props.car.vehiclePhotoFileId}` : '';
-  const docUrl = props.car.vehicleDocumentFileId ? `/api/sellcar-files/${props.car.vehicleDocumentFileId}` : '';
+  const photoItemsFromArray = Array.isArray(props.car.vehiclePhotos)
+    ? props.car.vehiclePhotos
+        .map((p) => (p?.fileId ? { ...p, fileId: String(p.fileId) } : null))
+        .filter(Boolean)
+    : [];
+  const photoItems =
+    photoItemsFromArray.length > 0
+      ? (photoItemsFromArray as Array<{ fileId: string; filename?: string; contentType?: string; size?: number }>)
+      : props.car.vehiclePhotoFileId
+        ? [
+            {
+              fileId: String(props.car.vehiclePhotoFileId),
+              filename: props.car.vehiclePhotoFileName,
+              contentType: props.car.vehiclePhotoContentType,
+            },
+          ]
+        : [];
+
+  const docId = props.car.vehicleDocumentFileId ? String(props.car.vehicleDocumentFileId) : '';
+  const docUrl = docId ? `/api/sellcar-files/${docId}` : '';
+  const docContentType = props.car.vehicleDocumentContentType ? String(props.car.vehicleDocumentContentType) : '';
+  const docIsImage = docContentType.startsWith('image/');
 
   return (
     <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-white/10 bg-[#111] p-6">
+      <div className="rounded-xl border border-white/10 bg-black/20 p-4">
+        <div className="text-sm font-semibold text-gray-100">Uploads</div>
+        <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="space-y-2">
+            <div className="text-sm font-medium text-gray-200">Photos</div>
+            {photoItems.length ? (
+              <div className="grid grid-cols-3 gap-2">
+                {photoItems.slice(0, 6).map((p) => (
+                  <a
+                    key={p.fileId}
+                    href={`/api/sellcar-files/${p.fileId}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block overflow-hidden rounded-lg border border-white/10 bg-black"
+                    title={p.filename || 'Photo'}
+                  >
+                    <img src={`/api/sellcar-files/${p.fileId}`} alt={p.filename || 'Photo'} className="h-20 w-full object-cover" />
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <div className="text-xs text-gray-400">No photos</div>
+            )}
+            {photoItems.length > 6 && <div className="text-xs text-gray-400">Showing 6 of {photoItems.length}</div>}
+          </div>
+
+          <div className="space-y-2">
+            <div className="text-sm font-medium text-gray-200">Document</div>
+            {docUrl ? (
+              <div className="space-y-2">
+                <div className="flex flex-wrap items-center gap-3 text-sm">
+                  <a className="text-[#f4c430] hover:underline" href={docUrl} target="_blank" rel="noreferrer">
+                    Open
+                  </a>
+                  <a className="text-[#f4c430] hover:underline" href={docUrl} download>
+                    Download
+                  </a>
+                  <span className="text-xs text-gray-400">{props.car.vehicleDocumentFileName || ''}</span>
+                </div>
+                {docIsImage && (
+                  <a href={docUrl} target="_blank" rel="noreferrer" className="block overflow-hidden rounded-lg border border-white/10 bg-black">
+                    <img src={docUrl} alt={props.car.vehicleDocumentFileName || 'Document'} className="h-44 w-full object-cover" />
+                  </a>
+                )}
+              </div>
+            ) : (
+              <div className="text-xs text-gray-400">No document</div>
+            )}
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-200">Vehicle Model *</label>
@@ -222,29 +299,6 @@ export default function EditSellCarForm(props: { car: Car }) {
           defaultValue={props.car.additionalInfo || ''}
           className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
         />
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="space-y-2">
-          <div className="text-sm font-medium text-gray-200">Current Photo</div>
-          {photoUrl ? (
-            <a className="text-[#f4c430] hover:underline text-sm" href={photoUrl} target="_blank" rel="noreferrer">
-              View
-            </a>
-          ) : (
-            <div className="text-xs text-gray-400">No photo</div>
-          )}
-        </div>
-        <div className="space-y-2">
-          <div className="text-sm font-medium text-gray-200">Current Document</div>
-          {docUrl ? (
-            <a className="text-[#f4c430] hover:underline text-sm" href={docUrl} target="_blank" rel="noreferrer">
-              View
-            </a>
-          ) : (
-            <div className="text-xs text-gray-400">No document</div>
-          )}
-        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

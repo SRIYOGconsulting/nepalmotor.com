@@ -12,6 +12,13 @@ type Car = {
   makeYear?: string;
   vehicleColor?: string;
   expectedValuation?: string;
+  vehicleDocumentFileId?: string;
+  vehicleDocumentFileName?: string;
+  vehicleDocumentContentType?: string;
+  vehiclePhotoFileId?: string;
+  vehiclePhotoFileName?: string;
+  vehiclePhotoContentType?: string;
+  vehiclePhotos?: Array<{ fileId?: string; filename?: string; contentType?: string; size?: number }>;
   status?: string;
   source?: string;
   flow?: 'inventory' | 'sell-only' | 'exchange';

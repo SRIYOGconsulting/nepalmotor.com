@@ -4,6 +4,19 @@ import SellCar from "@/model/sellCar.model";
 import User from "@/model/user.model";
 import { ExchangeEVDataDetail } from "@/types";
 
+function asId(value: unknown) {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return String(value);
+}
+
+function asIso(value: unknown) {
+    if (!value) return undefined;
+    const d = value instanceof Date ? value : new Date(String(value));
+    if (Number.isNaN(d.getTime())) return undefined;
+    return d.toISOString();
+}
+
 export async function getAllNewEVVehicleDetails() {
     try {
         await connectdb();
@@ -23,7 +36,46 @@ export async function getAdminExchangeRequests() {
             .populate('user')
             .populate('sellCar')
             .lean();
-        return { success: true, requests };
+        const serialized = requests.map((r) => {
+            const user = (r as unknown as { user?: unknown }).user as
+                | { fullName?: string; phone?: string; email?: string; city?: string }
+                | undefined;
+            const sellCar = (r as unknown as { sellCar?: any }).sellCar as any;
+
+            return {
+                _id: asId((r as unknown as { _id?: unknown })._id),
+                createdAt: asIso((r as unknown as { createdAt?: unknown }).createdAt),
+                newVehicleBrand: (r as unknown as { newVehicleBrand?: string }).newVehicleBrand,
+                newVehicleModel: (r as unknown as { newVehicleModel?: string }).newVehicleModel,
+                newVehiclePriceRange: (r as unknown as { newVehiclePriceRange?: string }).newVehiclePriceRange,
+                downPayment: (r as unknown as { downPayment?: string }).downPayment,
+                finance: (r as unknown as { finance?: string }).finance,
+                status: (r as unknown as { status?: string }).status,
+                rejectionReason: (r as unknown as { rejectionReason?: string }).rejectionReason,
+                user: user
+                    ? { fullName: user.fullName, phone: user.phone, email: user.email, city: user.city }
+                    : undefined,
+                sellCar: sellCar
+                    ? {
+                          _id: asId(sellCar._id),
+                          vehicleBrand: sellCar.vehicleBrand,
+                          vehicleModel: sellCar.vehicleModel,
+                          vehicleType: sellCar.vehicleType,
+                          makeYear: sellCar.makeYear,
+                          kmDriven: sellCar.kmDriven,
+                          vehicleColor: sellCar.vehicleColor,
+                          condition: sellCar.condition,
+                          transmission: sellCar.transmission,
+                          vehicleDocumentFileId: sellCar.vehicleDocumentFileId ? asId(sellCar.vehicleDocumentFileId) : undefined,
+                          vehiclePhotoFileId: sellCar.vehiclePhotoFileId ? asId(sellCar.vehiclePhotoFileId) : undefined,
+                          status: sellCar.status,
+                          rejectionReason: sellCar.rejectionReason,
+                      }
+                    : undefined,
+            };
+        });
+
+        return { success: true, requests: serialized };
     } catch (error) {
         console.error(`Error getting exchange requests:`, error);
         return { success: false, message: `Failed to fetch exchange requests` };

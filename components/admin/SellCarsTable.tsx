@@ -10,6 +10,11 @@ type Car = {
   vehicleModel?: string;
   makeYear?: string;
   expectedValuation?: string;
+  vehicleDocumentFileId?: string;
+  vehicleDocumentFileName?: string;
+  vehicleDocumentContentType?: string;
+  vehiclePhotoFileId?: string;
+  vehiclePhotos?: Array<{ fileId?: string; filename?: string; contentType?: string }>;
   status?: string;
   source?: string;
   flow?: 'inventory' | 'sell-only' | 'exchange';
@@ -103,6 +108,7 @@ export default function SellCarsTable(props: { cars: Car[] }) {
               <th className="px-4 py-3">Car</th>
               <th className="px-4 py-3">Seller</th>
               <th className="px-4 py-3">Type</th>
+              <th className="px-4 py-3">Uploads</th>
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Actions</th>
             </tr>
@@ -112,6 +118,10 @@ export default function SellCarsTable(props: { cars: Car[] }) {
               const created = c.createdAt ? new Date(c.createdAt).toLocaleString() : '-';
               const seller = c.user || null;
               const disabled = submittingId === c._id;
+              const docId = c.vehicleDocumentFileId ? String(c.vehicleDocumentFileId) : '';
+              const photoIdsRaw = Array.isArray(c.vehiclePhotos) ? c.vehiclePhotos.map((p) => p?.fileId).filter(Boolean) : [];
+              const photoIds = (photoIdsRaw.length ? photoIdsRaw : c.vehiclePhotoFileId ? [c.vehiclePhotoFileId] : []).map((id) => String(id));
+              const maxThumbs = 3;
               return (
                 <tr key={c._id}>
                   <td className="px-4 py-3 whitespace-nowrap">{created}</td>
@@ -132,6 +142,44 @@ export default function SellCarsTable(props: { cars: Car[] }) {
                     <div className="flex flex-col gap-1">
                       <div className="font-semibold">{c.flow || '-'}</div>
                       <div className="text-xs text-gray-400">{c.source || '-'}</div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-3">
+                        {docId ? (
+                          <a
+                            className="text-[#f4c430] hover:underline"
+                            href={`/api/sellcar-files/${docId}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {c.vehicleDocumentFileName ? 'Document' : 'Document'}
+                          </a>
+                        ) : (
+                          <span className="text-xs text-gray-400">No document</span>
+                        )}
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        {photoIds.length ? (
+                          <>
+                            {photoIds.slice(0, maxThumbs).map((pid) => (
+                              <a key={pid} href={`/api/sellcar-files/${pid}`} target="_blank" rel="noreferrer" className="block">
+                                <img
+                                  src={`/api/sellcar-files/${pid}`}
+                                  alt="Photo"
+                                  className="h-10 w-14 rounded-md border border-white/10 object-cover"
+                                />
+                              </a>
+                            ))}
+                            {photoIds.length > maxThumbs && (
+                              <span className="text-xs text-gray-400">+{photoIds.length - maxThumbs} more</span>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-xs text-gray-400">No photos</span>
+                        )}
+                      </div>
                     </div>
                   </td>
                   <td className="px-4 py-3">{c.status || '-'}</td>
@@ -176,7 +224,7 @@ export default function SellCarsTable(props: { cars: Car[] }) {
 
             {props.cars.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-12 text-center text-sm text-gray-400">
+                <td colSpan={7} className="px-4 py-12 text-center text-sm text-gray-400">
                   No old cars yet.
                 </td>
               </tr>
