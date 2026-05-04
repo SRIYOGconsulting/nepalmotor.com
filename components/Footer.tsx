@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import ScrollToTop from "./ScrollToTop";
 import { usePathname } from "next/navigation";
+import toast from "react-hot-toast";
 
 type SocialMediaProps = {
   label: string;
@@ -22,16 +23,52 @@ const socialMediaIcons: SocialMediaProps[] = [
 
 const Footer: React.FC = () => {
   const pathname = usePathname();
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   if (pathname.startsWith('/admin')) return null;
+
+  const onSubmitNewsletter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const normalizedEmail = email.trim();
+
+    if (!normalizedEmail) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: normalizedEmail }),
+      });
+
+      const responseData = await response.json().catch(() => null);
+
+      if (!response.ok || !responseData?.success) {
+        toast.error(responseData?.message || "Failed to subscribe");
+        return;
+      }
+
+      toast.success(responseData.message || "Thanks for signing up!");
+      setEmail("");
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Something went wrong";
+      toast.error(message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
-    <footer className="w-full border-t border-white/10 bg-[#050505] text-neutral-200">
+    <footer className="w-full border-t border-line bg-surface text-foreground">
     <div className="w-full relative max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12">
       {/* header upper part */}
       <div className="w-full space-y-5">
         <div className="w-full flex items-center justify-between">
           <div className="flex-1">
-            <h1 className="font-black uppercase tracking-wide text-2xl md:text-3xl text-white">Join Nepal Motors</h1>
-            <p className="text-sm text-neutral-400">
+            <h1 className="font-black uppercase tracking-wide text-2xl md:text-3xl text-foreground">Join Nepal Motors</h1>
+            <p className="text-sm text-muted">
               Recieve pricing updates, shopping tips & more!
             </p>
           </div>
@@ -39,33 +76,43 @@ const Footer: React.FC = () => {
           <ScrollToTop />
         </div>
         <div>
-          <label htmlFor="email" className="text-md pb-2 block text-neutral-300">
+          <label htmlFor="email" className="text-md pb-2 block text-muted">
             Email Address
           </label>
-          <div className=" w-full rounded-md border border-white/20 md:w-[40%]  overflow-hidden flex items-center bg-white/5">
+          <form
+            onSubmit={onSubmitNewsletter}
+            className=" w-full rounded-md border border-line md:w-[40%]  overflow-hidden flex items-center bg-background-soft"
+          >
             <input
               id="email"
-              type="text"
-              className="border-none py-2 px-2 flex-1 bg-transparent text-white placeholder:text-neutral-500 focus:outline-none "
+              type="email"
+              className="border-none py-2 px-2 flex-1 bg-transparent text-foreground placeholder:text-muted focus:outline-none "
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
             />
-            <button className="lux-button px-4 py-3 text-sm cursor-pointer font-bold uppercase tracking-wider">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="lux-button px-4 py-3 text-sm cursor-pointer font-bold uppercase tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
+            >
               Sign Up
             </button>
-          </div>
+          </form>
         </div>
       </div>
-      <div className="h-[1px] my-6 bg-white/10"></div>
+      <div className="h-[1px] my-6 bg-line"></div>
       {/* header lower part */}
       <div className="w-full">
         <div className="flex flex-col gap-3 md:flex-row items-center md:justify-between justify-center ">
           {/* follow us part */}
           <div className="flex flex-col gap-3">
-            <h1 className="font-light text-sm uppercase tracking-[0.2em] text-neutral-400">Follow us</h1>
+            <h1 className="font-light text-sm uppercase tracking-[0.2em] text-muted">Follow us</h1>
             <div className="flex items-baseline justify-center gap-7 ">
               {socialMediaIcons.map((socialIcon) => (
                 <span
                   key={socialIcon.label}
-                  className="inline-flex items-center justify-center rounded-full bg-white/90 p-2 ring-1 ring-white/10 transition hover:bg-white"
+                  className="inline-flex items-center justify-center rounded-full bg-background-soft p-2 ring-1 ring-line transition hover:bg-surface-2"
                 >
                   <Image
                     height={20}
@@ -79,7 +126,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col item-center justify-start gap-2">
-            <h1 className="font-light text-sm uppercase tracking-[0.2em] text-neutral-400">
+            <h1 className="font-light text-sm uppercase tracking-[0.2em] text-muted">
               Download the Nepal Motor App
             </h1>
 

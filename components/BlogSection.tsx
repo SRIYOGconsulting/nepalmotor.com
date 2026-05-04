@@ -82,11 +82,11 @@ const blogPosts: BlogPost[] = [
 
 const BlogSection = () => {
   return (
-    <section className="bg-[#080808] py-20 sm:py-24">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section className="bg-background py-20 sm:py-24">
+      <div className="mx-auto w-full max-w-screen-2xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center">
-          <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-foreground sm:text-4xl">
             Our Recently Post
           </h2>
           <p className="font-semibold text-[#f4c430] uppercase tracking-[0.2em]">
@@ -99,7 +99,7 @@ const BlogSection = () => {
           {blogPosts.map((post) => (
             <div
               key={post.id}
-              className="rounded-xl border border-white/10 bg-[#121212] shadow-lg overflow-hidden flex flex-col transition hover:border-[#f4c430]/50"
+              className="rounded-xl border border-line bg-surface shadow-sm shadow-black/10 overflow-hidden flex flex-col transition hover:border-[#f4c430]/50"
             >
               <div className="relative">
                 <Image
@@ -116,14 +116,14 @@ const BlogSection = () => {
                 </span>
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-lg font-bold uppercase text-white">
+                <h3 className="text-lg font-bold uppercase text-foreground">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-neutral-300 text-sm leading-relaxed flex-grow">
+                <p className="mt-2 text-muted text-sm leading-relaxed flex-grow">
                   {post.excerpt}
                 </p>
-                <div className="mt-6 pt-4 border-t border-white/10">
-                  <div className="flex justify-between items-center text-xs text-neutral-400">
+                <div className="mt-6 pt-4 border-t border-line">
+                  <div className="flex justify-between items-center text-xs text-muted">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2">
                         <Image

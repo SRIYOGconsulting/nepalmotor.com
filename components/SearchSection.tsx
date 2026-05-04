@@ -14,11 +14,11 @@ const SearchSection = () => {
         <h1 className='text-3xl text-center md:text-4xl font-black mb-4 uppercase'>Find Cars</h1>
 
         {/* tabs  */}
-        <div className='mx-auto mb-6 flex w-fit gap-2 rounded-lg border border-white/10 bg-white/5 p-1'>
-            <button onClick={()=>setTab("model")} className={`rounded-md px-4 py-1.5 cursor-pointer text-xs uppercase tracking-widest transition ${tab==="model"?"bg-[#f4c430] text-black":"text-neutral-300 hover:text-white"}`}>By Model</button>
-            <button onClick={()=>setTab("type")} className={`rounded-md px-4 py-1.5 cursor-pointer text-xs uppercase tracking-widest transition ${tab==="type"?"bg-[#f4c430] text-black":"text-neutral-300 hover:text-white"}`}>By Type</button>
+        <div className='mx-auto mb-6 flex w-fit gap-2 rounded-lg border border-line bg-surface/60 p-1'>
+            <button onClick={()=>setTab("model")} className={`rounded-md px-4 py-1.5 cursor-pointer text-xs uppercase tracking-widest transition ${tab==="model"?"bg-[#f4c430] text-black":"text-muted hover:text-foreground"}`}>By Model</button>
+            <button onClick={()=>setTab("type")} className={`rounded-md px-4 py-1.5 cursor-pointer text-xs uppercase tracking-widest transition ${tab==="type"?"bg-[#f4c430] text-black":"text-muted hover:text-foreground"}`}>By Type</button>
         </div>
-        <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-neutral-400">
+        <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-muted">
         Learn more about the car you&apos;re interested in before you buy.
       </p>
         {/* search input */}

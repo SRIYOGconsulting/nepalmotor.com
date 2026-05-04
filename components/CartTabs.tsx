@@ -60,10 +60,10 @@ const handleTabClick=(tab:CarTabs)=>{
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-8 py-8 ">
       <h4 className="text-3xl text-center md:text-4xl mb-5 font-black py-5 uppercase">Best Seller Cars</h4>
-        <div className="flex w-full justify-center md:justify-around gap-6 border-b border-white/10">
+        <div className="flex w-full justify-center md:justify-around gap-6 border-b border-line">
             {/* tab buttons */}
             {tabs.map((tab)=>(
-                <button key={tab} className={`pb-3 cursor-pointer text-sm uppercase tracking-widest ${tab==activeTab?"border-b-2 border-[#f4c430] text-[#f4c430] font-semibold":"text-gray-500 hover:text-white"}`} onClick={() => handleTabClick(tab)}>
+                <button key={tab} className={`pb-3 cursor-pointer text-sm uppercase tracking-widest transition-colors ${tab==activeTab?"border-b-2 border-[#f4c430] text-[#f4c430] font-semibold":"text-muted hover:text-foreground"}`} onClick={() => handleTabClick(tab)}>
                     {tab}
                 </button>
             ))}
@@ -71,7 +71,7 @@ const handleTabClick=(tab:CarTabs)=>{
         {/* carshow section */} 
         <div className=" p-4 ">
            {isLoading ? (
-            <div className="rounded-xl border border-white/10 bg-[#0B0B0B] p-6 text-center text-neutral-300">
+            <div className="rounded-xl border border-line bg-surface-2 p-6 text-center text-muted">
               Loading cars
             </div>
            ) : viewAll ? (
@@ -84,7 +84,7 @@ const handleTabClick=(tab:CarTabs)=>{
             <TypeCarCarousel cars={cars} />
            )}
         </div>
-        {!viewAll && <p onClick={()=>setViewAll(true)} className="text-left cursor-pointer text-neutral-300 py-5 uppercase tracking-wider hover:text-[#f4c430] transition">view all cars <ChevronRight className="inline" size={24} /></p>
+        {!viewAll && <p onClick={()=>setViewAll(true)} className="text-left cursor-pointer text-muted py-5 uppercase tracking-wider hover:text-[#f4c430] transition">view all cars <ChevronRight className="inline" size={24} /></p>
 }
     </div>
     

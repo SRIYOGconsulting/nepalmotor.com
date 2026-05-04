@@ -43,7 +43,7 @@ const StatsSection = () => {
   });
 
   return (
-    <div className="w-full py-8 sm:py-12 bg-[#0b0b0b] border-y border-white/10">
+    <div className="w-full py-8 sm:py-12 bg-surface-2 border-y border-line">
       <div className="max-w-screen-2xl mx-auto px-2 sm:px-4 md:px-6">
         <div
           ref={ref}
@@ -63,7 +63,7 @@ const StatsSection = () => {
                 )}
                 {item.suffix}
               </p>
-              <p className="mt-2 text-xs font-semibold tracking-[0.25em] uppercase text-gray-400">
+              <p className="mt-2 text-xs font-semibold tracking-[0.25em] uppercase text-muted">
                 {item.label}
               </p>
             </div>

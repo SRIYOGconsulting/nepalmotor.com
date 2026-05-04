@@ -63,7 +63,7 @@ interface InputFieldProps {
 
 const InputField: FC<InputFieldProps> = ({ id, label, value, onChange, placeholder, type = 'text', required = false, maxLength }) => (
   <div>
-    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-gray-200">
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
       {label}
       {required && <span className="text-red-500"> *</span>}
     </label>
@@ -76,7 +76,7 @@ const InputField: FC<InputFieldProps> = ({ id, label, value, onChange, placehold
       placeholder={placeholder}
       required={required}
       maxLength={maxLength}
-      className="h-12 w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none transition focus:border-[#f4c430]"
+      className="h-12 w-full rounded-lg border border-line bg-background-soft px-3 py-2 text-foreground outline-none transition focus:border-[#f4c430]"
     />
   </div>
 );
@@ -93,7 +93,7 @@ interface SelectFieldProps {
 
 const SelectField: FC<SelectFieldProps> = ({ id, label, value, options, onChange, placeholder = 'Select', required = false }) => (
   <div>
-    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-gray-200">
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
       {label}
       {required && <span className="text-red-500"> *</span>}
     </label>
@@ -103,7 +103,7 @@ const SelectField: FC<SelectFieldProps> = ({ id, label, value, options, onChange
       value={value}
       onChange={onChange}
       required={required}
-      className="h-12 w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none transition focus:border-[#f4c430]"
+      className="h-12 w-full rounded-lg border border-line bg-background-soft px-3 py-2 text-foreground outline-none transition focus:border-[#f4c430]"
     >
       <option value="" disabled>
         {placeholder}
@@ -128,7 +128,7 @@ interface TextAreaProps {
 
 const TextAreaField: FC<TextAreaProps> = ({ id, label, value, onChange, placeholder, required = false }) => (
   <div>
-    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-gray-200">
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
       {label}
       {required && <span className="text-red-500"> *</span>}
     </label>
@@ -140,7 +140,7 @@ const TextAreaField: FC<TextAreaProps> = ({ id, label, value, onChange, placehol
       placeholder={placeholder}
       rows={4}
       required={required}
-      className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none transition focus:border-[#f4c430]"
+      className="w-full rounded-lg border border-line bg-background-soft px-3 py-2 text-foreground outline-none transition focus:border-[#f4c430]"
     />
   </div>
 );
@@ -154,14 +154,14 @@ interface UploadFieldProps {
 
 const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange }) => (
   <div>
-    <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-gray-200">{label}</label>
+    <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">{label}</label>
     <label
       htmlFor={id}
-      className="flex h-14 w-full cursor-pointer items-center justify-center rounded-lg border border-dashed border-white/20 bg-white/5 px-3 text-sm text-gray-300 hover:border-[#f4c430]/60"
+      className="flex h-14 w-full cursor-pointer items-center justify-center rounded-lg border border-dashed border-line bg-surface/60 px-3 text-sm text-muted hover:border-[#f4c430]/60"
     >
       <span>Drop files here or </span>
       <span className="ml-1 font-semibold text-[#f4c430] underline">browse</span>
-      {fileName && <span className="ml-2 truncate text-gray-200">({fileName})</span>}
+      {fileName && <span className="ml-2 truncate text-foreground">({fileName})</span>}
     </label>
     <input id={id} type="file" className="hidden" onChange={onFileChange} />
   </div>
@@ -304,18 +304,18 @@ const SellOldCarsPage: FC = () => {
   }, [isSubmitSuccess]);
 
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-black uppercase tracking-wide md:text-4xl">Sell Old Cars</h1>
-          <p className="text-sm text-gray-400">Submit your car details. This is selling only and not an exchange.</p>
+          <p className="text-sm text-muted">Submit your car details. This is selling only and not an exchange.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6 rounded-2xl border border-white/10 bg-[#111] p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6 rounded-2xl border border-line bg-surface p-6 md:p-8">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">Seller</div>
-              <div className="mt-1 text-lg font-semibold text-white">Contact Details</div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-muted">Seller</div>
+              <div className="mt-1 text-lg font-semibold text-foreground">Contact Details</div>
             </div>
           </div>
 
@@ -326,9 +326,9 @@ const SellOldCarsPage: FC = () => {
             <InputField id="phone" label="Phone" value={formData.phone} onChange={handleTextInputChange} type="tel" required maxLength={10} />
           </div>
 
-          <div className="border-t border-white/10 pt-6">
-            <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">Vehicle</div>
-            <div className="mt-1 text-lg font-semibold text-white">Car Details</div>
+          <div className="border-t border-line pt-6">
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted">Vehicle</div>
+            <div className="mt-1 text-lg font-semibold text-foreground">Car Details</div>
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
               <InputField
                 id="makeYear"
@@ -388,9 +388,9 @@ const SellOldCarsPage: FC = () => {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-6">
-            <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">Uploads</div>
-            <div className="mt-1 text-lg font-semibold text-white">Documents (Optional)</div>
+          <div className="border-t border-line pt-6">
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted">Uploads</div>
+            <div className="mt-1 text-lg font-semibold text-foreground">Documents (Optional)</div>
             <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
               <UploadField
                 id="vehicleDocument"
@@ -410,7 +410,7 @@ const SellOldCarsPage: FC = () => {
           {isSubmitError && <p className="text-sm text-red-400">Something went wrong while submitting. Please try again.</p>}
 
           <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
-            <button type="button" onClick={handleReset} className="text-sm font-semibold text-gray-300 underline-offset-2 hover:underline">
+            <button type="button" onClick={handleReset} className="text-sm font-semibold text-muted underline-offset-2 hover:underline">
               Clear form
             </button>
 
@@ -426,10 +426,10 @@ const SellOldCarsPage: FC = () => {
       </div>
 
       <SubmitPortal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="w-full max-w-md rounded-xl border border-white/10 bg-[#111] p-6 text-center text-white shadow-xl">
+        <div className="w-full max-w-md rounded-xl border border-line bg-surface p-6 text-center text-foreground shadow-xl">
           <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#f4c430] text-black">✓</div>
           <h2 className="text-lg font-semibold">Request Submitted</h2>
-          <p className="mt-2 text-sm text-gray-300">Thanks! Our team will contact you shortly.</p>
+          <p className="mt-2 text-sm text-muted">Thanks! Our team will contact you shortly.</p>
           <button onClick={closeModal} className="mt-5 rounded-md bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffdf70]">
             Close
           </button>

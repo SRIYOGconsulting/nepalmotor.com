@@ -21,13 +21,18 @@ export const metadata: Metadata = {
   }
 };
 
+const themeInitScript = `(function(){try{var t=localStorage.getItem('nm-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
         className={`${inter.className} bg-background text-foreground antialiased`}
       >

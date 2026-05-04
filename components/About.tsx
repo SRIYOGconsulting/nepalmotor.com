@@ -7,7 +7,7 @@ type AboutUsProps = Record<string, never>;
 
 const AboutUs: React.FC<AboutUsProps> = () => {
   return (
-    <section className="bg-[#080808] w-full border-y border-white/10">
+    <section className="bg-surface-2 w-full border-y border-line">
       <div className="max-w-screen-2xl w-full mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           
@@ -16,13 +16,13 @@ const AboutUs: React.FC<AboutUsProps> = () => {
   <h1 className="text-3xl sm:text-5xl text-gradient font-black uppercase tracking-wider  mb-3">
     About Us
   </h1>
-  <p className="text-xl sm:text-2xl font-bold text-white mb-6 leading-tight">
+  <p className="text-xl sm:text-2xl font-bold text-foreground mb-6 leading-tight">
     PROVIDING RELIABLE CAR EXCHANGE SERVICES
   </p>
-  <p className="text-neutral-300 leading-relaxed mb-4">
+  <p className="text-muted leading-relaxed mb-4">
     At Nepal Motors, we offer a trusted platform for individuals to exchange their cars in a hassle-free and transparent way. Whether you’re looking to upgrade to a newer model or simply switch vehicles, we make the entire process smooth and efficient.
   </p>
-  <p className="text-neutral-300 leading-relaxed mb-10">
+  <p className="text-muted leading-relaxed mb-10">
     Our dedicated team ensures that every car exchange meets the highest standards of quality and reliability. We provide personalized support, clear communication, and competitive offers to make your car exchange experience seamless and rewarding.
   </p>
 
@@ -45,7 +45,7 @@ const AboutUs: React.FC<AboutUsProps> = () => {
                 alt="Happy customer driving a rental car"
                 width={800}
                 height={800}
-                className="rounded-lg object-cover w-full h-full shadow-2xl border border-white/10"
+                className="rounded-lg object-cover w-full h-full shadow-2xl border border-line"
               />
               {/* Play Button Overlay */}
               <button

@@ -15,7 +15,7 @@ import BlogSection from '@/components/BlogSection';
 
 export default function CarShowcase(): JSX.Element {
   return (
-    <div className="w-full bg-[#070707] text-white">
+    <div className="w-full bg-background text-foreground">
       {/* Hero Section */}
       <HeroSection />
       {/* stats section */}

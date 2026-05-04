@@ -4,6 +4,7 @@
     import { ChevronRight, X } from 'lucide-react';
     import { createPortal } from 'react-dom';
     import { usePathname } from 'next/navigation';
+    import ThemeToggle from './ThemeToggle';
 
 
 
@@ -55,11 +56,10 @@
 
                 {/* Menu Panel */}
                 <div 
-                    className={`fixed top-0 left-0 h-full w-72 sm:w-80 text-white p-5 shadow-xl transform transition-transform duration-500 ease-in-out ${
+                    className={`fixed top-0 left-0 h-full w-72 sm:w-80 bg-surface text-foreground p-5 shadow-xl transform transition-transform duration-500 ease-in-out ${
                         menuOpen ? 'translate-x-0' : '-translate-x-full'
                     }`}
                     style={{
-                        background: 'linear-gradient(180deg, #111 0%, #080808 100%)',
                         overflowY: 'auto',
                         scrollbarWidth: 'none', // Firefox
                         msOverflowStyle: 'none', // IE 10+
@@ -76,7 +76,7 @@
                     <div className="flex justify-end mb-6">
                         <button
                             onClick={() => setMenuOpen(false)}
-                            className="text-white hover:text-gray-200 transition-colors"
+                            className="text-foreground hover:text-muted transition-colors"
                             aria-label="Close menu"
                         >
                             <X size={30} strokeWidth={2.5} />
@@ -88,13 +88,13 @@
                             {categories.map((cat) => (
                                 <li key={cat.name}>
                                     <Link href={cat.link} onClick={()=>setMenuOpen(false)}
-                                        className={`group flex cursor-pointer items-center justify-between rounded-md border py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-white/5 ${
-                                            pathname === cat.link ? 'border-[#f4c430]/60 bg-white/5' : 'border-white/10'
+                                        className={`group flex cursor-pointer items-center justify-between rounded-md border py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-foreground/5 ${
+                                            pathname === cat.link ? 'border-[#f4c430]/60 bg-foreground/5' : 'border-line'
                                         }`}
                                     >
                                         <span
                                             className={`text-base font-semibold uppercase tracking-wider group-hover:text-[#f4c430] ${
-                                                pathname === cat.link ? 'text-[#f4c430]' : 'text-neutral-200'
+                                                pathname === cat.link ? 'text-[#f4c430]' : 'text-muted'
                                             }`}
                                         >
                                             {cat.name}
@@ -118,6 +118,10 @@
             >
             Exchange to EV
             </Link>
+            <div className="flex items-center justify-between rounded-md border border-line bg-surface/40 px-3 py-2">
+              <span className="text-sm font-semibold uppercase tracking-wider text-muted">Theme</span>
+              <ThemeToggle />
+            </div>
                     </nav>
                 </div>
             </div>,

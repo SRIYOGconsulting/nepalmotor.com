@@ -1,6 +1,61 @@
 ## Project Updates (nepalmotor.com)
 
-### 2026-04-29 (Day 06)
+### 2026-05-04
+
+#### Progress
+- Added a public-site light/dark theme system:
+  - System default theme (prefers-color-scheme) with user override persisted in localStorage (`nm-theme`).
+  - Pre-hydration theme init to prevent flash on refresh.
+- Added a cleaner theme toggle UI (sun/moon pill switch) in:
+  - Header (desktop)
+  - Side menu (mobile)
+- Improved light-mode UI across the home page sections by replacing hardcoded dark colors with theme tokens.
+- Fixed Header logo badge so it stays visible in light mode (better contrast for the logo mark).
+
+#### Files touched
+- app/layout.tsx
+- app/globals.css
+- app/page.tsx
+- app/sellcars/page.tsx
+- app/sellcars/[id]/page.tsx
+- app/sell-old-cars/page.tsx
+- components/ThemeToggle.tsx
+- components/Header.tsx
+- components/SideMenu.tsx
+- components/Footer.tsx
+- components/SearchSection.tsx
+- components/StatsSection.tsx
+- components/About.tsx
+- components/WhyChooseUs.tsx
+- components/FeaturedContent.tsx
+- components/Testimonials.tsx
+- components/LatestNews.tsx
+- components/CartTabs.tsx
+- components/NewArrivalCars.tsx
+- components/BlogSection.tsx
+- components/AdBanner.tsx
+
+#### Testing status (from my side)
+- Ran `npm run lint` (passed; only existing warnings about using `<img>` remain).
+- Ran `npm run build` successfully (no build errors).
+
+### 2026-04-30 
+
+#### Progress
+- Implemented a newsletter signup integrated with Mailchimp:
+  - Footer signup form now submits the email and shows toast success/error feedback.
+  - Added a new API endpoint `POST /api/newsletter` that sends emails to Mailchimp (single opt-in), treats “already subscribed” as success, and applies the `newsletter_footer` tag.
+- Updated environment variable documentation to include Mailchimp configuration keys.
+
+#### Files touched
+- app/api/newsletter/route.ts
+- components/Footer.tsx
+- .env.example
+
+#### Testing status (from my side)
+- Ran `npm run lint` (passed; only existing warnings about using `<img>` remain).
+
+### 2026-04-29 
 
 #### Progress
 - Fixed admin panel errors caused by passing MongoDB/Mongoose objects (ObjectId/Date) from Server Components to Client Components by serializing Exchange EV requests into plain JSON-safe values.
@@ -20,7 +75,7 @@
 #### Testing status (from my side)
 - Ran `npm run build` successfully (no build errors).
 
-### 2026-04-28 (Day 05)
+### 2026-04-28 
 
 #### Progress
 - Fixed website navigation so menu labels go to the correct pages:

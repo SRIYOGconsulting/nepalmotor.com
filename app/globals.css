@@ -1,18 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #080808;
-  --background-soft: #111111;
-  --surface: #171717;
-  --surface-2: #1f1f1f;
-  --surface-3: #262626;
-  --foreground: #f5f5f5;
-  --muted: #a3a3a3;
-  --line: #2e2e2e;
+  color-scheme: light;
+  --background: #f4f6fa;
+  --background-soft: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eef2f7;
+  --surface-3: #e6ecf4;
+  --foreground: #0b1220;
+  --muted: #55657d;
+  --line: #d7dee8;
   --accent: #f4c430;
   --accent-strong: #ffdf70;
   --accent-text: #171717;
-  --gradient-text: linear-gradient(90deg, #f4c430, #ffdf70 50%, #ffffff);
+  --gradient-text: linear-gradient(90deg, #b89014, #f4c430 45%, #0b1220);
+  --page-bg: radial-gradient(circle at top right, rgba(244, 196, 48, 0.18) 0%, #f4f6fa 45%, #eaf0f8 100%);
+  --card-from: rgba(255, 255, 255, 0.55);
+  --card-to: rgba(255, 255, 255, 0.2);
+  --card-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
 }
 
 html {
@@ -25,12 +30,12 @@ html {
 }
 
 body {
-  background: radial-gradient(circle at top right, #222 0%, #0a0a0a 45%, #060606 100%);
+  background: var(--page-bg);
   color: var(--foreground);
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--accent) 38%, #111 62%);
+  background: color-mix(in srgb, var(--accent) 38%, var(--foreground) 62%);
   color: #fff;
 }
 
@@ -50,9 +55,10 @@ body {
   }
 
   .lux-card {
-    background: linear-gradient(165deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+    background: linear-gradient(165deg, var(--card-from), var(--card-to));
     border: 1px solid var(--line);
-    @apply rounded-2xl shadow-2xl shadow-black/30;
+    box-shadow: var(--card-shadow);
+    @apply rounded-2xl;
   }
 
   .lux-border {
@@ -71,7 +77,7 @@ body {
 
   .lux-button-ghost {
     border: 1px solid var(--line);
-    @apply inline-flex items-center justify-center rounded-md bg-white/0 text-white transition duration-300 hover:bg-white/10;
+    @apply inline-flex items-center justify-center rounded-md bg-transparent text-foreground transition duration-300 hover:bg-foreground/5;
   }
 
   .lux-headline {
@@ -79,20 +85,57 @@ body {
   }
 
   .lux-subtitle {
-    @apply text-xs md:text-sm uppercase tracking-[0.25em] text-neutral-300;
+    @apply text-xs md:text-sm uppercase tracking-[0.25em] text-muted;
   }
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-foreground: var(--foreground);
-  --color-button: var(--accent);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-text: var(--accent-text);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #080808;
+  --background-soft: #111111;
+  --surface: #171717;
+  --surface-2: #1f1f1f;
+  --surface-3: #262626;
+  --foreground: #f5f5f5;
+  --muted: #a3a3a3;
+  --line: #2e2e2e;
+  --gradient-text: linear-gradient(90deg, #f4c430, #ffdf70 50%, #ffffff);
+  --page-bg: radial-gradient(circle at top right, #222 0%, #0a0a0a 45%, #060606 100%);
+  --card-from: rgba(255, 255, 255, 0.04);
+  --card-to: rgba(255, 255, 255, 0.01);
+  --card-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
+    color-scheme: dark;
     --background: #080808;
+    --background-soft: #111111;
+    --surface: #171717;
+    --surface-2: #1f1f1f;
+    --surface-3: #262626;
     --foreground: #f5f5f5;
+    --muted: #a3a3a3;
+    --line: #2e2e2e;
+    --gradient-text: linear-gradient(90deg, #f4c430, #ffdf70 50%, #ffffff);
+    --page-bg: radial-gradient(circle at top right, #222 0%, #0a0a0a 45%, #060606 100%);
+    --card-from: rgba(255, 255, 255, 0.04);
+    --card-to: rgba(255, 255, 255, 0.01);
+    --card-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
   }
 }
 

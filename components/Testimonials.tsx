@@ -27,7 +27,7 @@ const testimonialsData = [
       "Renting a Royal Enfield for my trip to Mustang was the best decision. The bike was in perfect condition, and the team provided excellent support. Unforgettable views and a reliable ride!",
     rating: 5.0,
     imageUrl: "https://i.pravatar.cc/150?u=alexrai",
-    bgColor: "bg-[#121212]",
+    bgColor: "bg-surface",
     shadow: "shadow-xl",
     roleColor: "text-[#f4c430]",
   },
@@ -39,17 +39,17 @@ const testimonialsData = [
       "We bought our first family SUV from them. The process was smooth, transparent, and they helped us find the perfect vehicle for Kathmandu's roads. Highly recommended for their professional service.",
     rating: 5.0,
     imageUrl: "https://i.pravatar.cc/150?u=girl",
-    bgColor: "bg-[#171717]",
+    bgColor: "bg-surface-2",
     shadow: "shadow-lg",
-    roleColor: "text-neutral-400",
+    roleColor: "text-muted",
   },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="bg-[#080808] w-full pt-10 pb-10 sm:pb-20">
+    <section className="bg-surface-2 w-full pt-10 pb-10 sm:pb-20">
       <div className="max-w-screen-2xl w-full mx-auto px-6 lg:px-8">
-        <h1 className="text-center pb-10 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
+        <h1 className="text-center pb-10 text-4xl font-black uppercase tracking-tight text-foreground sm:text-5xl">
           Testimonials
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -58,7 +58,7 @@ const Testimonials = () => {
             <h2 className="mt-2 text-1xl font-bold tracking-tight text-gradient sm:text-2xl">
               Reviewed by Our Clients
             </h2>
-            <p className="mt-6 text-lg leading-8 text-neutral-300">
+            <p className="mt-6 text-lg leading-8 text-muted">
               Discover why our customers trust us for their automotive needs in
               Nepal. From rugged mountain adventures to daily city commutes, we
               deliver reliability and quality service.
@@ -79,7 +79,7 @@ const Testimonials = () => {
             {testimonialsData.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className={`${testimonial.bgColor} ${testimonial.shadow} rounded-xl border border-white/10 p-8`}
+                className={`${testimonial.bgColor} ${testimonial.shadow} rounded-xl border border-line p-8`}
               >
                 <div className="flex items-start gap-4">
                   <Image
@@ -90,7 +90,7 @@ const Testimonials = () => {
                     height={56}
                   />
                   <div>
-                    <p className="text-lg font-bold text-white">
+                    <p className="text-lg font-bold text-foreground">
                       {testimonial.name}
                     </p>
                     <p
@@ -100,7 +100,7 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-                <blockquote className="mt-6 text-neutral-300 italic">
+                <blockquote className="mt-6 text-muted italic">
                   <p>&ldquo;{testimonial.quote}&rdquo;</p>
                 </blockquote>
                 <div className="mt-6 flex items-center gap-2">
@@ -109,7 +109,7 @@ const Testimonials = () => {
                       <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-sm font-semibold text-neutral-300">
+                  <p className="text-sm font-semibold text-muted">
                     {testimonial.rating.toFixed(1)} / 5.0
                   </p>
                 </div>
