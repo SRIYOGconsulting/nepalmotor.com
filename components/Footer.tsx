@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
               disabled={isSubmitting}
               className="lux-button px-4 py-3 text-sm cursor-pointer font-bold uppercase tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Sign Up
+              Subscribe
             </button>
           </form>
         </div>

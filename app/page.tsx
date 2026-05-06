@@ -13,6 +13,8 @@ import AboutUs from '@/components/About';
 import Testimonials from '@/components/Testimonials';
 import BlogSection from '@/components/BlogSection';
 
+export const dynamic = 'force-dynamic';
+
 export default function CarShowcase(): JSX.Element {
   return (
     <div className="w-full bg-background text-foreground">

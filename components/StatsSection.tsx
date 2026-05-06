@@ -24,13 +24,13 @@ const stats: StatItem[] = [
     color: "text-gradient", 
   },
   {
-    label: "Years Experience",
-    value: 12,
+    label: "Approved Used Cars",
+    value: 120,
     suffix: "+",
     color: "text-white",
   },
   {
-    label: "Car Types",
+    label: "EV New Arrivals",
     value: 18,
     color: "text-white",
   },

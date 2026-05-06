@@ -74,7 +74,7 @@ interface InputFieldProps {
 
 const InputField: FC<InputFieldProps> = ({ id, label, value, onChange, placeholder, type = 'text', required = false, maxLength }) => (
   <div>
-    <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-gray-800">
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
       {label}
       {required && <span className="text-red-500"> *</span>}
     </label>
@@ -87,7 +87,7 @@ const InputField: FC<InputFieldProps> = ({ id, label, value, onChange, placehold
       placeholder={placeholder}
       required={required}
       maxLength={maxLength}
-      className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+      className="h-12 w-full rounded-lg border border-line bg-background-soft px-3 py-2 text-foreground outline-none transition focus:border-[#f4c430]"
     />
   </div>
 );
@@ -102,50 +102,31 @@ interface SelectFieldProps {
   required?: boolean;
 }
 
-const SelectField: FC<SelectFieldProps> = ({ id, label, value, options, onChange, placeholder = 'Select', required = false }) => {
-  const selectedIndex = options.findIndex((option) => option.value === value);
-  const selectedLabel = selectedIndex >= 0 ? options[selectedIndex].label : '';
-  const chipTones = [
-    'bg-cyan-100 text-cyan-900',
-    'bg-blue-100 text-blue-900',
-    'bg-emerald-100 text-emerald-900',
-    'bg-indigo-100 text-indigo-900',
-  ];
-  const selectedChipClass = selectedIndex >= 0 ? chipTones[selectedIndex % chipTones.length] : '';
-
-  return (
-    <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-gray-800">
-        {label}
-        {required && <span className="text-red-500"> *</span>}
-      </label>
-      <select
-        id={id}
-        name={id}
-        value={value}
-        onChange={onChange}
-        required={required}
-        className="h-12 w-full rounded-xl border border-slate-300 bg-white px-4 text-base text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-      >
-        <option value="" disabled>
-          {placeholder}
+const SelectField: FC<SelectFieldProps> = ({ id, label, value, options, onChange, placeholder = 'Select', required = false }) => (
+  <div>
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </label>
+    <select
+      id={id}
+      name={id}
+      value={value}
+      onChange={onChange}
+      required={required}
+      className="h-12 w-full rounded-lg border border-line bg-background-soft px-3 py-2 text-foreground outline-none transition focus:border-[#f4c430]"
+    >
+      <option value="" disabled>
+        {placeholder}
+      </option>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
         </option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-      {selectedLabel && (
-        <div className="mt-2">
-          <span className={`inline-flex rounded-full px-3 py-1 text-sm font-medium ${selectedChipClass}`}>
-            {selectedLabel}
-          </span>
-        </div>
-      )}
-    </div>
-  );
-};
+      ))}
+    </select>
+  </div>
+);
 
 interface MultiSelectFieldProps {
   id: keyof FormDataState;
@@ -206,37 +187,37 @@ const MultiSelectField: FC<MultiSelectFieldProps> = ({
 
   return (
     <div ref={containerRef} className="relative">
-      <label htmlFor={`${id}-search`} className="mb-1.5 block text-sm font-semibold text-gray-800">
+      <label htmlFor={`${id}-search`} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
         {label}
         {required && <span className="text-red-500"> *</span>}
       </label>
 
       <input name={id} value={value} readOnly required={required} className="sr-only" />
 
-      <div className="flex min-h-12 w-full items-center gap-3 rounded-xl border border-slate-300 bg-white px-3 py-2 text-left text-base text-gray-900 outline-none transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
+      <div className="flex min-h-12 w-full items-center gap-3 rounded-lg border border-line bg-background-soft px-3 py-2 text-left text-sm text-foreground outline-none transition focus-within:border-[#f4c430]">
         <button
           type="button"
           aria-label="Add feature"
           onClick={() => setIsOpen((v) => !v)}
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-lg font-semibold text-slate-700 transition hover:bg-slate-50"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-line bg-surface text-base font-semibold text-foreground transition hover:border-[#f4c430]/60"
         >
           +
         </button>
         <div className="flex-1">
-          <span className={selectedLabels.length ? 'text-gray-900' : 'text-gray-400'}>
+          <span className={selectedLabels.length ? 'text-foreground' : 'text-muted'}>
             {selectedLabels.length ? selectedLabels.join(', ') : placeholder}
           </span>
         </div>
       </div>
 
       {isOpen && (
-        <div className="absolute z-20 mt-2 w-[260px] max-w-full rounded-xl border border-slate-200 bg-white p-3 shadow-xl">
+        <div className="absolute z-20 mt-2 w-[260px] max-w-full rounded-xl border border-line bg-surface p-3 shadow-xl">
           <input
             id={`${id}-search`}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Find an option"
-            className="h-11 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            className="h-11 w-full rounded-lg border border-line bg-background-soft px-3 text-sm text-foreground outline-none transition focus:border-[#f4c430]"
           />
 
           <div className="mt-3 max-h-56 overflow-auto pr-1">
@@ -251,8 +232,8 @@ const MultiSelectField: FC<MultiSelectFieldProps> = ({
                     className={[
                       'w-fit rounded-full px-3 py-1 text-sm font-medium transition',
                       isSelected
-                        ? 'bg-blue-100 text-blue-900'
-                        : 'bg-slate-100 text-slate-800 hover:bg-slate-200',
+                        ? 'bg-[#f4c430] text-black'
+                        : 'bg-background-soft text-foreground hover:border-[#f4c430]/60',
                     ].join(' ')}
                   >
                     {opt.label}
@@ -260,7 +241,7 @@ const MultiSelectField: FC<MultiSelectFieldProps> = ({
                 );
               })}
               {filteredOptions.length === 0 && (
-                <div className="px-1 py-2 text-sm text-gray-500">No options found</div>
+                <div className="px-1 py-2 text-sm text-muted">No options found</div>
               )}
             </div>
           </div>
@@ -276,12 +257,14 @@ interface TextAreaProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
+  required?: boolean;
 }
 
-const TextAreaField: FC<TextAreaProps> = ({ id, label, value, onChange, placeholder }) => (
+const TextAreaField: FC<TextAreaProps> = ({ id, label, value, onChange, placeholder, required = false }) => (
   <div>
-    <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-gray-800">
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
       {label}
+      {required && <span className="text-red-500"> *</span>}
     </label>
     <textarea
       id={id}
@@ -290,7 +273,8 @@ const TextAreaField: FC<TextAreaProps> = ({ id, label, value, onChange, placehol
       onChange={onChange}
       placeholder={placeholder}
       rows={4}
-      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-base text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+      required={required}
+      className="w-full rounded-lg border border-line bg-background-soft px-3 py-2 text-foreground outline-none transition focus:border-[#f4c430]"
     />
   </div>
 );
@@ -305,14 +289,17 @@ interface UploadFieldProps {
 
 const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange, required = false }) => (
   <div>
-    <label className="mb-1.5 block text-sm font-semibold text-gray-800">{label}</label>
+    <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </label>
     <label
       htmlFor={id}
-      className="flex h-14 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-blue-300 bg-blue-50/40 px-3 text-sm text-gray-600 hover:border-blue-400"
+      className="flex h-14 w-full cursor-pointer items-center justify-center rounded-lg border border-dashed border-line bg-surface/60 px-3 text-sm text-muted hover:border-[#f4c430]/60"
     >
       <span>Drop files here or </span>
-      <span className="ml-1 font-medium text-blue-700 underline">browse</span>
-      {fileName && <span className="ml-2 truncate text-gray-700">({fileName})</span>}
+      <span className="ml-1 font-semibold text-[#f4c430] underline">browse</span>
+      {fileName && <span className="ml-2 truncate text-foreground">({fileName})</span>}
     </label>
     <input id={id} type="file" className="hidden" onChange={onFileChange} required={required} />
   </div>
@@ -460,109 +447,161 @@ const VehicleValuationForm: FC = () => {
   }, [isSubmitSuccess, resetSubmitSuccess]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/40 px-4 py-12 md:px-10">
-      <div className="mx-auto w-full max-w-6xl">
-        <h1 className="bg-gradient-to-r from-gray-900 via-blue-800 to-cyan-700 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-6xl">
-          Exchange to EV
-        </h1>
-        <hr className="mt-4 mb-8 border-blue-100" />
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-black uppercase tracking-wide md:text-4xl">Exchange to EV</h1>
+          <p className="text-sm text-muted">Submit your car details and your preferred EV. Our team will contact you with options.</p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-blue-100 bg-white p-6 shadow-lg md:p-10">
-          <InputField id="fullName" label="Full Name" value={formData.fullName} onChange={handleTextInputChange} required />
-          <InputField id="email" label="Email" value={formData.email} onChange={handleTextInputChange} type="email" required />
-          <InputField id="phone" label="Phone" value={formData.phone} onChange={handleTextInputChange} type="tel" required maxLength={10} />
-          <SelectField id="city" label="City" value={formData.city} options={cityOptions} onChange={handleSelectChange} required placeholder="Select city" />
-          <InputField id="makeYear" label="year of Manufacture" value={formData.makeYear} onChange={handleTextInputChange} type="tel" placeholder="2077" required maxLength={4} />
-          <SelectField id="vehicleType" label="vehicle Type" value={formData.vehicleType} options={vehicleTypeOptions} onChange={handleSelectChange} required placeholder="Select vehicle type" />
-          <InputField id="vehicleModel" label="vehicle Model" value={formData.vehicleModel} onChange={handleTextInputChange} required />
-          <InputField id="vehicleBrand" label="vehicle Brand" value={formData.vehicleBrand} onChange={handleTextInputChange} />
-          <SelectField id="vehicleColor" label="vehicle Color" value={formData.vehicleColor} options={colorOptions} onChange={handleSelectChange} required placeholder="Select color" />
-          <InputField id="kmDriven" label="KM Driven" value={formData.kmDriven} onChange={handleTextInputChange} type="number" required />
-          <InputField id="expectedValuation" label="Expected Valuation" value={formData.expectedValuation} onChange={handleTextInputChange} type="number" required />
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6 rounded-2xl border border-line bg-surface p-6 md:p-8">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted">Seller</div>
+            <div className="mt-1 text-lg font-semibold text-foreground">Contact Details</div>
+          </div>
 
-          <UploadField
-            id="vehicleDocument"
-            label="Upload vehicle Document"
-            fileName={vehicleDocument?.name || ''}
-            onFileChange={(e) => setVehicleDocument(e.target.files?.[0] || null)}
-            required
-          />
-          <UploadField
-            id="vehiclePhoto"
-            label="Upload vehicle Photo"
-            fileName={vehiclePhoto?.name || ''}
-            onFileChange={(e) => setVehiclePhoto(e.target.files?.[0] || null)}
-            required
-          />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <InputField id="fullName" label="Full Name" value={formData.fullName} onChange={handleTextInputChange} required />
+            <SelectField id="city" label="City" value={formData.city} options={cityOptions} onChange={handleSelectChange} required placeholder="Select city" />
+            <InputField id="email" label="Email" value={formData.email} onChange={handleTextInputChange} type="email" required />
+            <InputField id="phone" label="Phone" value={formData.phone} onChange={handleTextInputChange} type="tel" required maxLength={10} />
+          </div>
 
-          <SelectField id="fuelType" label="Fuel Type" value={formData.fuelType} options={fuelTypeOptions} onChange={handleSelectChange} required placeholder="Select fuel type" />
-          <SelectField id="condition" label="Condition" value={formData.condition} options={conditionOptions} onChange={handleSelectChange} required placeholder="Select condition" />
-          <SelectField id="transmission" label="Transmission / Gear" value={formData.transmission} options={transmissionOptions} onChange={handleSelectChange} required placeholder="Select transmission" />
-          <SelectField id="accidents" label="Accidents" value={formData.accidents} options={yesNoOptions} onChange={handleSelectChange} required placeholder="Select option" />
-          {formData.accidents === 'yes' && (
-            <TextAreaField id="accidentInfo" label="Accident info" value={formData.accidentInfo} onChange={handleTextAreaChange} />
-          )}
+          <div className="border-t border-line pt-6">
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted">Vehicle</div>
+            <div className="mt-1 text-lg font-semibold text-foreground">Car Details</div>
 
-          <InputField id="newVehicleBrand" label="Interested EV Brand" value={formData.newVehicleBrand} onChange={handleTextInputChange} required />
-          <InputField id="newVehicleModel" label="Interested EV Model" value={formData.newVehicleModel} onChange={handleTextInputChange} required />
-          <SelectField
-            id="newVehiclePriceRange"
-            label="Interested EV Price Range"
-            value={formData.newVehiclePriceRange}
-            options={priceRangeOptions}
-            onChange={handleSelectChange}
-            required
-            placeholder="Select price range"
-          />
-          <InputField id="downpayment" label="Down Payment" value={formData.downpayment} onChange={handleTextInputChange} type="number" required />
-          <SelectField id="finance" label="Are you looking for Finance ?" value={formData.finance} options={yesNoOptions} onChange={handleSelectChange} required placeholder="Select option" />
+            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <InputField
+                id="makeYear"
+                label="Year of Manufacture"
+                value={formData.makeYear}
+                onChange={handleTextInputChange}
+                type="tel"
+                placeholder="2077"
+                required
+                maxLength={4}
+              />
+              <SelectField
+                id="vehicleType"
+                label="Vehicle Type"
+                value={formData.vehicleType}
+                options={vehicleTypeOptions}
+                onChange={handleSelectChange}
+                required
+                placeholder="Select vehicle type"
+              />
+              <InputField id="vehicleModel" label="Vehicle Model" value={formData.vehicleModel} onChange={handleTextInputChange} required />
+              <InputField id="vehicleBrand" label="Vehicle Brand" value={formData.vehicleBrand} onChange={handleTextInputChange} />
+              <SelectField
+                id="vehicleColor"
+                label="Vehicle Color"
+                value={formData.vehicleColor}
+                options={colorOptions}
+                onChange={handleSelectChange}
+                required
+                placeholder="Select color"
+              />
+              <InputField id="kmDriven" label="KM Driven" value={formData.kmDriven} onChange={handleTextInputChange} type="number" required />
+              <InputField id="expectedValuation" label="Expected Valuation" value={formData.expectedValuation} onChange={handleTextInputChange} type="number" required />
+              <SelectField id="fuelType" label="Fuel Type" value={formData.fuelType} options={fuelTypeOptions} onChange={handleSelectChange} required placeholder="Select fuel type" />
+              <SelectField id="condition" label="Condition" value={formData.condition} options={conditionOptions} onChange={handleSelectChange} required placeholder="Select condition" />
+              <SelectField
+                id="transmission"
+                label="Transmission / Gear"
+                value={formData.transmission}
+                options={transmissionOptions}
+                onChange={handleSelectChange}
+                required
+                placeholder="Select transmission"
+              />
+              <SelectField id="accidents" label="Accidents" value={formData.accidents} options={yesNoOptions} onChange={handleSelectChange} required placeholder="Select option" />
+            </div>
 
-          <MultiSelectField
-            id="features"
-            label="Features"
-            value={formData.features}
-            options={featureOptions}
-            onChange={(nextValue) => setFormData((prev) => ({ ...prev, features: nextValue }))}
-            placeholder="Select features"
-            required
-          />
-          <TextAreaField id="additionalInfo" label="Notes" value={formData.additionalInfo} onChange={handleTextAreaChange} />
+            {formData.accidents === 'yes' && (
+              <div className="mt-4">
+                <TextAreaField id="accidentInfo" label="Accident Info" value={formData.accidentInfo} onChange={handleTextAreaChange} />
+              </div>
+            )}
+          </div>
 
-          {isSubmitError && <p className="text-sm text-red-600">Something went wrong while submitting. Please try again.</p>}
+          <div className="border-t border-line pt-6">
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted">Uploads</div>
+            <div className="mt-1 text-lg font-semibold text-foreground">Documents</div>
+            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <UploadField
+                id="vehicleDocument"
+                label="Upload Vehicle Document"
+                fileName={vehicleDocument?.name || ''}
+                onFileChange={(e) => setVehicleDocument(e.target.files?.[0] || null)}
+                required
+              />
+              <UploadField
+                id="vehiclePhoto"
+                label="Upload Vehicle Photo"
+                fileName={vehiclePhoto?.name || ''}
+                onFileChange={(e) => setVehiclePhoto(e.target.files?.[0] || null)}
+                required
+              />
+            </div>
+          </div>
 
-          <div className="flex items-center justify-between pt-3">
-            <button
-              type="button"
-              onClick={handleReset}
-              className="text-sm font-semibold text-blue-700 underline-offset-2 hover:underline"
-            >
+          <div className="border-t border-line pt-6">
+            <div className="text-xs font-semibold uppercase tracking-widest text-muted">EV</div>
+            <div className="mt-1 text-lg font-semibold text-foreground">Your Preference</div>
+            <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <InputField id="newVehicleBrand" label="Interested EV Brand" value={formData.newVehicleBrand} onChange={handleTextInputChange} required />
+              <InputField id="newVehicleModel" label="Interested EV Model" value={formData.newVehicleModel} onChange={handleTextInputChange} required />
+              <SelectField
+                id="newVehiclePriceRange"
+                label="Interested EV Price Range"
+                value={formData.newVehiclePriceRange}
+                options={priceRangeOptions}
+                onChange={handleSelectChange}
+                required
+                placeholder="Select price range"
+              />
+              <InputField id="downpayment" label="Down Payment" value={formData.downpayment} onChange={handleTextInputChange} type="number" required />
+              <SelectField id="finance" label="Are you looking for Finance ?" value={formData.finance} options={yesNoOptions} onChange={handleSelectChange} required placeholder="Select option" />
+              <MultiSelectField
+                id="features"
+                label="Features"
+                value={formData.features}
+                options={featureOptions}
+                onChange={(nextValue) => setFormData((prev) => ({ ...prev, features: nextValue }))}
+                placeholder="Select features"
+                required
+              />
+            </div>
+            <div className="mt-4">
+              <TextAreaField id="additionalInfo" label="Notes" value={formData.additionalInfo} onChange={handleTextAreaChange} />
+            </div>
+          </div>
+
+          {isSubmitError && <p className="text-sm text-red-400">Something went wrong while submitting. Please try again.</p>}
+
+          <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+            <button type="button" onClick={handleReset} className="text-sm font-semibold text-muted underline-offset-2 hover:underline">
               Clear form
             </button>
 
             <button
               type="submit"
               disabled={isSubmitLoading}
-              className="rounded-lg bg-gray-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+              className="cursor-pointer rounded-lg bg-[#f4c430] px-6 py-2.5 text-sm font-semibold text-black hover:bg-[#ffdf70] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitLoading ? 'Submitting...' : 'Submit'}
             </button>
           </div>
-
-          <p className="text-xs text-gray-400">
-            Do not submit passwords through this form. Report malicious form.
-          </p>
         </form>
       </div>
 
       <SubmitPortal isOpen={isModalOpen} onClose={closeModal}>
-        <div className="w-full max-w-md rounded-xl bg-white p-6 text-center shadow-xl">
-          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600">✓</div>
-          <h2 className="text-lg font-semibold text-gray-900">Request Submitted</h2>
-          <p className="mt-2 text-sm text-gray-600">Thanks! Our team will contact you shortly.</p>
-          <button
-            onClick={closeModal}
-            className="mt-5 rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-black"
-          >
+        <div className="w-full max-w-md rounded-xl border border-line bg-surface p-6 text-center text-foreground shadow-xl">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#f4c430] text-black">✓</div>
+          <h2 className="text-lg font-semibold">Request Submitted</h2>
+          <p className="mt-2 text-sm text-muted">Thanks! Our team will contact you shortly.</p>
+          <button onClick={closeModal} className="mt-5 rounded-md bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffdf70]">
             Close
           </button>
         </div>

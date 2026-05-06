@@ -1,5 +1,27 @@
 ## Project Updates (nepalmotor.com)
 
+### 2026-05-06
+
+#### Progress
+- Updated header navigation routes (Sell → `/sell`, Buy → `/buy`).
+- Restyled Exchange to EV form UI to match the Sell form.
+- Updated the About page to fully support light/dark theme using theme tokens.
+- Replaced homepage About section with a “Car of the Day” feature that shows one approved car daily.
+- Improved “Car of the Day” design with badges, description, and image overlay.
+- Updated homepage stats to better match the content.
+
+#### Files touched
+- components/Header.tsx
+- components/SideMenu.tsx
+- app/exchange/page.tsx
+- app/about/page.tsx
+- components/About.tsx
+- components/StatsSection.tsx
+- app/page.tsx
+
+#### Testing status (from my side)
+- Confirmed `npm run build` succeeds (no build errors).
+
 ### 2026-05-04
 
 #### Progress

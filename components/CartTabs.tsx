@@ -84,10 +84,7 @@ const handleTabClick=(tab:CarTabs)=>{
             <TypeCarCarousel cars={cars} />
            )}
         </div>
-        {!viewAll && <p onClick={()=>setViewAll(true)} className="text-left cursor-pointer text-muted py-5 uppercase tracking-wider hover:text-[#f4c430] transition">view all cars <ChevronRight className="inline" size={24} /></p>
-}
     </div>
-    
   )
 }
 

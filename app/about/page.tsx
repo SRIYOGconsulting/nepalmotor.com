@@ -70,8 +70,8 @@ const IconPlaceholder = ({ character }: { character: string }) => (
 
 export default function AboutPage() {
   return (
-    <main className={`bg-[#080808] text-gray-100 mx-auto w-full`}>
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f0f0f] via-[#131313] to-[#0b0b0b] py-16 px-4 sm:px-8 lg:px-16 border-b border-white/10">
+    <main className="mx-auto w-full bg-background text-foreground">
+      <section className="relative overflow-hidden bg-gradient-to-br from-surface-2 via-surface to-surface-2 py-16 px-4 sm:px-8 lg:px-16 border-b border-line">
         {/* <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#008080] rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#004D40] rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               Home
             </Link>
             <svg
-              className="w-4 h-4 text-gray-400"
+              className="w-4 h-4 text-muted"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-gray-400">About</span>
+            <span className="text-muted">About</span>
           </nav>
 
           {/* Main Title */}
@@ -115,7 +115,7 @@ export default function AboutPage() {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-xl md:text-2xl text-muted max-w-3xl mx-auto leading-relaxed font-medium">
               Discover the story behind Nepal&apos;s most trusted automotive
               marketplace and the passionate team driving innovation in the
               industry.
@@ -124,7 +124,7 @@ export default function AboutPage() {
 
           {/* Feature highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300">
+            <div className="bg-surface/60 backdrop-blur-sm rounded-2xl p-6 border border-line hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00BCD4] rounded-xl flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -143,13 +143,13 @@ export default function AboutPage() {
               <h3 className="text-lg font-semibold text-[#f4c430] mb-2">
                 Est. 2018
               </h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-muted text-sm">
                 Leading the digital transformation of Nepal&apos;s automotive
                 industry
               </p>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300">
+            <div className="bg-surface/60 backdrop-blur-sm rounded-2xl p-6 border border-line hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00BCD4] rounded-xl flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -168,12 +168,12 @@ export default function AboutPage() {
               <h3 className="text-lg font-semibold text-[#f4c430] mb-2">
                 100k+ Users
               </h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-muted text-sm">
                 Trusted by thousands of customers across all 77 districts
               </p>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:shadow-lg transition-all duration-300">
+            <div className="bg-surface/60 backdrop-blur-sm rounded-2xl p-6 border border-line hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#008080] to-[#00BCD4] rounded-xl flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-white"
@@ -192,7 +192,7 @@ export default function AboutPage() {
               <h3 className="text-lg font-semibold text-[#f4c430] mb-2">
                 500+ Dealers
               </h3>
-              <p className="text-gray-300 text-sm">
+              <p className="text-muted text-sm">
                 Verified network of trusted automotive professionals
               </p>
             </div>
@@ -200,25 +200,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section
-        className="relative overflow-hidden"
-        style={{ backgroundColor: "#0b0b0b" }}
-      >
+      <section className="relative overflow-hidden bg-background">
         <div
-          className="absolute inset-0 transform -skew-y-1 origin-top-left"
-          style={{ backgroundColor: "#121212" }}
-        ></div>
+          className="absolute inset-0 transform -skew-y-1 origin-top-left bg-surface-2"
+        />
         <div className="relative z-10 px-4 py-24 sm:py-32">
           <div className="container mx-auto max-w-6xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-white">
+              <div className="text-foreground">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                   Nepal&apos;s Auto
                   <span className="block" style={{ color: "#00F3FF" }}>
                     Revolution
                   </span>
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-gray-100">
+                <p className="text-xl md:text-2xl mb-8 text-muted">
                   Transforming how Nepal buys, sells, and experiences vehicles
                   since 2018.
                 </p>
@@ -232,7 +228,7 @@ export default function AboutPage() {
                   </a>
                   <a
                     href="#team"
-                    className="px-8 py-4 rounded-2xl text-lg font-semibold border-2 text-white transition-all duration-300 hover:bg-[#00F3FF] hover:text-[#004D40]"
+                    className="px-8 py-4 rounded-2xl text-lg font-semibold border-2 text-foreground transition-all duration-300 hover:bg-[#00F3FF] hover:text-[#004D40]"
                     style={{ borderColor: "#00F3FF" }}
                   >
                     Meet the Team
@@ -254,7 +250,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16" style={{ backgroundColor: "#080808" }}>
+      <section className="py-16 bg-background">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {achievements.map((stat, index) => (
@@ -265,7 +261,7 @@ export default function AboutPage() {
                 >
                   {stat.number}
                 </div>
-                <div className="text-gray-300 text-lg">{stat.label}</div>
+                <div className="text-muted text-lg">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -273,22 +269,18 @@ export default function AboutPage() {
       </section>
 
       {/* 2. Mission & Story Section */}
-      <section
-        className="py-16 sm:py-24"
-        style={{ backgroundColor: "#0d0d0d" }}
-        id="mission"
-      >
+      <section className="py-16 sm:py-24 bg-surface-2" id="mission">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Our Mission & Story
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
+          <p className="mt-6 text-lg leading-8 text-muted">
             Founded in 2018 in the heart of Kathmandu, Nepal Motor was born from
             a simple idea: to make buying and selling vehicles in Nepal simple,
             transparent, and trustworthy. We saw a fragmented market where good
             information was scarce and navigating the process was a challenge.
           </p>
-          <p className="mt-4 text-lg leading-8 text-gray-300">
+          <p className="mt-4 text-lg leading-8 text-muted">
             Today, we are Nepal&apos;s leading digital automotive marketplace,
             connecting thousands of buyers with a trusted network of sellers
             from the Himalayan highlands to the Terai plains. Our mission is to
@@ -299,13 +291,13 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Team Section (Our People) */}
-      <section className="bg-[#090909] py-16 sm:py-24" id="team">
+      <section className="bg-surface-2 py-16 sm:py-24" id="team">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Meet Our People
             </h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-4 text-lg text-muted">
               The dedicated team committed to revolutionizing Nepal&apos;s auto
               industry.
             </p>
@@ -315,8 +307,7 @@ export default function AboutPage() {
             {teamMembers.map((person) => (
               <div
                 key={person.name}
-                className="flex flex-col items-center rounded-lg p-6 text-center shadow-md transition-transform hover:scale-105 border border-white/10"
-                style={{ backgroundColor: "#111" }}
+                className="flex flex-col items-center rounded-lg border border-line bg-surface p-6 text-center shadow-md transition-transform hover:scale-105"
               >
                 <Image
                   className="h-24 w-24 rounded-full"
@@ -325,7 +316,7 @@ export default function AboutPage() {
                   width={96}
                   height={96}
                 />
-                <h3 className="mt-4 text-lg font-semibold text-white">
+                <h3 className="mt-4 text-lg font-semibold text-foreground">
                   {person.name}
                 </h3>
                 <p className="text-lg font-medium" style={{ color: "#008080" }}>
@@ -338,16 +329,13 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Ecosystem Section */}
-      <section
-        className="py-16 sm:py-24"
-        style={{ backgroundColor: "#0d0d0d" }}
-      >
+      <section className="py-16 sm:py-24 bg-surface-2">
         <div className="container mx-auto max-w-5xl px-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Our Ecosystem
             </h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-4 text-lg text-muted">
               A complete solution for your vehicle journey.
             </p>
           </div>
@@ -356,10 +344,10 @@ export default function AboutPage() {
               <div key={service.name} className="flex items-start space-x-4">
                 <IconPlaceholder character={service.icon} />
                 <div>
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-foreground">
                     {service.name}
                   </h3>
-                  <p className="mt-1 text-base text-gray-300">
+                  <p className="mt-1 text-base text-muted">
                     {service.description}
                   </p>
                 </div>
@@ -370,18 +358,18 @@ export default function AboutPage() {
       </section>
 
       {/* 5. Call to Action (CTA) Section */}
-      <section style={{ backgroundColor: "#080808" }}>
+      <section className="bg-background">
         <div className="container mx-auto px-4 py-16 text-center sm:py-20">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Join Our Journey
           </h2>
-          <p className="mt-4 text-lg leading-6 text-gray-100">
+          <p className="mt-4 text-lg leading-6 text-muted">
             Help us build the future of the automotive industry in Nepal.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#"
-              className="w-full rounded-md px-6 py-3 text-base font-semibold shadow-sm transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+              className="w-full rounded-md px-6 py-3 text-base font-semibold shadow-sm transition-colors hover:opacity-90 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-foreground sm:w-auto"
               style={{
                 backgroundColor: "#00F3FF",
                 color: "#004D40",
@@ -391,7 +379,7 @@ export default function AboutPage() {
             </a>
             <Link
               href="/contact"
-              className="w-fit rounded-md border px-6 py-3 text-base font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#00F3FF] hover:text-[#004D40]"
+              className="w-fit rounded-md border px-6 py-3 text-base font-semibold text-foreground shadow-sm transition-all duration-300 hover:bg-[#00F3FF] hover:text-[#004D40]"
               style={{ borderColor: "#00F3FF" }}
             >
               Contact us

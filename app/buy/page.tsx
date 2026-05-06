@@ -1,180 +1,98 @@
-'use client'
+import Link from 'next/link';
+import { connectdb } from '@/lib/db';
+import { SellCar } from '@/model';
 
-import { useEffect, useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
-import { ZoomIn, CarFront, ArrowRightLeft, Phone } from "lucide-react";
-import CarSpecificationsLayout from "@/components/CarSpecifcationsDetails/CarSpecificationsLayout";
+export const dynamic = 'force-dynamic';
 
+type SellCarListItem = {
+  _id: string;
+  vehicleModel?: string;
+  vehicleBrand?: string;
+  makeYear?: string | number;
+  vehicleType?: string;
+  vehicleColor?: string;
+  kmDriven?: string | number;
+  fuelType?: string;
+  transmission?: string;
+  expectedValuation?: string | number;
+  user?: { city?: string };
+  status?: string;
+  vehiclePhotoFileId?: string;
+  vehiclePhotos?: Array<{ fileId?: string }>;
+};
 
-const images = [
-  {
-      src: "https://images.unsplash.com/photo-1638618164682-12b986ec2a75?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHRveW90YSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D",
-      alt: "Main Product Image",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1605053309672-b9cdb881c7ed?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHRveW90YSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D",
-        alt: "Thumbnail 2",
-    },
-    {
-    src: "https://images.unsplash.com/photo-1657872737697-737a2d123ef2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRveW90YSUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D",
-    alt: "Thumbnail 3",
-  },
-];
+function formatPrice(value?: string | number) {
+  if (typeof value === 'number') return `NPR ${value.toLocaleString()}`;
+  if (typeof value === 'string' && value.trim()) return value;
+  return 'Price on request';
+}
 
+export default async function SellCarsPage() {
+  await connectdb();
+  const docs = (await SellCar.find({ status: 'approved' })
+    .sort({ createdAt: -1 })
+    .populate('user', 'city')
+    .lean()) as unknown as SellCarListItem[];
 
-const Page:React.FC = () => {
-  const [mainIndex, setMainIndex] = useState<number>(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState<boolean>(false);
-
-  useEffect(()=>{
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  },[])
-
-
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  const handleThumbnailClick = (index:number) => {
-    setMainIndex(index);
-  };
-
-  
-  
   return (
-    <div className='bg-[#080808] text-white min-h-screen  max-w-screen-2xl mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10 py-10'>
-        {/* product detail section */}
-      <div className='w-full'>
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
-          
-          {/* Images Section */}
-          <div className="flex flex-col gap-4 md:w-1/2 w-full md:sticky top-8">
-            <div
-              className="relative cursor-pointer w-full group"
-              onClick={() => setIsLightboxOpen(true)}
-              onMouseMove={handleMouseMove}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              <img
-                src={images[mainIndex].src}
-                alt={images[mainIndex].alt}
-                className="w-full h-auto aspect-square rounded-lg shadow-md object-cover border border-white/10"
-              />
-              {/* <span className="absolute top-3 left-3 bg-green-200 text-green-800 text-xs font-medium px-2 py-1 rounded">
-                200+ watching
-              </span> */}
-              {isHovering && (
-                <div className="absolute pointer-events-none transition-all duration-75"  style={{
-                  top: mousePos.y - 5,
-                  left: mousePos.x,
-                  transform: "translate(-50%, -50%)",
-                }}>
-                  <ZoomIn className="text-white mix-blend-difference" size={24} />
-                </div>
-              )}
-            </div>
-            
-            <div className="flex flex-row gap-2.5 items-center justify-center">
-              {images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img.src}
-                  alt={img.alt}
-                  onClick={() => handleThumbnailClick(idx)}
-                  className={`w-16 h-16 rounded-lg border-2 cursor-pointer object-cover transition-all duration-200 ${
-                    mainIndex === idx
-                      ? 'border-[#f4c430] scale-105'
-                      : 'border-white/20 hover:border-white/50'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-3xl font-black uppercase tracking-wide">Used Cars</h1>
+          <p className="text-sm text-muted">Browse approved used cars available for sale.</p>
+        </div>
 
-          {/* ---  DETAILS SECTION --- */}
-          <div className="md:w-1/2 w-full mt-4 md:mt-0 font-sans">
-            <div className=" rounded-xl p-6 ">
-              <div className="space-y-6">
-                {/* Title */}
-                <h1 className="text-3xl md:text-4xl font-extrabold text-white">
-                  Toyota Prado TX-L (2023 Model)
-                </h1>
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {docs.map((car) => {
+            const id = String(car._id);
+            const firstPhotoId = car?.vehiclePhotos?.[0]?.fileId || car?.vehiclePhotoFileId;
+            const imgSrc = firstPhotoId ? `/api/sellcar-files/${firstPhotoId}` : '/carTabsImage/Sedan/honda_city.png';
+            const title = `${car.vehicleBrand ? `${car.vehicleBrand} ` : ''}${car.vehicleModel || 'Car'}`.trim();
+            const subtitle = `${car.makeYear ? `${car.makeYear}` : '-'}${car.vehicleType ? ` • ${car.vehicleType}` : ''}${car.user?.city ? ` • ${car.user.city}` : ''}`;
+            const photoCount = Array.isArray(car.vehiclePhotos) ? car.vehiclePhotos.length : 0;
 
-                {/* Details List */}
-                <div className="space-y-3">
-                  <div className="flex justify-between items-baseline">
-                    <span className="text-slate-500 font-medium">Price</span>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold text-[#93A17A]-600">NPR 37,50,000</p>
-                      <p className="text-xs text-slate-400">(Inclusive of VAT & Registration)</p>
+            return (
+              <div key={id} className="group overflow-hidden rounded-2xl border border-line bg-surface transition hover:-translate-y-1 hover:border-[#f4c430]/60">
+                <Link href={`/sellcars/${id}`} className="block">
+                  <div className="relative aspect-[16/10] w-full bg-surface-2">
+                    <img src={imgSrc} alt={title} className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
+                    <div className="absolute left-3 top-3 flex items-center gap-2">
+                      {photoCount > 1 && (
+                        <div className="rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">{photoCount} Photos</div>
+                      )}
                     </div>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500 font-medium">Configuration</span>
-                    <span className="font-semibold text-slate-800">Diesel - 4WD - Automatic</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500 font-medium">EMI starts at</span>
-                    <span className="font-semibold text-slate-800">NPR 1,20,000/month</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-500 font-medium">Status</span>
-                    <span className="font-semibold text-slate-800">In Stock – Kathmandu</span>
-                  </div>
-                </div>
+                </Link>
 
-                <hr className="border-slate-200" />
+                <div className="p-5">
+                  <div className="text-lg font-semibold">{title}</div>
+                  <div className="mt-1 text-sm text-muted">{subtitle}</div>
 
-                {/* Action Buttons */}
-                <div className="space-y-4">
-                  <div className="flex flex-col md:flex-row gap-3">
-                    <button className="flex-1  cursor-pointer bg-[#f4c430] text-black font-bold py-3 px-5 rounded-lg text-base hover:bg-[#ffdf70] transition-colors">
-                      Buy Now
-                    </button>
-                    <button className="flex-1 cursor-pointer bg-transparent text-[#f4c430] font-bold py-3 px-5 rounded-lg text-base border-2 border-[#f4c430] hover:bg-[#f4c430]/10 transition-colors flex items-center justify-center gap-x-2">
-                      Book Test Drive <CarFront className="w-5 h-5" />
-                    </button>
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-muted">
+                    <div className="rounded-lg border border-line bg-surface-2 px-3 py-2">KM: {car.kmDriven ? `${car.kmDriven}` : '-'}</div>
+                    <div className="rounded-lg border border-line bg-surface-2 px-3 py-2">Fuel: {car.fuelType || '-'}</div>
+                    <div className="rounded-lg border border-line bg-surface-2 px-3 py-2">Color: {car.vehicleColor || '-'}</div>
+                    <div className="rounded-lg border border-line bg-surface-2 px-3 py-2">Trans: {car.transmission || '-'}</div>
                   </div>
-                  <div className="flex flex-col md:flex-row gap-3">
-                    <button className="flex-1 cursor-pointer bg-slate-200 text-slate-800 font-semibold py-3 px-5 rounded-lg hover:bg-slate-300 transition-colors flex items-center justify-center gap-x-2">
-                      Compare <ArrowRightLeft className="w-5 h-5" />
-                    </button>
-                    <button className="flex-1 cursor-pointer bg-slate-200 text-slate-800 font-semibold py-3 px-5 rounded-lg hover:bg-slate-300 transition-colors flex items-center justify-center gap-x-2">
-                      Request Callback <Phone className="w-5 h-5" />
-                    </button>
+
+                  <div className="mt-5 flex items-center justify-between gap-4">
+                    <div className="text-base font-bold text-[#f4c430]">{formatPrice(car.expectedValuation)}</div>
+                    <Link href={`/sellcars/${id}`} className="rounded-lg bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffdf70]">
+                      View Details
+                    </Link>
                   </div>
                 </div>
               </div>
+            );
+          })}
+
+          {docs.length === 0 && (
+            <div className="rounded-2xl border border-line bg-surface-2 p-10 text-center text-sm text-muted sm:col-span-2 lg:col-span-3">
+              No used cars available yet.
             </div>
-          </div>
+          )}
         </div>
       </div>
-
-      <Lightbox
-        open={isLightboxOpen}
-        close={() => setIsLightboxOpen(false)}
-        slides={images}
-        index={mainIndex}
-        plugins={[Zoom, Thumbnails]}
-        thumbnails={{ position: "start", width: 60, height: 60, border: 1, borderRadius: 8, }}
-        zoom={{ maxZoomPixelRatio: 4, zoomInMultiplier: 2, doubleTapDelay: 300, }}
-      />
-   {/* specification section */}
-      <CarSpecificationsLayout />
-    </div>
-  )
+    </main>
+  );
 }
-
-export default Page;

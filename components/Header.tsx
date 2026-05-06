@@ -71,17 +71,17 @@ const Header = () => {
               Home
             </Link>
               <Link
-              href="/sell-old-cars"
+              href="/sell"
               className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
-                pathname === '/sell-old-cars' ? 'text-[#f4c430]' : 'text-foreground hover:text-[#f4c430]'
+                pathname === '/sell' ? 'text-[#f4c430]' : 'text-foreground hover:text-[#f4c430]'
               }`}
             >
               Sell Old Cars
             </Link>
             <Link
-              href="/sellcars"
+              href="/buy"
               className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
-                pathname.startsWith('/sellcars') ? 'text-[#f4c430]' : 'text-foreground hover:text-[#f4c430]'
+                pathname === '/buy' ? 'text-[#f4c430]' : 'text-foreground hover:text-[#f4c430]'
               }`}
             >
               Buy Old Cars
