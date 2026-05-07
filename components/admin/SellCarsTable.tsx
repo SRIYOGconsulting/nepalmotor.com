@@ -98,12 +98,12 @@ export default function SellCarsTable(props: { cars: Car[] }) {
 
   return (
     <div className="space-y-3">
-      {error && <div className="text-sm text-red-400">{error}</div>}
+      {error && <div className="text-sm text-red-500">{error}</div>}
 
-      <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#111]">
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
         <table className="min-w-[1100px] w-full border-collapse">
-          <thead className="bg-white/5">
-            <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-300">
+          <thead className="bg-gray-50">
+            <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
               <th className="px-4 py-3">Created</th>
               <th className="px-4 py-3">Car</th>
               <th className="px-4 py-3">Seller</th>
@@ -113,7 +113,7 @@ export default function SellCarsTable(props: { cars: Car[] }) {
               <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/10 text-sm text-gray-100">
+          <tbody className="divide-y divide-gray-200 text-sm text-gray-800">
             {props.cars.map((c) => {
               const created = c.createdAt ? new Date(c.createdAt).toLocaleString() : '-';
               const seller = c.user || null;
@@ -130,18 +130,18 @@ export default function SellCarsTable(props: { cars: Car[] }) {
                       {c.vehicleBrand ? `${c.vehicleBrand} ` : ''}
                       {c.vehicleModel || '-'}
                     </div>
-                    <div className="text-xs text-gray-400">{c.makeYear || '-'}</div>
+                    <div className="text-xs text-gray-500">{c.makeYear || '-'}</div>
                     <div className="text-xs text-[#f4c430]">{c.expectedValuation || '-'}</div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="font-semibold">{seller?.fullName || '-'}</div>
-                    <div className="text-xs text-gray-400">{seller?.phone || '-'}</div>
-                    <div className="text-xs text-gray-400">{seller?.city || '-'}</div>
+                    <div className="text-xs text-gray-500">{seller?.phone || '-'}</div>
+                    <div className="text-xs text-gray-500">{seller?.city || '-'}</div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-1">
                       <div className="font-semibold">{c.flow || '-'}</div>
-                      <div className="text-xs text-gray-400">{c.source || '-'}</div>
+                      <div className="text-xs text-gray-500">{c.source || '-'}</div>
                     </div>
                   </td>
                   <td className="px-4 py-3">
@@ -157,7 +157,7 @@ export default function SellCarsTable(props: { cars: Car[] }) {
                             {c.vehicleDocumentFileName ? 'Document' : 'Document'}
                           </a>
                         ) : (
-                          <span className="text-xs text-gray-400">No document</span>
+                          <span className="text-xs text-gray-500">No document</span>
                         )}
                       </div>
                       <div className="flex flex-wrap items-center gap-2">
@@ -168,16 +168,16 @@ export default function SellCarsTable(props: { cars: Car[] }) {
                                 <img
                                   src={`/api/sellcar-files/${pid}`}
                                   alt="Photo"
-                                  className="h-10 w-14 rounded-md border border-white/10 object-cover"
+                                  className="h-10 w-14 rounded-md border border-gray-200 object-cover"
                                 />
                               </a>
                             ))}
                             {photoIds.length > maxThumbs && (
-                              <span className="text-xs text-gray-400">+{photoIds.length - maxThumbs} more</span>
+                              <span className="text-xs text-gray-500">+{photoIds.length - maxThumbs} more</span>
                             )}
                           </>
                         ) : (
-                          <span className="text-xs text-gray-400">No photos</span>
+                          <span className="text-xs text-gray-500">No photos</span>
                         )}
                       </div>
                     </div>
@@ -198,21 +198,21 @@ export default function SellCarsTable(props: { cars: Car[] }) {
                       <button
                         onClick={() => reject(c._id)}
                         disabled={disabled}
-                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs font-semibold text-gray-200 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         Reject
                       </button>
                       <button
                         onClick={() => patchStatus(c._id, 'sold')}
                         disabled={disabled || c.status === 'sold'}
-                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs font-semibold text-gray-200 hover:border-[#f4c430] disabled:cursor-not-allowed disabled:opacity-60"
+                        className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-[#f4c430] disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         Mark Sold
                       </button>
                       <button
                         onClick={() => deleteCar(c._id)}
                         disabled={disabled}
-                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs font-semibold text-gray-200 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         Delete
                       </button>
@@ -224,7 +224,7 @@ export default function SellCarsTable(props: { cars: Car[] }) {
 
             {props.cars.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-12 text-center text-sm text-gray-400">
+                <td colSpan={7} className="px-4 py-12 text-center text-sm text-gray-500">
                   No old cars yet.
                 </td>
               </tr>

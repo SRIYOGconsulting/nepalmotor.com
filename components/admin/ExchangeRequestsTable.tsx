@@ -94,12 +94,12 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
 
   return (
     <div className="space-y-3">
-      {error && <div className="text-sm text-red-400">{error}</div>}
+      {error && <div className="text-sm text-red-500">{error}</div>}
 
-      <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#111]">
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
         <table className="min-w-[1120px] w-full border-collapse">
-          <thead className="bg-white/5">
-            <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-300">
+          <thead className="bg-gray-50">
+            <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
               <th className="px-4 py-3">Created</th>
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Customer</th>
@@ -110,7 +110,7 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
               <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/10 text-sm text-gray-100">
+          <tbody className="divide-y divide-gray-200 text-sm text-gray-800">
             {props.requests.map((r) => {
               const user = r.user || {};
               const sellCar = r.sellCar || {};
@@ -129,27 +129,27 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
                   <td className="px-4 py-3">
                     <div className="font-semibold">{status}</div>
                     {isRejected && (
-                      <div className="mt-1 text-xs text-red-300">{r.rejectionReason || sellCar.rejectionReason || '-'}</div>
+                      <div className="mt-1 text-xs text-red-500">{r.rejectionReason || sellCar.rejectionReason || '-'}</div>
                     )}
                   </td>
                   <td className="px-4 py-3">
                     <div className="font-semibold">{user.fullName || '-'}</div>
-                    <div className="text-xs text-gray-400">{user.phone || '-'}</div>
-                    <div className="text-xs text-gray-400">{user.email || '-'}</div>
-                    <div className="text-xs text-gray-400">{user.city || '-'}</div>
+                    <div className="text-xs text-gray-500">{user.phone || '-'}</div>
+                    <div className="text-xs text-gray-500">{user.email || '-'}</div>
+                    <div className="text-xs text-gray-500">{user.city || '-'}</div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="font-medium">
                       {sellCar.vehicleBrand ? `${sellCar.vehicleBrand} ` : ''}
                       {sellCar.vehicleModel || '-'}
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-gray-500">
                       {sellCar.vehicleType || '-'} • {sellCar.makeYear || '-'}
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-gray-500">
                       {sellCar.kmDriven ? `${sellCar.kmDriven} km` : '-'} • {sellCar.vehicleColor || '-'}
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-gray-500">
                       {sellCar.condition || '-'} • {sellCar.transmission || '-'}
                     </div>
                   </td>
@@ -157,8 +157,8 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
                     <div className="font-medium">
                       {r.newVehicleBrand || '-'} {r.newVehicleModel || ''}
                     </div>
-                    <div className="text-xs text-gray-400">{r.newVehiclePriceRange || '-'}</div>
-                    <div className="text-xs text-gray-400">{r.downPayment ? `Down: ${r.downPayment}` : '-'}</div>
+                    <div className="text-xs text-gray-500">{r.newVehiclePriceRange || '-'}</div>
+                    <div className="text-xs text-gray-500">{r.downPayment ? `Down: ${r.downPayment}` : '-'}</div>
                   </td>
                   <td className="px-4 py-3">{r.finance || '-'}</td>
                   <td className="px-4 py-3">
@@ -168,14 +168,14 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
                           Document
                         </a>
                       ) : (
-                        <span className="text-xs text-gray-400">No document</span>
+                        <span className="text-xs text-gray-500">No document</span>
                       )}
                       {photoId ? (
                         <a className="text-[#f4c430] hover:underline" href={`/api/admin/exchange-files/${photoId}`}>
                           Photo
                         </a>
                       ) : (
-                        <span className="text-xs text-gray-400">No photo</span>
+                        <span className="text-xs text-gray-500">No photo</span>
                       )}
                     </div>
                   </td>
@@ -191,7 +191,7 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
                       <button
                         onClick={() => reject(String(r._id))}
                         disabled={!isPending || submittingId === String(r._id)}
-                        className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs font-semibold text-gray-200 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         Reject
                       </button>
@@ -203,7 +203,7 @@ export default function ExchangeRequestsTable(props: { requests: AdminExchangeRe
 
             {props.requests.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-4 py-12 text-center text-sm text-gray-400">
+                <td colSpan={8} className="px-4 py-12 text-center text-sm text-gray-500">
                   No requests yet.
                 </td>
               </tr>

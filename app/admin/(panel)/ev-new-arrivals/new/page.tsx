@@ -40,19 +40,19 @@ export default function AdminNewEvArrivalPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Label *</label>
-            <input name="label" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="label" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Price *</label>
-            <input name="priceText" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="priceText" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Link (optional)</label>
-            <input name="href" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" placeholder="/compare/suvs" />
+            <input name="href" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" placeholder="/compare/suvs" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Sort Order</label>
-            <input name="sortOrder" type="number" defaultValue={0} className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="sortOrder" type="number" defaultValue={0} className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export default function AdminNewEvArrivalPage() {
           <button
             type="button"
             onClick={() => router.back()}
-            className="cursor-pointer rounded-lg border border-white/15 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
+            className="cursor-pointer rounded-lg border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
           >
             Cancel
           </button>

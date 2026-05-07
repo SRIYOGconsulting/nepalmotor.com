@@ -17,8 +17,8 @@
 
     const categories: Categories = [
     {name:'Home',link:'/'},
-    {name:'Buy Old Cars',link:'/sellcars'},
-    {name:'Sell Old Cars',link:'/sell-old-cars'},
+    {name:'Sell Old Cars',link:'/sell'},
+    {name:'Buy Old Cars',link:'/buy'},
     ];
 
     interface SideMenuProps{

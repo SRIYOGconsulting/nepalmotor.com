@@ -30,10 +30,10 @@ export default function EvNewArrivalsTable(props: { items: Item[] }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#111]">
+    <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
       <table className="min-w-[980px] w-full border-collapse">
-        <thead className="bg-white/5">
-          <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-300">
+        <thead className="bg-gray-50">
+          <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
             <th className="px-4 py-3">Image</th>
             <th className="px-4 py-3">Label</th>
             <th className="px-4 py-3">Price</th>
@@ -41,11 +41,11 @@ export default function EvNewArrivalsTable(props: { items: Item[] }) {
             <th className="px-4 py-3">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/10 text-sm text-gray-100">
+        <tbody className="divide-y divide-gray-200 text-sm text-gray-800">
           {props.items.map((it) => (
             <tr key={it._id}>
               <td className="px-4 py-3">
-                <div className="h-12 w-20 overflow-hidden rounded-lg border border-white/10 bg-black">
+                <div className="h-12 w-20 overflow-hidden rounded-lg border border-gray-200 bg-white">
                   {it.imageFileId ? (
                     <img src={`/api/ev-arrival-files/${it.imageFileId}`} alt={it.label || 'EV'} className="h-full w-full object-cover" />
                   ) : null}
@@ -53,7 +53,7 @@ export default function EvNewArrivalsTable(props: { items: Item[] }) {
               </td>
               <td className="px-4 py-3">
                 <div className="font-semibold">{it.label || '-'}</div>
-                <div className="text-xs text-gray-400">{it.href || ''}</div>
+                <div className="text-xs text-gray-500">{it.href || ''}</div>
               </td>
               <td className="px-4 py-3">{it.priceText || '-'}</td>
               <td className="px-4 py-3">{typeof it.sortOrder === 'number' ? it.sortOrder : '-'}</td>
@@ -65,7 +65,7 @@ export default function EvNewArrivalsTable(props: { items: Item[] }) {
                   <button
                     onClick={() => deleteItem(it._id)}
                     disabled={deletingId === it._id}
-                    className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs font-semibold text-gray-200 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {deletingId === it._id ? 'Deleting…' : 'Delete'}
                   </button>
@@ -76,7 +76,7 @@ export default function EvNewArrivalsTable(props: { items: Item[] }) {
 
           {props.items.length === 0 && (
             <tr>
-              <td colSpan={5} className="px-4 py-12 text-center text-sm text-gray-400">
+              <td colSpan={5} className="px-4 py-12 text-center text-sm text-gray-500">
                 No EV new arrivals yet.
               </td>
             </tr>

@@ -32,10 +32,10 @@ export default function CarListingsTable(props: { listings: Listing[] }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#111]">
+    <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
       <table className="min-w-[980px] w-full border-collapse">
-        <thead className="bg-white/5">
-          <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-300">
+        <thead className="bg-gray-50">
+          <tr className="text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
             <th className="px-4 py-3">Title</th>
             <th className="px-4 py-3">Make/Model</th>
             <th className="px-4 py-3">Year</th>
@@ -44,7 +44,7 @@ export default function CarListingsTable(props: { listings: Listing[] }) {
             <th className="px-4 py-3">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/10 text-sm text-gray-100">
+        <tbody className="divide-y divide-gray-200 text-sm text-gray-800">
           {props.listings.map((l) => (
             <tr key={l._id}>
               <td className="px-4 py-3">
@@ -64,7 +64,7 @@ export default function CarListingsTable(props: { listings: Listing[] }) {
                   <button
                     onClick={() => deleteListing(l._id)}
                     disabled={deletingId === l._id}
-                    className="cursor-pointer rounded-lg border border-white/15 px-3 py-1 text-xs font-semibold text-gray-200 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {deletingId === l._id ? 'Deleting…' : 'Delete'}
                   </button>
@@ -75,7 +75,7 @@ export default function CarListingsTable(props: { listings: Listing[] }) {
 
           {props.listings.length === 0 && (
             <tr>
-              <td colSpan={6} className="px-4 py-12 text-center text-sm text-gray-400">
+              <td colSpan={6} className="px-4 py-12 text-center text-sm text-gray-500">
                 No car listings yet.
               </td>
             </tr>

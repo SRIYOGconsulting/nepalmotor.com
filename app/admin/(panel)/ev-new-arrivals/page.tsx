@@ -20,7 +20,7 @@ export default async function AdminEvNewArrivalsPage() {
     return (
       <div className="space-y-3">
         <h1 className="text-2xl font-bold">EV New Arrivals</h1>
-        <p className="text-sm text-red-400">{result.message || 'Failed to load items'}</p>
+        <p className="text-sm text-red-500">{result.message || 'Failed to load items'}</p>
       </div>
     );
   }
@@ -32,7 +32,7 @@ export default async function AdminEvNewArrivalsPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">EV New Arrivals</h1>
-          <p className="mt-1 text-sm text-gray-400">Items shown in the homepage “New Arrivals” section.</p>
+          <p className="mt-1 text-sm text-gray-500">Items shown in the homepage “New Arrivals” section.</p>
         </div>
         <Link href="/admin/ev-new-arrivals/new" className="rounded-lg bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black">
           Add New

@@ -168,7 +168,8 @@ const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange }
 );
 
 const SellOldCarsPage: FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [isSubmitError, setIsSubmitError] = useState(false);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
@@ -269,12 +270,11 @@ const SellOldCarsPage: FC = () => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsSuccessModalOpen(false);
     handleReset();
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submitSellRequest = async () => {
     setIsSubmitLoading(true);
     setIsSubmitError(false);
 
@@ -299,8 +299,14 @@ const SellOldCarsPage: FC = () => {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSubmitLoading) return;
+    setIsConfirmModalOpen(true);
+  };
+
   useEffect(() => {
-    if (isSubmitSuccess) setIsModalOpen(true);
+    if (isSubmitSuccess) setIsSuccessModalOpen(true);
   }, [isSubmitSuccess]);
 
   return (
@@ -425,7 +431,36 @@ const SellOldCarsPage: FC = () => {
         </form>
       </div>
 
-      <SubmitPortal isOpen={isModalOpen} onClose={closeModal}>
+      <SubmitPortal isOpen={isConfirmModalOpen} onClose={() => setIsConfirmModalOpen(false)}>
+        <div className="w-full max-w-md rounded-xl border border-line bg-surface p-6 text-foreground shadow-xl">
+          <h2 className="text-lg font-semibold">Confirm submission</h2>
+          <p className="mt-2 text-sm text-muted">
+            Are you sure you want to submit this Sell Car form? You can still go back and edit before submitting.
+          </p>
+          <div className="mt-5 flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => setIsConfirmModalOpen(false)}
+              className="rounded-md border border-line px-4 py-2 text-sm font-semibold text-foreground hover:border-[#f4c430]/60"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              disabled={isSubmitLoading}
+              onClick={async () => {
+                setIsConfirmModalOpen(false);
+                await submitSellRequest();
+              }}
+              className="rounded-md bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffdf70] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isSubmitLoading ? 'Submitting...' : 'Confirm'}
+            </button>
+          </div>
+        </div>
+      </SubmitPortal>
+
+      <SubmitPortal isOpen={isSuccessModalOpen} onClose={closeModal}>
         <div className="w-full max-w-md rounded-xl border border-line bg-surface p-6 text-center text-foreground shadow-xl">
           <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#f4c430] text-black">✓</div>
           <h2 className="text-lg font-semibold">Request Submitted</h2>

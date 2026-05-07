@@ -51,23 +51,23 @@ export default function EditCarListingForm(props: { listing: Listing }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-white/10 bg-[#111] p-6">
+    <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-gray-200 bg-white p-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Title *</label>
+          <label className="text-sm font-medium text-gray-700">Title *</label>
           <input
             name="title"
             required
             defaultValue={props.listing.title || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Car Type</label>
+          <label className="text-sm font-medium text-gray-700">Car Type</label>
           <select
             name="carType"
             defaultValue={props.listing.carType || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           >
             <option value="">(none)</option>
             <option value="SUV">SUV</option>
@@ -78,120 +78,120 @@ export default function EditCarListingForm(props: { listing: Listing }) {
           </select>
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Status</label>
+          <label className="text-sm font-medium text-gray-700">Status</label>
           <select
             name="status"
             defaultValue={props.listing.status || 'available'}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           >
             <option value="available">available</option>
             <option value="sold">sold</option>
           </select>
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Variant</label>
+          <label className="text-sm font-medium text-gray-700">Variant</label>
           <input
             name="variant"
             defaultValue={props.listing.variant || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Make *</label>
+          <label className="text-sm font-medium text-gray-700">Make *</label>
           <input
             name="make"
             required
             defaultValue={props.listing.make || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Model *</label>
+          <label className="text-sm font-medium text-gray-700">Model *</label>
           <input
             name="model"
             required
             defaultValue={props.listing.model || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Year *</label>
+          <label className="text-sm font-medium text-gray-700">Year *</label>
           <input
             name="year"
             type="number"
             required
             defaultValue={props.listing.year ?? ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Price (NPR) *</label>
+          <label className="text-sm font-medium text-gray-700">Price (NPR) *</label>
           <input
             name="price"
             type="number"
             required
             defaultValue={props.listing.price ?? ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Mileage</label>
+          <label className="text-sm font-medium text-gray-700">Mileage</label>
           <input
             name="mileage"
             type="number"
             defaultValue={props.listing.mileage ?? ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Transmission</label>
+          <label className="text-sm font-medium text-gray-700">Transmission</label>
           <input
             name="transmission"
             defaultValue={props.listing.transmission || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Fuel Type</label>
+          <label className="text-sm font-medium text-gray-700">Fuel Type</label>
           <input
             name="fuelType"
             defaultValue={props.listing.fuelType || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Location</label>
+          <label className="text-sm font-medium text-gray-700">Location</label>
           <input
             name="location"
             defaultValue={props.listing.location || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-200">Description</label>
+        <label className="text-sm font-medium text-gray-700">Description</label>
         <textarea
           name="description"
           rows={4}
           defaultValue={props.listing.description || ''}
-          className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
         />
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-200">Add Images</label>
+        <label className="text-sm font-medium text-gray-700">Add Images</label>
         <input
           name="images"
           type="file"
           multiple
           accept="image/jpeg,image/png,image/webp"
-          className="block w-full text-sm text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
+          className="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
         />
-        <div className="text-xs text-gray-400">Selected images will be appended to the listing.</div>
+        <div className="text-xs text-gray-500">Selected images will be appended to the listing.</div>
       </div>
 
-      {error && <div className="text-sm text-red-400">{error}</div>}
+      {error && <div className="text-sm text-red-500">{error}</div>}
 
       <div className="flex items-center gap-3">
         <button
@@ -204,7 +204,7 @@ export default function EditCarListingForm(props: { listing: Listing }) {
         <button
           type="button"
           onClick={() => router.back()}
-          className="cursor-pointer rounded-lg border border-white/15 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
+          className="cursor-pointer rounded-lg border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:border-[#f4c430]"
         >
           Cancel
         </button>

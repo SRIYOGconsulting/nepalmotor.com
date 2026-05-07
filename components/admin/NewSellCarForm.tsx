@@ -34,108 +34,108 @@ export default function NewSellCarForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-white/10 bg-[#111] p-6">
+    <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-gray-200 bg-white p-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Vehicle Model *</label>
+          <label className="text-sm font-medium text-gray-700">Vehicle Model *</label>
           <input
             name="vehicleModel"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Vehicle Brand</label>
-          <input name="vehicleBrand" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+          <label className="text-sm font-medium text-gray-700">Vehicle Brand</label>
+          <input name="vehicleBrand" className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Vehicle Type *</label>
+          <label className="text-sm font-medium text-gray-700">Vehicle Type *</label>
           <input
             name="vehicleType"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Make Year *</label>
+          <label className="text-sm font-medium text-gray-700">Make Year *</label>
           <input
             name="makeYear"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Vehicle Color *</label>
+          <label className="text-sm font-medium text-gray-700">Vehicle Color *</label>
           <input
             name="vehicleColor"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">KM Driven *</label>
+          <label className="text-sm font-medium text-gray-700">KM Driven *</label>
           <input
             name="kmDriven"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Fuel Type *</label>
+          <label className="text-sm font-medium text-gray-700">Fuel Type *</label>
           <input
             name="fuelType"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Transmission *</label>
+          <label className="text-sm font-medium text-gray-700">Transmission *</label>
           <input
             name="transmission"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Condition *</label>
+          <label className="text-sm font-medium text-gray-700">Condition *</label>
           <input
             name="condition"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Accidents *</label>
+          <label className="text-sm font-medium text-gray-700">Accidents *</label>
           <input
             name="accidents"
             required
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Expected Valuation</label>
+          <label className="text-sm font-medium text-gray-700">Expected Valuation</label>
           <input
             name="expectedValuation"
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Status</label>
+          <label className="text-sm font-medium text-gray-700">Status</label>
           <select
             name="status"
             defaultValue="approved"
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           >
             <option value="approved">approved</option>
             <option value="pending">pending</option>
@@ -146,56 +146,56 @@ export default function NewSellCarForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-200">Features *</label>
+        <label className="text-sm font-medium text-gray-700">Features *</label>
         <textarea
           name="features"
           required
           rows={3}
-          className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
         />
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-200">Accident Info</label>
+        <label className="text-sm font-medium text-gray-700">Accident Info</label>
         <textarea
           name="accidentInfo"
           rows={2}
-          className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
         />
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-200">Additional Info</label>
+        <label className="text-sm font-medium text-gray-700">Additional Info</label>
         <textarea
           name="additionalInfo"
           rows={3}
-          className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
         />
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Vehicle Photos</label>
+          <label className="text-sm font-medium text-gray-700">Vehicle Photos</label>
           <input
             name="vehiclePhotos"
             type="file"
             multiple
             accept="image/jpeg,image/png,image/webp"
-            className="block w-full text-sm text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
+            className="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Vehicle Document</label>
+          <label className="text-sm font-medium text-gray-700">Vehicle Document</label>
           <input
             name="vehicleDocument"
             type="file"
             accept="application/pdf,image/jpeg,image/png,image/webp"
-            className="block w-full text-sm text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
+            className="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
           />
         </div>
       </div>
 
-      {error && <div className="text-sm text-red-400">{error}</div>}
+      {error && <div className="text-sm text-red-500">{error}</div>}
 
       <div className="flex items-center gap-3">
         <button
@@ -208,7 +208,7 @@ export default function NewSellCarForm() {
         <button
           type="button"
           onClick={() => router.back()}
-          className="cursor-pointer rounded-lg border border-white/15 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
+          className="cursor-pointer rounded-lg border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:border-[#f4c430]"
         >
           Cancel
         </button>

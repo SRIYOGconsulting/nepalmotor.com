@@ -41,11 +41,11 @@ export default function AdminNewCarListingPage() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Title *</label>
-            <input name="title" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="title" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Car Type</label>
-            <select name="carType" defaultValue="" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]">
+            <select name="carType" defaultValue="" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]">
               <option value="">(none)</option>
               <option value="SUV">SUV</option>
               <option value="Hatchback">Hatchback</option>
@@ -56,22 +56,22 @@ export default function AdminNewCarListingPage() {
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Status</label>
-            <select name="status" defaultValue="available" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]">
+            <select name="status" defaultValue="available" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]">
               <option value="available">available</option>
               <option value="sold">sold</option>
             </select>
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Variant</label>
-            <input name="variant" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="variant" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Make *</label>
-            <input name="make" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="make" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Model *</label>
-            <input name="model" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="model" required className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Year *</label>
@@ -79,7 +79,7 @@ export default function AdminNewCarListingPage() {
               name="year"
               type="number"
               required
-              className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+              className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
             />
           </div>
           <div className="space-y-2">
@@ -88,30 +88,30 @@ export default function AdminNewCarListingPage() {
               name="price"
               type="number"
               required
-              className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+              className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
             />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Mileage</label>
-            <input name="mileage" type="number" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="mileage" type="number" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Transmission</label>
-            <input name="transmission" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="transmission" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Fuel Type</label>
-            <input name="fuelType" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="fuelType" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-200">Location</label>
-            <input name="location" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+            <input name="location" className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
           </div>
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-200">Description</label>
-          <textarea name="description" rows={4} className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]" />
+          <textarea name="description" rows={4} className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]" />
         </div>
 
         <div className="space-y-2">
@@ -133,7 +133,7 @@ export default function AdminNewCarListingPage() {
           <button
             type="button"
             onClick={() => router.back()}
-            className="cursor-pointer rounded-lg border border-white/15 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
+            className="cursor-pointer rounded-lg border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
           >
             Cancel
           </button>

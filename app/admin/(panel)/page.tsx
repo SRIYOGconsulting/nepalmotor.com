@@ -28,7 +28,7 @@ export default function AdminDashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-400">Choose a module to manage content.</p>
+        <p className="mt-1 text-sm text-gray-500">Choose a module to manage content.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -36,10 +36,10 @@ export default function AdminDashboardPage() {
           <Link
             key={c.href}
             href={c.href}
-            className="block rounded-2xl border border-white/10 bg-[#111] p-5 transition hover:border-[#f4c430]/60 hover:shadow-xl"
+            className="block rounded-2xl border border-gray-200 bg-white p-5 transition hover:border-[#f4c430]/60 hover:shadow-xl"
           >
             <div className="text-lg font-semibold">{c.title}</div>
-            <div className="mt-2 text-sm text-gray-400">{c.desc}</div>
+            <div className="mt-2 text-sm text-gray-500">{c.desc}</div>
             <div className="mt-4 text-sm font-semibold text-[#f4c430]">Open</div>
           </Link>
         ))}

@@ -39,49 +39,49 @@ export default function EditEvArrivalForm(props: { item: Item }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-white/10 bg-[#111] p-6">
+    <form onSubmit={onSubmit} className="max-w-2xl space-y-4 rounded-2xl border border-gray-200 bg-white p-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Label *</label>
+          <label className="text-sm font-medium text-gray-700">Label *</label>
           <input
             name="label"
             required
             defaultValue={props.item.label || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Price *</label>
+          <label className="text-sm font-medium text-gray-700">Price *</label>
           <input
             name="priceText"
             required
             defaultValue={props.item.priceText || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Link (optional)</label>
+          <label className="text-sm font-medium text-gray-700">Link (optional)</label>
           <input
             name="href"
             defaultValue={props.item.href || ''}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-200">Sort Order</label>
+          <label className="text-sm font-medium text-gray-700">Sort Order</label>
           <input
             name="sortOrder"
             type="number"
             defaultValue={props.item.sortOrder ?? 0}
-            className="w-full rounded-lg border border-white/10 bg-black px-3 py-2 text-white outline-none focus:border-[#f4c430]"
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:border-[#f4c430]"
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-200">Replace Image (optional)</label>
+        <label className="text-sm font-medium text-gray-700">Replace Image (optional)</label>
         <div className="flex items-center gap-4">
-          <div className="h-16 w-28 overflow-hidden rounded-lg border border-white/10 bg-black">
+          <div className="h-16 w-28 overflow-hidden rounded-lg border border-gray-200 bg-white">
             {props.item.imageFileId ? (
               <img src={`/api/ev-arrival-files/${props.item.imageFileId}`} alt={props.item.label || 'EV'} className="h-full w-full object-cover" />
             ) : null}
@@ -90,12 +90,12 @@ export default function EditEvArrivalForm(props: { item: Item }) {
             name="image"
             type="file"
             accept="image/jpeg,image/png,image/webp"
-            className="block w-full text-sm text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
+            className="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-[#f4c430] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-black"
           />
         </div>
       </div>
 
-      {error && <div className="text-sm text-red-400">{error}</div>}
+      {error && <div className="text-sm text-red-500">{error}</div>}
 
       <div className="flex items-center gap-3">
         <button
@@ -108,7 +108,7 @@ export default function EditEvArrivalForm(props: { item: Item }) {
         <button
           type="button"
           onClick={() => router.back()}
-          className="cursor-pointer rounded-lg border border-white/15 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:border-[#f4c430]"
+          className="cursor-pointer rounded-lg border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:border-[#f4c430]"
         >
           Cancel
         </button>
