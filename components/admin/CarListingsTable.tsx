@@ -4,6 +4,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+
 type Listing = {
   _id: string;
   title?: string;
@@ -18,6 +29,9 @@ type Listing = {
 export default function CarListingsTable(props: { listings: Listing[] }) {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+
+  const deleteTarget = deleteTargetId ? props.listings.find((l) => l._id === deleteTargetId) : undefined;
 
   async function deleteListing(id: string) {
     if (!id) return;
@@ -62,7 +76,8 @@ export default function CarListingsTable(props: { listings: Listing[] }) {
                     Edit
                   </Link>
                   <button
-                    onClick={() => deleteListing(l._id)}
+                    type="button"
+                    onClick={() => setDeleteTargetId(l._id)}
                     disabled={deletingId === l._id}
                     className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                   >
@@ -82,6 +97,35 @@ export default function CarListingsTable(props: { listings: Listing[] }) {
           )}
         </tbody>
       </table>
+
+      <AlertDialog open={deleteTargetId !== null} onOpenChange={(open) => !open && setDeleteTargetId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this car listing?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteTarget?.title
+                ? `This will permanently remove “${deleteTarget.title}”. This cannot be undone.`
+                : 'This action cannot be undone.'}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={deleteTargetId !== null && deletingId === deleteTargetId}
+              onClick={() => {
+                const id = deleteTargetId;
+                if (!id) return;
+                setDeleteTargetId(null);
+                void deleteListing(id);
+              }}
+            >
+              {deleteTargetId && deletingId === deleteTargetId ? 'Deleting…' : 'Delete'}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

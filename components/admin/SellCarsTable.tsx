@@ -4,6 +4,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+
 type Car = {
   _id: string;
   vehicleBrand?: string;
@@ -26,6 +37,9 @@ export default function SellCarsTable(props: { cars: Car[] }) {
   const router = useRouter();
   const [submittingId, setSubmittingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+
+  const deleteTarget = deleteTargetId ? props.cars.find((c) => c._id === deleteTargetId) : undefined;
 
   async function patchStatus(id: string, status: string) {
     if (!id || submittingId) return;
@@ -77,8 +91,6 @@ export default function SellCarsTable(props: { cars: Car[] }) {
 
   async function deleteCar(id: string) {
     if (!id || submittingId) return;
-    const ok = window.confirm('Delete this old car?');
-    if (!ok) return;
     setError(null);
     setSubmittingId(id);
     try {
@@ -210,7 +222,8 @@ export default function SellCarsTable(props: { cars: Car[] }) {
                         Mark Sold
                       </button>
                       <button
-                        onClick={() => deleteCar(c._id)}
+                        type="button"
+                        onClick={() => setDeleteTargetId(c._id)}
                         disabled={disabled}
                         className="cursor-pointer rounded-lg border border-gray-300 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-red-400 disabled:cursor-not-allowed disabled:opacity-60"
                       >
@@ -232,6 +245,35 @@ export default function SellCarsTable(props: { cars: Car[] }) {
           </tbody>
         </table>
       </div>
+
+      <AlertDialog open={deleteTargetId !== null} onOpenChange={(open) => !open && setDeleteTargetId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this listing?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteTarget
+                ? `This will permanently remove ${[deleteTarget.vehicleBrand, deleteTarget.vehicleModel].filter(Boolean).join(' ') || 'this car'}. This cannot be undone.`
+                : 'This action cannot be undone.'}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel type="button">Cancel</AlertDialogCancel>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={deleteTargetId !== null && submittingId === deleteTargetId}
+              onClick={() => {
+                const id = deleteTargetId;
+                if (!id) return;
+                setDeleteTargetId(null);
+                void deleteCar(id);
+              }}
+            >
+              {deleteTargetId && submittingId === deleteTargetId ? 'Deleting…' : 'Delete'}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
