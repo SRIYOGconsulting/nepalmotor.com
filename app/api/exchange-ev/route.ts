@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     const additionalInfo = getText('additionalInfo');
 
     const vehicleDocument = getFile('vehicleDocument');
-    const vehiclePhoto = getFile('vehiclePhoto');
+    const photoFiles = formData.getAll('vehiclePhotos').filter((x): x is File => typeof x !== 'string');
 
     if (!fullName || !email || !phone || !city) {
       return NextResponse.json({ success: false, message: 'Full name, email, phone, and city are required' }, { status: 400 });
@@ -80,13 +80,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: 'New vehicle details are required' }, { status: 400 });
     }
 
-    if (!vehicleDocument || !vehiclePhoto) {
-      return NextResponse.json({ success: false, message: 'Vehicle document and vehicle photo are required' }, { status: 400 });
+    if (!vehicleDocument) {
+      return NextResponse.json({ success: false, message: 'Vehicle document is required' }, { status: 400 });
+    }
+
+    if (photoFiles.length < 5) {
+      return NextResponse.json({ success: false, message: 'At least 5 vehicle photos are required' }, { status: 400 });
     }
 
     const maxBytes = 5 * 1024 * 1024;
-    if (vehicleDocument.size > maxBytes || vehiclePhoto.size > maxBytes) {
-      return NextResponse.json({ success: false, message: 'Each upload must be 5MB or smaller' }, { status: 400 });
+    if (vehicleDocument.size > maxBytes) {
+      return NextResponse.json({ success: false, message: 'Document must be 5MB or smaller' }, { status: 400 });
+    }
+    for (const f of photoFiles) {
+      if (f.size > maxBytes) {
+        return NextResponse.json({ success: false, message: 'Each upload must be 5MB or smaller' }, { status: 400 });
+      }
     }
 
     const allowedDocTypes = new Set(['application/pdf', 'image/jpeg', 'image/png', 'image/webp']);
@@ -94,23 +103,27 @@ export async function POST(req: NextRequest) {
     if (!allowedDocTypes.has(vehicleDocument.type)) {
       return NextResponse.json({ success: false, message: 'Vehicle document must be PDF or an image (JPG/PNG/WEBP)' }, { status: 400 });
     }
-    if (!allowedPhotoTypes.has(vehiclePhoto.type)) {
-      return NextResponse.json({ success: false, message: 'Vehicle photo must be an image (JPG/PNG/WEBP)' }, { status: 400 });
+    for (const f of photoFiles) {
+      if (!allowedPhotoTypes.has(f.type)) {
+        return NextResponse.json({ success: false, message: 'Vehicle photo must be an image (JPG/PNG/WEBP)' }, { status: 400 });
+      }
     }
 
-    const [docUpload, photoUpload] = await Promise.all([
+    const [docUpload, ...photoUploads] = await Promise.all([
       uploadToExchangeBucket({
         file: vehicleDocument,
         filename: vehicleDocument.name || 'vehicle-document',
         contentType: vehicleDocument.type || 'application/octet-stream',
         metadata: { kind: 'vehicleDocument' },
       }),
-      uploadToExchangeBucket({
-        file: vehiclePhoto,
-        filename: vehiclePhoto.name || 'vehicle-photo',
-        contentType: vehiclePhoto.type || 'application/octet-stream',
-        metadata: { kind: 'vehiclePhoto' },
-      }),
+      ...photoFiles.map((file, index) =>
+        uploadToExchangeBucket({
+          file,
+          filename: file.name || `vehicle-photo-${index + 1}`,
+          contentType: file.type || 'application/octet-stream',
+          metadata: { kind: 'vehiclePhoto' },
+        }),
+      ),
     ]);
 
     let user = await User.findOne({ phone });
@@ -144,18 +157,16 @@ export async function POST(req: NextRequest) {
       vehicleDocumentFileName: vehicleDocument.name || undefined,
       vehicleDocumentContentType: vehicleDocument.type || undefined,
       vehicleDocumentSize: vehicleDocument.size || undefined,
-      vehiclePhotoFileId: photoUpload.fileId,
-      vehiclePhotoFileName: vehiclePhoto.name || undefined,
-      vehiclePhotoContentType: vehiclePhoto.type || undefined,
-      vehiclePhotoSize: vehiclePhoto.size || undefined,
-      vehiclePhotos: [
-        {
-          fileId: photoUpload.fileId,
-          filename: vehiclePhoto.name || undefined,
-          contentType: vehiclePhoto.type || undefined,
-          size: vehiclePhoto.size || undefined,
-        },
-      ],
+      vehiclePhotoFileId: photoUploads[0].fileId,
+      vehiclePhotoFileName: photoFiles[0].name || undefined,
+      vehiclePhotoContentType: photoFiles[0].type || undefined,
+      vehiclePhotoSize: photoFiles[0].size || undefined,
+      vehiclePhotos: photoUploads.map((upload, i) => ({
+        fileId: upload.fileId,
+        filename: photoFiles[i].name || undefined,
+        contentType: photoFiles[i].type || undefined,
+        size: photoFiles[i].size || undefined,
+      })),
       status: 'pending',
       source: 'user',
     });

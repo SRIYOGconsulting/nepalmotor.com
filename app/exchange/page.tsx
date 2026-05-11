@@ -285,9 +285,11 @@ interface UploadFieldProps {
   fileName: string;
   onFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  multiple?: boolean;
+  accept?: string;
 }
 
-const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange, required = false }) => (
+const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange, required = false, multiple, accept }) => (
   <div>
     <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">
       {label}
@@ -301,7 +303,7 @@ const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange, 
       <span className="ml-1 font-semibold text-[#f4c430] underline">browse</span>
       {fileName && <span className="ml-2 truncate text-foreground">({fileName})</span>}
     </label>
-    <input id={id} type="file" className="hidden" onChange={onFileChange} required={required} />
+    <input id={id} type="file" className="hidden" multiple={multiple} accept={accept} onChange={onFileChange} required={required} />
   </div>
 );
 
@@ -312,7 +314,8 @@ const VehicleValuationForm: FC = () => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [formData, setFormData] = useState<FormDataState>(initialFormState);
   const [vehicleDocument, setVehicleDocument] = useState<File | null>(null);
-  const [vehiclePhoto, setVehiclePhoto] = useState<File | null>(null);
+  const [vehiclePhotos, setVehiclePhotos] = useState<File[]>([]);
+  const [photoCountError, setPhotoCountError] = useState('');
 
   const cityOptions: OptionType[] = [
     { value: 'Kathmandu', label: 'Kathmandu' },
@@ -423,7 +426,12 @@ const VehicleValuationForm: FC = () => {
   };
 
   const submitExchangeRequest = async () => {
-    await exchangeEvSubmit({ ...formData, vehicleDocument, vehiclePhoto });
+    setPhotoCountError('');
+    if (vehiclePhotos.length < 5) {
+      setPhotoCountError('Please upload at least 5 vehicle photos.');
+      return;
+    }
+    await exchangeEvSubmit({ ...formData, vehicleDocument, vehiclePhotos });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -435,7 +443,8 @@ const VehicleValuationForm: FC = () => {
   const handleReset = () => {
     setFormData(initialFormState);
     setVehicleDocument(null);
-    setVehiclePhoto(null);
+    setVehiclePhotos([]);
+    setPhotoCountError('');
   };
 
   const closeModal = () => {
@@ -543,13 +552,20 @@ const VehicleValuationForm: FC = () => {
                 required
               />
               <UploadField
-                id="vehiclePhoto"
-                label="Upload Vehicle Photo"
-                fileName={vehiclePhoto?.name || ''}
-                onFileChange={(e) => setVehiclePhoto(e.target.files?.[0] || null)}
+                id="vehiclePhotos"
+                label="Upload vehicle photos (minimum 5 images)"
+                fileName={
+                  vehiclePhotos.length
+                    ? `${vehiclePhotos.length} file${vehiclePhotos.length === 1 ? '' : 's'} selected`
+                    : ''
+                }
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                onFileChange={(e) => setVehiclePhotos(Array.from(e.target.files ?? []))}
                 required
               />
             </div>
+            {photoCountError && <p className="text-sm text-red-400">{photoCountError}</p>}
           </div>
 
           <div className="border-t border-line pt-6">

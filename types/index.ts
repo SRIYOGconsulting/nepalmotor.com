@@ -70,5 +70,5 @@ export type ExchangeEVSubmitForm = {
   finance: string;
   additionalInfo?: string;
   vehicleDocument?: File | null;
-  vehiclePhoto?: File | null;
+  vehiclePhotos: File[];
 };

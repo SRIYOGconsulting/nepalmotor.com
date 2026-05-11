@@ -11,6 +11,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type CarCardProps={
     car:CarCardDetails;
@@ -18,6 +19,7 @@ type CarCardProps={
 
 
 type CarCardDetails = {
+  _id: string;
   primaryImageUrl: string | null;
   year: number;
   make: string;
@@ -55,7 +57,8 @@ const HeartIcon = () => (
 
 const SingleCarCard = ({car}: CarCardProps) => {
 
-  const {primaryImageUrl,
+  const {_id,
+  primaryImageUrl,
   year,
   make,
   model,
@@ -65,46 +68,56 @@ const SingleCarCard = ({car}: CarCardProps) => {
   price,}=car
     
   return (
-    <div className="group flex w-full max-w-sm flex-col overflow-hidden rounded-xl border border-white/10 bg-[#111] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#f4c430]/60 hover:shadow-xl hover:shadow-black/40">
-      
-      {/* Car Image Section */}
-      <div className="relative mb-4 h-48 w-full">
-        <Image
-          src={primaryImageUrl || "/MainLogo.png"}
-          alt={`${year} ${make} ${model}`}
-          fill
-          className="object-contain"
-        />
-      </div>
-
-      {/* Car Details Section */}
-      <div className="flex flex-grow flex-col justify-between">
-        <div>
-          {/* Title and Favorite Icon */}
-          <div className="flex items-start justify-between">
-            <div>
-              <h3 className="text-sm font-bold line-clamp-1 uppercase tracking-wider text-white">
-                {year} {make} {model}
-              </h3>
-              <p className="text-xs uppercase text-gray-400">{variant || ''}</p>
-            </div>
-            <button aria-label="Add to favorites" className='cursor-pointer'>
-              <HeartIcon />
-            </button>
-          </div>
-
-          {/* Specs */}
-          <p className="mt-3 text-sm text-gray-400">
-            {typeof mileage === 'number' ? `${mileage.toLocaleString('en-US')} km` : '— km'} · {transmission || '—'}
-          </p>
+    <Link href={`/cars/${_id}`} className="block" aria-label={`View ${year} ${make} ${model}`}>
+      <div className="group flex w-full max-w-sm flex-col overflow-hidden rounded-xl border border-white/10 bg-[#111] p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#f4c430]/60 hover:shadow-xl hover:shadow-black/40">
+        
+        {/* Car Image Section */}
+        <div className="relative mb-4 h-48 w-full">
+          <Image
+            src={primaryImageUrl || "/MainLogo.png"}
+            alt={`${year} ${make} ${model}`}
+            fill
+            className="object-contain"
+          />
         </div>
 
-        {/* Price */}
-        <p className="mt-4 text-2xl font-black text-[#f4c430]">
-          Rs. {price.toLocaleString('en-US')}
-        </p>
+        {/* Car Details Section */}
+        <div className="flex flex-grow flex-col justify-between">
+          <div>
+            {/* Title and Favorite Icon */}
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-sm font-bold line-clamp-1 uppercase tracking-wider text-white">
+                  {year} {make} {model}
+                </h3>
+                <p className="text-xs uppercase text-gray-400">{variant || ''}</p>
+              </div>
+              <button
+                type="button"
+                aria-label="Add to favorites"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                className='cursor-pointer'
+              >
+                <HeartIcon />
+              </button>
+            </div>
+
+            {/* Specs */}
+            <p className="mt-3 text-sm text-gray-400">
+              {typeof mileage === 'number' ? `${mileage.toLocaleString('en-US')} km` : '— km'} · {transmission || '—'}
+            </p>
+          </div>
+
+          {/* Price */}
+          <p className="mt-4 text-2xl font-black text-[#f4c430]">
+            Rs. {price.toLocaleString('en-US')}
+          </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

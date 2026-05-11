@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     const additionalInfo = getText('additionalInfo');
 
     const vehicleDocument = getFile('vehicleDocument');
-    const vehiclePhoto = getFile('vehiclePhoto');
+    const photoFiles = formData.getAll('vehiclePhotos').filter((x): x is File => typeof x !== 'string');
 
     if (!fullName || !email || !phone || !city) {
       return NextResponse.json({ success: false, message: 'Full name, email, phone, and city are required' }, { status: 400 });
@@ -65,6 +65,10 @@ export async function POST(req: NextRequest) {
       !transmission
     ) {
       return NextResponse.json({ success: false, message: 'Vehicle details are required' }, { status: 400 });
+    }
+
+    if (photoFiles.length < 5) {
+      return NextResponse.json({ success: false, message: 'At least 5 vehicle photos are required' }, { status: 400 });
     }
 
     const maxBytes = 5 * 1024 * 1024;
@@ -92,33 +96,38 @@ export async function POST(req: NextRequest) {
       uploads.vehicleDocumentSize = vehicleDocument.size || undefined;
     }
 
-    let photoUpload: { fileId: unknown } | null = null;
-    if (vehiclePhoto) {
-      if (vehiclePhoto.size > maxBytes) {
-        return NextResponse.json({ success: false, message: 'Photo must be 5MB or smaller' }, { status: 400 });
+    for (const f of photoFiles) {
+      if (f.size > maxBytes) {
+        return NextResponse.json({ success: false, message: 'Each photo must be 5MB or smaller' }, { status: 400 });
       }
-      if (!allowedPhotoTypes.has(vehiclePhoto.type)) {
+      if (!allowedPhotoTypes.has(f.type)) {
         return NextResponse.json({ success: false, message: 'Vehicle photo must be an image (JPG/PNG/WEBP)' }, { status: 400 });
       }
-      photoUpload = await uploadToExchangeBucket({
-        file: vehiclePhoto,
-        filename: vehiclePhoto.name || 'vehicle-photo',
-        contentType: vehiclePhoto.type || 'application/octet-stream',
-        metadata: { kind: 'vehiclePhoto' },
-      });
-      uploads.vehiclePhotoFileId = photoUpload.fileId;
-      uploads.vehiclePhotoFileName = vehiclePhoto.name || undefined;
-      uploads.vehiclePhotoContentType = vehiclePhoto.type || undefined;
-      uploads.vehiclePhotoSize = vehiclePhoto.size || undefined;
-      uploads.vehiclePhotos = [
-        {
-          fileId: photoUpload.fileId,
-          filename: vehiclePhoto.name || undefined,
-          contentType: vehiclePhoto.type || undefined,
-          size: vehiclePhoto.size || undefined,
-        },
-      ];
     }
+
+    const photoUploads = await Promise.all(
+      photoFiles.map((vehiclePhoto, index) =>
+        uploadToExchangeBucket({
+          file: vehiclePhoto,
+          filename: vehiclePhoto.name || `vehicle-photo-${index + 1}`,
+          contentType: vehiclePhoto.type || 'application/octet-stream',
+          metadata: { kind: 'vehiclePhoto' },
+        }),
+      ),
+    );
+
+    const primaryPhoto = photoFiles[0];
+    const primaryUpload = photoUploads[0];
+    uploads.vehiclePhotoFileId = primaryUpload.fileId;
+    uploads.vehiclePhotoFileName = primaryPhoto.name || undefined;
+    uploads.vehiclePhotoContentType = primaryPhoto.type || undefined;
+    uploads.vehiclePhotoSize = primaryPhoto.size || undefined;
+    uploads.vehiclePhotos = photoUploads.map((photoUpload, i) => ({
+      fileId: photoUpload.fileId,
+      filename: photoFiles[i].name || undefined,
+      contentType: photoFiles[i].type || undefined,
+      size: photoFiles[i].size || undefined,
+    }));
 
     let user = await User.findOne({ phone });
     if (!user) {

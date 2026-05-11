@@ -47,7 +47,7 @@ export const useExchangeStore = create<ExchangeStoreState>((set) => ({
         if (data.additionalInfo) body.append('additionalInfo', data.additionalInfo);
 
         if (data.vehicleDocument) body.append('vehicleDocument', data.vehicleDocument);
-        if (data.vehiclePhoto) body.append('vehiclePhoto', data.vehiclePhoto);
+        data.vehiclePhotos.forEach((f) => body.append('vehiclePhotos', f));
 
         const response = await fetch('/api/exchange-ev', {
           method: 'POST',

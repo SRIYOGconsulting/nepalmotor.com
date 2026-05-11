@@ -77,7 +77,7 @@ export default async function SellCarsPage() {
 
                   <div className="mt-5 flex items-center justify-between gap-4">
                     <div className="text-base font-bold text-[#f4c430]">{formatPrice(car.expectedValuation)}</div>
-                    <Link href={`/sellcars/${id}`} className="rounded-lg bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffdf70]">
+                    <Link href={`/buy/${id}`} className="rounded-lg bg-[#f4c430] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffdf70]">
                       View Details
                     </Link>
                   </div>

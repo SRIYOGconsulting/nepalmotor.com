@@ -150,9 +150,11 @@ interface UploadFieldProps {
   label: string;
   fileName: string;
   onFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  multiple?: boolean;
+  accept?: string;
 }
 
-const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange }) => (
+const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange, multiple, accept }) => (
   <div>
     <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">{label}</label>
     <label
@@ -163,7 +165,7 @@ const UploadField: FC<UploadFieldProps> = ({ id, label, fileName, onFileChange }
       <span className="ml-1 font-semibold text-[#f4c430] underline">browse</span>
       {fileName && <span className="ml-2 truncate text-foreground">({fileName})</span>}
     </label>
-    <input id={id} type="file" className="hidden" onChange={onFileChange} />
+    <input id={id} type="file" className="hidden" multiple={multiple} accept={accept} onChange={onFileChange} />
   </div>
 );
 
@@ -176,7 +178,8 @@ const SellOldCarsPage: FC = () => {
 
   const [formData, setFormData] = useState<FormDataState>(initialFormState);
   const [vehicleDocument, setVehicleDocument] = useState<File | null>(null);
-  const [vehiclePhoto, setVehiclePhoto] = useState<File | null>(null);
+  const [vehiclePhotos, setVehiclePhotos] = useState<File[]>([]);
+  const [photoCountError, setPhotoCountError] = useState('');
 
   const cityOptions: OptionType[] = [
     { value: 'Kathmandu', label: 'Kathmandu' },
@@ -264,7 +267,8 @@ const SellOldCarsPage: FC = () => {
   const handleReset = () => {
     setFormData(initialFormState);
     setVehicleDocument(null);
-    setVehiclePhoto(null);
+    setVehiclePhotos([]);
+    setPhotoCountError('');
     setIsSubmitError(false);
     setIsSubmitSuccess(false);
   };
@@ -277,12 +281,19 @@ const SellOldCarsPage: FC = () => {
   const submitSellRequest = async () => {
     setIsSubmitLoading(true);
     setIsSubmitError(false);
+    setPhotoCountError('');
+
+    if (vehiclePhotos.length < 5) {
+      setPhotoCountError('Please upload at least 5 vehicle photos.');
+      setIsSubmitLoading(false);
+      return;
+    }
 
     try {
       const body = new FormData();
       (Object.keys(formData) as Array<keyof FormDataState>).forEach((k) => body.set(k, formData[k]));
       if (vehicleDocument) body.set('vehicleDocument', vehicleDocument);
-      if (vehiclePhoto) body.set('vehiclePhoto', vehiclePhoto);
+      vehiclePhotos.forEach((f) => body.append('vehiclePhotos', f));
 
       const res = await fetch('/api/sell-old-car', { method: 'POST', body });
       const data = (await res.json()) as { success?: boolean };
@@ -405,12 +416,19 @@ const SellOldCarsPage: FC = () => {
                 onFileChange={(e) => setVehicleDocument(e.target.files?.[0] || null)}
               />
               <UploadField
-                id="vehiclePhoto"
-                label="Vehicle Photo (optional)"
-                fileName={vehiclePhoto?.name || ''}
-                onFileChange={(e) => setVehiclePhoto(e.target.files?.[0] || null)}
+                id="vehiclePhotos"
+                label="Vehicle photos (minimum 5 images)"
+                fileName={
+                  vehiclePhotos.length
+                    ? `${vehiclePhotos.length} file${vehiclePhotos.length === 1 ? '' : 's'} selected`
+                    : ''
+                }
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                onFileChange={(e) => setVehiclePhotos(Array.from(e.target.files ?? []))}
               />
             </div>
+            {photoCountError && <p className="text-sm text-red-400">{photoCountError}</p>}
           </div>
 
           {isSubmitError && <p className="text-sm text-red-400">Something went wrong while submitting. Please try again.</p>}

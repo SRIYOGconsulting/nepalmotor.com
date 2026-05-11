@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, ArrowLeft, Heart } from "lucide-react";
 
 type CarSearchFilters = {
@@ -276,6 +277,41 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ carType, make, model, ye
                 const isCenter = item.index === centerIndex && item.role === "center";
                 const key = car._id;
 
+                const inner = (
+                  <div className="relative h-[220px] sm:h-[260px] md:h-[320px] lg:h-[360px]">
+                    {isCenter && (
+                      <button
+                        type="button"
+                        aria-label={likedKeys.has(key) ? "Unfavorite" : "Favorite"}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleLike(key);
+                        }}
+                        className="absolute right-3 top-3 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white/80 backdrop-blur-sm transition hover:border-[#f4c430] hover:text-[#f4c430] active:scale-95"
+                      >
+                        <Heart
+                          className={`h-5 w-5 transition-transform duration-200 ${
+                            likedKeys.has(key) ? "scale-110 text-[#f4c430]" : ""
+                          }`}
+                          fill={likedKeys.has(key) ? "currentColor" : "none"}
+                          strokeWidth={2.5}
+                        />
+                      </button>
+                    )}
+                    <Image
+                      src={car.primaryImageUrl || "/MainLogo.png"}
+                      alt={`${car.year} ${car.make} ${car.model}`}
+                      fill
+                      quality={100}
+                      sizes="(max-width: 640px) 78vw, (max-width: 1024px) 62vw, 900px"
+                      draggable={false}
+                      className="object-contain drop-shadow-[0_32px_60px_rgba(0,0,0,0.6)]"
+                      priority={item.index === centerIndex}
+                    />
+                  </div>
+                );
+
                 return (
                   <div
                     key={`${slot}-${item.index}`}
@@ -292,38 +328,17 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ carType, make, model, ye
                       pointerEvents: isCenter ? "auto" : "none",
                     }}
                   >
-                    <div className="relative h-[220px] sm:h-[260px] md:h-[320px] lg:h-[360px]">
-                      {isCenter && (
-                        <button
-                          type="button"
-                          aria-label={likedKeys.has(key) ? "Unfavorite" : "Favorite"}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            toggleLike(key);
-                          }}
-                          className="absolute right-3 top-3 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white/80 backdrop-blur-sm transition hover:border-[#f4c430] hover:text-[#f4c430] active:scale-95"
-                        >
-                          <Heart
-                            className={`h-5 w-5 transition-transform duration-200 ${
-                              likedKeys.has(key) ? "scale-110 text-[#f4c430]" : ""
-                            }`}
-                            fill={likedKeys.has(key) ? "currentColor" : "none"}
-                            strokeWidth={2.5}
-                          />
-                        </button>
-                      )}
-                      <Image
-                        src={car.primaryImageUrl || "/MainLogo.png"}
-                        alt={`${car.year} ${car.make} ${car.model}`}
-                        fill
-                        quality={100}
-                        sizes="(max-width: 640px) 78vw, (max-width: 1024px) 62vw, 900px"
-                        draggable={false}
-                        className="object-contain drop-shadow-[0_32px_60px_rgba(0,0,0,0.6)]"
-                        priority={item.index === centerIndex}
-                      />
-                    </div>
+                    {isCenter ? (
+                      <Link
+                        href={`/cars/${car._id}`}
+                        className="block h-full w-full"
+                        aria-label={`View ${car.year} ${car.make} ${car.model}`}
+                      >
+                        {inner}
+                      </Link>
+                    ) : (
+                      inner
+                    )}
                   </div>
                 );
               };
