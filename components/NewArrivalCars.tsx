@@ -17,14 +17,13 @@ const NewArrivalCars = async () => {
 	return (
 		<section className="w-full pb-12 bg-background">
 			<h2 className="text-3xl md:text-4xl text-center font-black uppercase mb-6 pt-8 text-foreground">
-				New Arrivals
+				Ev New Arrivals
 			</h2>
 			<div className='w-full max-w-screen-2xl mx-auto px-2 md:px-6 lg:px-8 '>
 			<div className="flex flex-wrap gap-8 justify-center p-4">
 	{items.map((v) => (
-		<Link
+		<div
 			key={v._id}
-			href={v.href || '/'}
 			className="block w-48 rounded-xl border border-line bg-surface hover:border-[#f4c430]/60 hover:shadow-xl transition-all duration-300"
 		>
 			<div className="w-full  flex items-center justify-center">
@@ -44,7 +43,7 @@ const NewArrivalCars = async () => {
 					{v.priceText || ''}
 				</p>
 			</div>
-		</Link>
+		</div>
 	))}
 			</div>
 			</div>

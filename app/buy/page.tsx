@@ -53,7 +53,7 @@ export default async function SellCarsPage() {
 
             return (
               <div key={id} className="group overflow-hidden rounded-2xl border border-line bg-surface transition hover:-translate-y-1 hover:border-[#f4c430]/60">
-                <Link href={`/sellcars/${id}`} className="block">
+                <Link href={`/buy/${id}`} className="block">
                   <div className="relative aspect-[16/10] w-full bg-surface-2">
                     <img src={imgSrc} alt={title} className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
                     <div className="absolute left-3 top-3 flex items-center gap-2">

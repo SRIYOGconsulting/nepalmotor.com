@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Heart } from "lucide-react";
+import { ArrowRight, ArrowLeft, Heart, ArrowLeftRight } from "lucide-react";
+import toast from "react-hot-toast";
+import { MAX_COMPARE } from "@/lib/compareConstants";
+import { useCompareStore } from "@/store/useCompareStore";
 
 type CarSearchFilters = {
   carType?: string;
@@ -25,6 +28,7 @@ type CarListingCard = {
 };
 
 const CarSearchDisplay: React.FC<CarSearchFilters> = ({ carType, make, model, year }) => {
+  const addToCompare = useCompareStore((s) => s.add);
   const [cars, setCars] = useState<CarListingCard[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -282,21 +286,22 @@ const CarSearchDisplay: React.FC<CarSearchFilters> = ({ carType, make, model, ye
                     {isCenter && (
                       <button
                         type="button"
-                        aria-label={likedKeys.has(key) ? "Unfavorite" : "Favorite"}
+                        aria-label="Add to compare"
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          toggleLike(key);
+                          const r = addToCompare("car_listing", car._id);
+                          if (r === "added") toast.success("Added to compare");
+                          else if (r === "already") toast("Already in compare");
+                          else if (r === "kind_mismatch")
+                            toast.error(
+                              "Compare already has used cars. Clear compare on /compare to add showroom cars."
+                            );
+                          else toast.error(`Compare is full (max ${MAX_COMPARE}).`);
                         }}
-                        className="absolute right-3 top-3 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white/80 backdrop-blur-sm transition hover:border-[#f4c430] hover:text-[#f4c430] active:scale-95"
+                        className="absolute left-3 top-3 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white/80 backdrop-blur-sm transition hover:border-[#f4c430] hover:text-[#f4c430] active:scale-95"
                       >
-                        <Heart
-                          className={`h-5 w-5 transition-transform duration-200 ${
-                            likedKeys.has(key) ? "scale-110 text-[#f4c430]" : ""
-                          }`}
-                          fill={likedKeys.has(key) ? "currentColor" : "none"}
-                          strokeWidth={2.5}
-                        />
+                        <ArrowLeftRight className="h-5 w-5" strokeWidth={2.5} />
                       </button>
                     )}
                     <Image

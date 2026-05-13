@@ -80,7 +80,7 @@ export default async function AboutUs() {
             <h2 className="text-3xl font-black uppercase tracking-wider text-gradient sm:text-5xl">Car of the Day</h2>
             <p className="text-muted">No approved used cars available yet.</p>
             <Link
-              href="/sellcars"
+              href="/buy"
               className="lux-button group inline-flex items-center gap-3 rounded-lg px-8 py-4 font-bold shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-100/20"
               aria-label="View all used cars"
             >
@@ -135,14 +135,14 @@ export default async function AboutUs() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                href={`/sellcars/${id}`}
+                href={`/buy/${id}`}
                 className="lux-button group inline-flex items-center gap-3 rounded-lg px-8 py-4 font-bold shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-100/20"
                 aria-label="View car of the day details"
               >
                 <span>View Details</span>
                 <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-              <Link href="/sellcars" className="text-sm font-semibold text-foreground underline underline-offset-4">
+              <Link href="/buy" className="text-sm font-semibold text-foreground underline underline-offset-4">
                 View all used cars
               </Link>
             </div>

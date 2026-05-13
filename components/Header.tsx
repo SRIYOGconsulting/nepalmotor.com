@@ -7,12 +7,20 @@ import React, { useEffect, useState } from 'react';
 import SideMenu from './SideMenu';
 import { usePathname } from 'next/navigation'; 
 import ThemeToggle from './ThemeToggle';
+import { useCompareStore } from '@/store/useCompareStore';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname(); 
   const hide = pathname.startsWith('/admin');
+  const compareCount = useCompareStore((s) => s.ids.length);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -103,6 +111,16 @@ const Header = () => {
             >
               About Us
             </Link>
+            {mounted && compareCount > 0 && (
+              <Link
+                href="/compare"
+                className={`text-sm font-semibold uppercase tracking-widest transition-colors ${
+                  pathname === '/compare' ? 'text-[#f4c430]' : 'text-foreground hover:text-[#f4c430]'
+                }`}
+              >
+                Compare ({compareCount})
+              </Link>
+            )}
           </nav>
           <ThemeToggle />
           <Link
@@ -115,7 +133,7 @@ const Header = () => {
         {/* this is only for test purpose */}
 
         {/* Mobile Menu */}
-        <SideMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <SideMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} compareCount={mounted ? compareCount : 0} />
       </div>
     </header>
   );

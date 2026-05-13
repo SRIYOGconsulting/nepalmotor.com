@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { connectdb } from '@/lib/db';
 import SellCar from '@/model/sellCar.model';
 import SellCarGallery from '@/components/SellCarGallery';
-import { ArrowLeftRight, Car, PhoneCall } from 'lucide-react';
+import CompareSellCarButton from '@/components/CompareSellCarButton';
+import { Car, PhoneCall } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -78,8 +79,8 @@ export default async function SellCarDetailsPage({ params }: { params: Promise<{
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6 lg:px-8">
-        <Link href="/sellcars" className="text-sm text-[#f4c430] hover:underline">
-          ← Back to cars
+        <Link href="/buy" className="text-sm text-[#f4c430] hover:underline">
+          ← Back to used cars
         </Link>
 
         <div className="mt-5 grid gap-6 lg:grid-cols-[1.35fr_0.95fr]">
@@ -121,12 +122,7 @@ export default async function SellCarDetailsPage({ params }: { params: Promise<{
                 >
                   Book Test Drive <Car className="h-5 w-5" />
                 </Link>
-                <Link
-                  href="/sellcars"
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#dfe5ee] text-sm font-semibold text-[#0b0b0b] transition hover:bg-[#cfd7e3]"
-                >
-                  Compare <ArrowLeftRight className="h-5 w-5" />
-                </Link>
+                <CompareSellCarButton sellCarId={String(car._id)} />
                 <Link
                   href="/contact"
                   className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#dfe5ee] text-sm font-semibold text-[#0b0b0b] transition hover:bg-[#cfd7e3]"

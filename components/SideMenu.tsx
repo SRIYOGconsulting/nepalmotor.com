@@ -24,10 +24,11 @@
     interface SideMenuProps{
         menuOpen:boolean;
         setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+        compareCount?: number;
     }
 
 
-    const SideMenu = ({ menuOpen, setMenuOpen }:SideMenuProps) => {
+    const SideMenu = ({ menuOpen, setMenuOpen, compareCount = 0 }:SideMenuProps) => {
       const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
@@ -111,6 +112,29 @@
                                 </li>
                             ))}
                         </ul>
+                        {compareCount > 0 && (
+                          <Link
+                            href="/compare"
+                            onClick={() => setMenuOpen(false)}
+                            className={`group flex cursor-pointer items-center justify-between rounded-md border py-3 px-3 transition-all duration-150 ease-in-out hover:border-[#f4c430] hover:bg-foreground/5 ${
+                              pathname === '/compare' ? 'border-[#f4c430]/60 bg-foreground/5' : 'border-line'
+                            }`}
+                          >
+                            <span
+                              className={`text-base font-semibold uppercase tracking-wider group-hover:text-[#f4c430] ${
+                                pathname === '/compare' ? 'text-[#f4c430]' : 'text-muted'
+                              }`}
+                            >
+                              Compare ({compareCount})
+                            </span>
+                            <ChevronRight
+                              size={22}
+                              className={`opacity-80 group-hover:opacity-100 group-hover:text-[#f4c430] ${
+                                pathname === '/compare' ? 'text-[#f4c430]' : ''
+                              }`}
+                            />
+                          </Link>
+                        )}
                         <Link
             href="/exchange"
             className="lux-button whitespace-nowrap rounded-md px-3 py-2 text-center text-sm font-bold uppercase tracking-wide md:text-base"

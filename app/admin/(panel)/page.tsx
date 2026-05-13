@@ -9,7 +9,7 @@ export default function AdminDashboardPage() {
     },
     {
       title: 'Old Cars',
-      desc: 'Create and manage old cars shown on /sellcars.',
+      desc: 'Create and manage used cars shown on /buy.',
       href: '/admin/sellcars',
     },
     {

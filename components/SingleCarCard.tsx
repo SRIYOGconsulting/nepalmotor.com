@@ -1,17 +1,12 @@
-// import React from 'react'
-
-// const SingleCarCard = () => {
-//   return (
-//     <div>SingleCarCard</div>
-//   )
-// }
-
-// export default SingleCarCard
-
+'use client';
 
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowLeftRight } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { MAX_COMPARE } from '@/lib/compareConstants';
+import { useCompareStore } from '@/store/useCompareStore';
 
 type CarCardProps={
     car:CarCardDetails;
@@ -56,6 +51,7 @@ const HeartIcon = () => (
 );
 
 const SingleCarCard = ({car}: CarCardProps) => {
+  const addToCompare = useCompareStore((s) => s.add);
 
   const {_id,
   primaryImageUrl,
@@ -73,6 +69,25 @@ const SingleCarCard = ({car}: CarCardProps) => {
         
         {/* Car Image Section */}
         <div className="relative mb-4 h-48 w-full">
+          <button
+            type="button"
+            aria-label="Add to compare"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const r = addToCompare('car_listing', _id);
+              if (r === 'added') toast.success('Added to compare');
+              else if (r === 'already') toast('Already in compare');
+              else if (r === 'kind_mismatch')
+                toast.error(
+                  'Compare already has used cars. Clear compare on /compare to add showroom cars.'
+                );
+              else toast.error(`Compare is full (max ${MAX_COMPARE}).`);
+            }}
+            className="absolute left-2 top-2 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/60 text-white/85 backdrop-blur-sm transition hover:border-[#f4c430] hover:text-[#f4c430]"
+          >
+            <ArrowLeftRight className="h-4 w-4" strokeWidth={2.5} />
+          </button>
           <Image
             src={primaryImageUrl || "/MainLogo.png"}
             alt={`${year} ${make} ${model}`}
@@ -92,17 +107,6 @@ const SingleCarCard = ({car}: CarCardProps) => {
                 </h3>
                 <p className="text-xs uppercase text-gray-400">{variant || ''}</p>
               </div>
-              <button
-                type="button"
-                aria-label="Add to favorites"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-                className='cursor-pointer'
-              >
-                <HeartIcon />
-              </button>
             </div>
 
             {/* Specs */}
